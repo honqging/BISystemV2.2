@@ -1,0 +1,659 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <meta charset="gb2312" /> -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="css/mystyles.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/otreetable.js"></script>
+		<title>BI system</title>
+	</head>
+	<body>
+		<header class="jumbotron">
+			<img src="img/logo.png" id="logo"></img>
+			<strong id="head_title">山东省千佛山医院————手术室临床BI系统</strong>
+		</header>
+		<div class="container-fluid">
+			<div class="rows">
+				<div class="col-sm-1">
+					<ul class="nav sideBarL">
+						<li role="presentation" class="li_border">
+							<a href="#tableAnalysis" aria-controls="tableAnalysis" role="tab" data-toggle="tab">
+							<img src="img/图表分析.png" class="side_logo"></img>
+							<p class="side_font">图表分析</p>
+							</a>
+						</li>
+						<li role="presentation" class="active li_border">
+							<a href="#projectGraph" aria-controls="projectGraph" role="tab" data-toggle="tab">
+							<img src="img/项目一览表.png" class="side_logo"></img>
+							<p class="side_font">项目一览表</p>
+							</a>
+						</li>
+						<li role="presentation" class="li_border">
+							<a href="#workGraph" aria-controls="workGraph" role="tab" data-toggle="tab">
+							<img src="img/工作量统计表.png" class="side_logo"></img>
+							<p class="side_font"><small>工作量统计表</small></p>
+							</a>
+						</li>
+						<li role="presentation" class="li_border">
+							<a href="#graphAnalysis" aria-controls="graphAnalysis" role="tab" data-toggle="tab">
+							<img src="img/图形分析.png" class="side_logo"></img>
+							<p class="side_font">图形分析</p>
+							</a>
+						</li>
+						<li role="presentation" class="li_border">
+							<a href="#tableStatistics" aria-controls="tableStatistics" role="tab" data-toggle="tab">
+							<img src="img/报表统计.png" class="side_logo"></img>
+							<p class="side_font">报表统计</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-11">
+					<div class="tab-content">
+						<!-- 图表分析 -->
+						<div role="tabpanel" class="tab-pane fade" id="tableAnalysis">
+							图表分析
+						</div>
+						<!-- 项目一览表 -->
+						<div role="tabpanel" class="tab-pane fade in active" id="projectGraph">
+							<ul class="nav vertical-tab col-sm-2 sideBar">
+								<div class="side_title">细类划分</div>
+								<li role="presentation" class="active">
+									<a href="#SMBR" aria-controls="SMBR" role="tab" data-toggle="tab">
+									手麻病人一览表</a>
+								</li>
+								<li role="presentation">
+									<a href="#SSHD" aria-controls="SSHD" role="tab" data-toggle="tab">
+									手术滑刀时间一览表</a>
+								</li>
+								<li role="presentation">
+									<a href="#SSZK" aria-controls="SSZK" role="tab" data-toggle="tab">
+									手术质控统计</a>
+								</li>
+								<li role="presentation">
+									<a href="#ASA" aria-controls="ASA" role="tab" data-toggle="tab">
+									ASA分级统计</a>
+								</li>
+							</ul>
+							<div class="col-sm-10">
+								<div class="tab-content contentR">
+									<!-- 手麻病人一览表 -->
+									<div role="tabpanel" class="tab-pane fade in active" id="SMBR">
+										<div class="table_title">
+											<h4 class="col-sm-12">手麻病人一览表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SMstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SMendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="SMsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="SMexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="SMBR_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="SMBRPage">
+											<li><a href="javascript:void(0)" id="SMBRPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="SMBRPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="SMBRPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 手术滑刀时间一览表 -->
+									<div role="tabpanel" class="tab-pane fade" id="SSHD">
+										<div class="table_title">
+											<h4 class="col-sm-12">手术滑刀时间一览表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHDstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHDendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="SSHDsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="SSHDexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="SSHD_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="SSHDBRPage">
+											<li><a href="javascript:void(0)" id="SSHDPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="SSHDPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="SSHDPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 手术质控统计 -->
+									<div role="tabpanel" class="tab-pane fade" id="SSZK">
+										<div class="table_title">
+											<h4 class="col-sm-12">手术质控统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSZKstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSZKendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn"></button>
+											</div>.
+										</div>
+										<table class="table table-striped">
+											<tr class="active">
+												<th>术中心率失常</th>
+												<th>术中严重过敏</th>
+												<th>术中严重误吸</th>
+												<th>血液回收</th>
+												<th>硬膜穿破</th>
+											</tr>
+											<tr style="background-color:white">
+												<td><a href="javascript:void(0)" id="zk1">3</a></td>
+												<td><a href="javascript:void(0)" id="zk2">0</a></td>
+												<td><a href="javascript:void(0)" id="zk3">0</a></td>
+												<td><a href="javascript:void(0)" id="zk4">2</a></td>
+												<td><a href="javascript:void(0)" id="zk5">0</a></td>
+											</tr>
+										</table>
+										<p class="table_titleL" id="zkTitle">术中心率失常——详情</p>
+										<table class="table table-striped table-hover">
+											<tbody id="SSZK_table"></tbody>
+										</table>
+									</div>
+									<!--ASA分级统计-->
+									<div role="tabpanel" class="tab-pane fade" id="ASA">
+										<div class="table_title">
+											<h4 class="col-sm-12">ASA分级统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASAstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASAendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="ASAsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="ASAexport"></button>
+											</div>.
+										</div>
+										<div class="div-scroll">
+											<table class="table table-striped table-hover">
+												<tbody id="ASA_table"></tbody>
+											</table>
+										</div>
+										<div class="col-sm-4" id="ASA_Echarts">ASA分级手术统计饼图</div>
+										<div class="detail-scroll col-sm-8">
+											<table class="table table-striped table-hover table-border">
+												<tbody id="ASAdetail_table"></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 工作量统计表 -->
+						<div role="tabpanel" class="tab-pane fade" id="workGraph">
+							<ul class="nav vertical-tab col-sm-2 sideBar">
+								<div class="side_title">细类划分</div>
+								<li role="presentation" class="active">
+									<a href="#HSGZL" aria-controls="HSGZL" role="tab" data-toggle="tab">
+									护士工作量统计表</a>
+								</li>
+								<li role="presentation">
+									<a href="#MZYSGZL" aria-controls="MZYSGZL" role="tab" data-toggle="tab">
+									麻醉医生工作量统计表</a>
+								</li>
+								<li role="presentation">
+									<a href="#MZYSZGZL" aria-controls="MZYSZGZL" role="tab" data-toggle="tab">
+									麻醉医生总工作量统计表</a>
+								</li>
+								<li role="presentation">
+									<a href="#SSHSGZL" aria-controls="SSHSGZL" role="tab" data-toggle="tab">
+									手术护士工作量统计表</a>
+								</li>
+								<li role="presentation">
+									<a href="#SSYSGZL" aria-controls="SSYSGZL" role="tab" data-toggle="tab">
+									手术医生工作量统计表</a>
+								</li>
+								<li role="presentation">
+									<a href="#KSGZL" aria-controls="KSGZL" role="tab" data-toggle="tab">
+									科室工作量统计表</a>
+								</li>
+							</ul>
+							<div class="col-sm-10">
+								<div class="tab-content contentR">
+									<!-- 护士工作量统计表 -->
+									<div role="tabpanel" class="tab-pane fade in active" id="HSGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">护士工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HSGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HSGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="HSGZLsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="HSGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="HSGZL_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="nurseWorkloadPage">
+											<li><a href="javascript:void(0)" id="nurseWorkloadPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="nurseWorkloadPageNum" disabled/>页
+												</a><li/>
+											<li><a href="javascript:void(0)" id="nurseWorkloadPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 麻醉医生工作量统计表 -->
+									<div role="tabpanel" class="tab-pane fade" id="MZYSGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">麻醉医生工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="MZYSGZLsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="MZYSGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="MZYSGZL_table">
+											</tbody>											
+										</table>
+										<ul class="pagination pagination-middle" id="MZYSGZLPage">
+											<li><a href="javascript:void(0)" id="MZYSGZLPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="MZYSGZLPageNum" disabled/>页
+												</a><li/>
+											<li><a href="javascript:void(0)" id="MZYSGZLPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 麻醉医生总工作量统计表 -->
+									<div role="tabpanel" class="tab-pane fade" id="MZYSZGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">麻醉医生总工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSZGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSZGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="MZYSZGZLsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="MZYSZGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="MZYSZGZL_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="MZYSZGZLPage">
+											<li><a href="javascript:void(0)" id="MZYSZGZLPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="MZYSZGZLPageNum" disabled/>页
+												</a><li/>
+											<li><a href="javascript:void(0)" id="MZYSZGZLPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!--手术护士工作量统计表-->
+									<div role="tabpanel" class="tab-pane fade" id="SSHSGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">手术护士工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHSGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHSGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="SSHSGZLsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="SSHSGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="SSHSGZL_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="SSHSGZLPage">
+											<li><a href="javascript:void(0)" id="SSHSGZLPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="SSHSGZLPageNum" disabled/>页
+												</a><li/>
+											<li><a href="javascript:void(0)" id="SSHSGZLPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!--手术医生工作量统计表-->
+									<div role="tabpanel" class="tab-pane fade" id="SSYSGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">手术医生工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSYSGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSYSGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="SSYSGZLsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="SSYSGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="SSYSGZL_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="SSYSGZLPage">
+											<li><a href="javascript:void(0)" id="SSYSGZLPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="SSYSGZLPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="SSYSGZLPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!--科室工作量统计表-->
+									<div role="tabpanel" class="tab-pane fade" id="KSGZL">
+										<div class="table_title">
+											<h4 class="col-sm-12">科室工作量统计表</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="KSGZLstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="KSGZLendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="KSsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="KSGZLexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="KSGZL_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="KSPage">
+											<li><a href="javascript:void(0)" id="KSpageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="KSpageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="KSpageNext">&raquo;</a></li>
+										</ul>
+										<div>
+											<div class="col-sm-12 KS_Echarts" id="KS_Echarts1">1</div>
+											<div class="col-sm-12 KS_Echarts" id="KS_Echarts2">2</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 图形分析 -->
+						<div role="tabpanel" class="tab-pane fade" id="graphAnalysis">
+							图形分析
+						</div>
+						<!-- 图表统计 -->
+						<div role="tabpanel" class="tab-pane fade" id="tableStatistics">
+							<ul class="nav vertical-tab col-sm-2 sideBar">
+								<div class="side_title">细类划分</div>
+								<li role="presentation" class="active">
+									<a href="#NLD" aria-controls="NLD" role="tab" data-toggle="tab">
+									按年龄段统计麻醉方法麻醉次数</a>
+								</li>
+								<li role="presentation">
+									<a href="#SSTW" aria-controls="SSTW" role="tab" data-toggle="tab">
+									按手术体位统计</a>
+								</li>
+								<li role="presentation">
+									<a href="#MZXG" aria-controls="MZXG" role="tab" data-toggle="tab">
+									麻醉效果统计</a>
+								</li>
+								<li role="presentation">
+									<a href="#LCLJGGMZFS" aria-controls="LCLJGGMZFS" role="tab" data-toggle="tab">
+									临床路径更改麻醉方式统计</a>
+								</li>
+								<li role="presentation">
+									<a href="#MZJLDCG" aria-controls="MZJLDCG" role="tab" data-toggle="tab">
+									麻醉记录单插管统计</a>
+								</li>
+							</ul>
+							<div class="col-sm-10">
+								<div class="tab-content contentR">
+									<!-- 按年龄段统计麻醉方法麻醉次数 -->
+									<div role="tabpanel" class="tab-pane fade in active" id="NLD">
+										<div class="table_title">
+											<h4 class="col-sm-12">按年龄段统计麻醉方法麻醉次数</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="NLDsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="NLDexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="NLD_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="NLDPage">
+											<li><a href="javascript:void(0)" id="NLDPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="NLDPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="NLDPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 按手术体位统计 -->
+									<div role="tabpanel" class="tab-pane fade" id="SSTW">
+										<div class="table_title">
+											<h4 class="col-sm-12">按手术体位统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSTWstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSTWendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="SSTWsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="SSTWexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="TW_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="TWpage">
+											<li><a href="javascript:void(0)" id="TWPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="TWPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="TWPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 麻醉效果统计 -->
+									<div role="tabpanel" class="tab-pane fade" id="MZXG">
+										<div class="table_title">
+											<h4 class="col-sm-12">麻醉效果统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZXGstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZXGendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="MZXGsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="MZXGexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="MZXG_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="MZXGpage">
+											<li><a href="javascript:void(0)" id="MZXGPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="MZXGPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="MZXGPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 临床路径更改麻醉方式统计 -->
+									<div role="tabpanel" class="tab-pane fade" id="LCLJGGMZFS">
+										<div class="table_title">
+											<h4 class="col-sm-12">临床路径更改麻醉方式统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZFSstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZFSGendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="MZFSsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="MZFSexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover" id="treeTable">
+											<tbody id="MZFS_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="MZFSpage">
+											<li><a href="javascript:void(0)" id="MZFSPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="MZFSPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="MZFSPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+									<!-- 麻醉记录单插管统计 -->
+									<div role="tabpanel" class="tab-pane fade" id="MZJLDCG">
+										<div class="table_title">
+											<h4 class="col-sm-12">麻醉记录单插管统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZJLDCGstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZJLDCGendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="MZJLDCG_table"></tbody>
+										</table>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.js"></script>
+		<script src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+		<script src="js/getDate.js"></script>
+		<script src="js/shoumabingren.js"></script>
+		<script src="js/shoushuhuadao.js"></script>
+		<script src="js/nurseWorkload.js"></script>
+		<script src="js/MzDocWorkload.js"></script>
+		<script src="js/shoushuzhikong.js"></script>
+		<script src="js/MzDocZongWorkload.js"></script>
+		<script src="js/operateNurseWorkload.js"></script>
+		<script src="js/ASA.js"></script>
+		<script src="js/operateDocWorkload.js"></script>
+		<script src="js/nianlingduan.js"></script>
+		<script src="js/keshi.js"></script>
+		<script src="build/source/echarts.js" type="text/javascript"></script>
+		<script src="js/ASAEcharts.js"></script>
+		<script src="js/keshiEcharts1.js"></script>
+		<script src="js/keshiEcharts2.js"></script>
+		<script src="js/tiweitongji.js"></script>
+		<script src="js/mazuixiaoguo.js"></script>
+		<script src="js/changeMZFS.js"></script>
+	</body>
+</html>
