@@ -37,7 +37,7 @@ function insertASSMCZLTJTable(){
 		th.appendChild(thData);
 		table.appendChild(th);
 	}
-	for(var i=1;i<ASSMCZLTJdataSource.length;i++){
+	for(var i=0;i<ASSMCZLTJdataSource.length;i++){
 		var tr = doc.createElement("tr");
 
 		//var b = doc.createElement("a"),
@@ -90,7 +90,6 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 ASSMCZLTJnextPage.onclick = function(){
 	ASSMCZLTJloadpage ++;
 	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
-	//console.log(MzDocZongWorkloadpage);
 	$.ajax({
 		  type: "get",
 		  url: url2,
