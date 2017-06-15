@@ -473,6 +473,10 @@
 									<a href="#MZJLDCG" aria-controls="MZJLDCG" role="tab" data-toggle="tab">
 									麻醉记录单插管统计</a>
 								</li>
+								<li role="presentation">
+									<a href="#ASSMCZLTJ" aria-controls="ASSMCZLTJ" role="tab" data-toggle="tab">
+									按手术名称种类统计</a>
+								</li>
 							</ul>
 							<div class="col-sm-10">
 								<div class="tab-content contentR">
@@ -624,6 +628,37 @@
 											<tbody id="MZJLDCG_table"></tbody>
 										</table>
 									</div>
+									<!--按手术名称种类统计-->
+									<div role="tabpanel" class="tab-pane fade" id="ASSMCZLTJ">
+										<div class="table_title">
+											<h4 class="col-sm-12">按手术名称种类统计</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASSMCZLTJstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASSMCZLTJendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="ASSMCZLTJexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover">
+											<tbody id="ASSMCZLTJ_table"></tbody>
+										</table>
+										<ul class="pagination pagination-middle" id="ASSMCZLTJPage">
+											<li><a href="javascript:void(0)" id="ASSMCZLTJPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="ASSMCZLTJPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="ASSMCZLTJPageNext">&raquo;</a></li>
+										</ul>
+									</div>
 									
 								</div>
 							</div>
@@ -655,5 +690,6 @@
 		<script src="js/tiweitongji.js"></script>
 		<script src="js/mazuixiaoguo.js"></script>
 		<script src="js/changeMZFS.js"></script>
+		<script src="js/opeNameTypeStatistics.js"></script>
 	</body>
 </html>
