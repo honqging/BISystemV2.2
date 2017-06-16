@@ -61,7 +61,7 @@ function insertMZJZZQTable(){
 
 	for(var t=0; t<data.length; t++){
 		var td = doc.createElement("td");
-		//td.title = MZJZZQdataSource[i][j];
+		td.title = data[t];
 		td.appendChild(data[t]);
 		tr.appendChild(td);
 	}
@@ -73,8 +73,15 @@ function insertMZJZZQTable(){
 		for(var j=0;j<MZJZZQdataSource[i].length;j++){
 			var data = doc.createTextNode(MZJZZQdataSource[i][j]);
 			var td = doc.createElement("td");
-			td.title = MZJZZQdataSource[i][j];
-			td.appendChild(data);
+			if(j>1){
+				var a = doc.createElement("a");
+				td.title = MZJZZQdataSource[i][j];
+				a.appendChild(data);
+				td.appendChild(a);
+			}else{
+				td.title = MZJZZQdataSource[i][j];
+				td.appendChild(data);
+			}
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);
