@@ -59,7 +59,7 @@ function insertNLDTable(){
 					});
 					$.ajax({
 						  type: "get",
-						  "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfaQuery?method="+this.method.replace(/\+/g, "%2B")+"&age="+this.age+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfaQuery?method="+this.method.replace(/\+/g, "%2B")+"&age="+this.age+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) {
