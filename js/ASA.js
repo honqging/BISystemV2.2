@@ -47,21 +47,33 @@ function insertASATable(){
 					a = doc.createElement("a"),
 					td = doc.createElement("td");
 				td.title = ASAdataSource[i][j];
+
+				a.setAttribute("tabindex","0");
+				a.setAttribute("role","button");
+				a.setAttribute("data-toggle","popover");
+				a.setAttribute("data-trigger","focus");
+				a.setAttribute("data-placement","left");
 				a.appendChild(data);
 				a.src = "#";
 				a.id = ASAdataSource[i][0];
 				a.onclick = function(){
+					$("[data-toggle='popover']").popover({
+						html:true,
+						content:'<div id="content">loading...</div>'
+					});
 					$.ajax({ 
 						  type: "get", 
 						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) { 
-										  ASAdetail = data.data;
-										  ASAdetailTitle = data.header;
-										  console.log(ASAdetail);
-										  insertASAdeatilTable();
-										   }, 
+							  ASAdetail = data.data;
+							  ASAdetailTitle = data.header;
+							  var table2 = doc.createElement("table");
+							  console.log(ASAdetail);
+							  insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2);
+							  $('#content').html(table2);
+						  },
 						  error: function (XMLHttpRequest, textStatus, errorThrown) { 
 						  alert(errorThrown); 
 						 } 
@@ -81,16 +93,13 @@ function insertASATable(){
 		table.appendChild(tr);
 	}
 }
-function insertASAdeatilTable(){
-	//创建表格
-	var table = doc.getElementById("ASAdetail_table");
-	table.innerHTML = "";
+function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 	//单独添加表头
 	for(var t=0;t<ASAdetailTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdetailTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		table2.appendChild(th);
 	}
 	for(var i=0;i<ASAdetail.length;i++){
 		var tr = doc.createElement("tr");
@@ -99,9 +108,10 @@ function insertASAdeatilTable(){
 				td = doc.createElement("td");
 			td.title = ASAdetail[i][j];
 			td.appendChild(data);
+			td.style.width = "500px";
 			tr.appendChild(td);
 		}
-		table.appendChild(tr);
+		table2.appendChild(tr);
 	}
 }
 
