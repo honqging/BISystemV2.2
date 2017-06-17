@@ -92,10 +92,8 @@ function insertMZXGTable(){
         a.setAttribute("data-placement","left");
         //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
         a.id = MZFSdataSource[i].groupName;
-        var departmentName = MZFSdataSource[i].groupName;
 
         a.onclick = function(){
-            console.log("对的么？");
             var result;
             $("[data-toggle='popover']").popover({
                 html:true,
@@ -128,7 +126,6 @@ function insertMZXGTable(){
         divh4.appendChild(table21);
         div21.appendChild(divh4);
 
-
         // 插入子表table22
         for(var k=0; k<MZFSdataSource[i].groupRows.length; k++){
             var tr2 = doc.createElement("tr");
@@ -146,9 +143,11 @@ function insertMZXGTable(){
             a2.setAttribute("data-placement","left");
             //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
             a2.id = MZFSdataSource[i].groupRows[k][0];
+            a2.setAttribute("name", MZFSdataSource[i].groupName);
+
+            //console.log(departmentName);
 
             a2.onclick = function(){
-                console.log("对的么memmeme？");
                 var result;
                 $("[data-toggle='popover']").popover({
                     html:true,
@@ -156,7 +155,7 @@ function insertMZXGTable(){
                 });
                 $.ajax({
                     type: "get",
-                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?department="+departmentName+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?department="+this.name+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
                     dataType: "json",
                     jsonp:"callback",
                     success: function (data) {
