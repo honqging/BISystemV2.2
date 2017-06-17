@@ -1,5 +1,5 @@
 var MZJZZQloadpage = 1,
-	dataSource = [],
+	MZJZZQdataSource = [],
 	MZJZZQdataTitle = [],
 	doc = document,
 	MZJZZQurlStartTime = "2010-01-01",
@@ -18,7 +18,6 @@ $.ajax({
           success: function (data) {
 			  MZJZZQdataSource = data.data;
 			  MZJZZQdataTitle = data.header;
-			  //console.log(MZYSZGZLdataSource);
 			  insertMZJZZQTable();
 		  },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -108,7 +107,7 @@ var MZJZZQbeforePage = doc.getElementById("MZJZZQPageBefore"),
 					  MZJZZQdataSource = data.data;
 					  MZJZZQdataTitle = data.header;
 					  MZJZZQPageNum.placeholder = MZJZZQloadpage;
-					  insertMZYSZGZLTable();
+					  insertMZJZZQTable();
 					   },
 				  error: function (XMLHttpRequest, textStatus, errorThrown) {
 				  alert(errorThrown);
@@ -137,7 +136,7 @@ MZJZZQnextPage.onclick = function(){
 	}
 
 //�趨ʱ��
-MZYSZGZLsubmitDate.onclick = function () {
+MZJZZQsubmitDate.onclick = function () {
     getDate(MZJZZQstartDate,MZJZZQendDate);
 	MZJZZQurlStartTime = getDate(MZJZZQstartDate,MZJZZQendDate)[0],
 	MZJZZQurlEndTime = getDate(MZJZZQstartDate,MZJZZQendDate)[1];
@@ -148,8 +147,8 @@ MZYSZGZLsubmitDate.onclick = function () {
         dataType: "json",
         jsonp:"callback",
         success: function (data) {
-			urlTimedataSource = data.data;
-			urlTimedataTitle = data.header;
+			MZJZZQdataSource = data.data;
+			MZJZZQdataTitle = data.header;
             //console.log(SMdataSource);
             insertMZJZZQTable();
         },

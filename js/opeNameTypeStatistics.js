@@ -1,5 +1,5 @@
 var ASSMCZLTJloadpage = 1,
-	dataSource = [],
+	ASSMCZLTJdataSource = [],
 	ASSMCZLTJdataTitle = [],
 	doc = document,
 	ASSMCZLTJurlStartTime = "2010-01-01",
@@ -18,7 +18,6 @@ $.ajax({
           success: function (data) {
 			  ASSMCZLTJdataSource = data.data;
 			  ASSMCZLTJdataTitle = data.header;
-			  //console.log(MZYSZGZLdataSource);
 			  insertASSMCZLTJTable();
 		  },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -79,7 +78,7 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 					  ASSMCZLTJdataSource = data.data;
 					  ASSMCZLTJdataTitle = data.header;
 					  ASSMCZLTJPageNum.placeholder = ASSMCZLTJloadpage;
-					  insertMZYSZGZLTable();
+					  insertASSMCZLTJTable();
 					   },
 				  error: function (XMLHttpRequest, textStatus, errorThrown) {
 				  alert(errorThrown);
@@ -108,7 +107,8 @@ ASSMCZLTJnextPage.onclick = function(){
 	}
 
 //�趨ʱ��
-MZYSZGZLsubmitDate.onclick = function () {
+ASSMCZLTJsubmitDate.onclick = function () {
+	console.log("手术名称类型统计");
     getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate);
 	ASSMCZLTJurlStartTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[0],
 	ASSMCZLTJurlEndTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[1];
@@ -119,8 +119,8 @@ MZYSZGZLsubmitDate.onclick = function () {
         dataType: "json",
         jsonp:"callback",
         success: function (data) {
-			urlTimedataSource = data.data;
-			urlTimedataTitle = data.header;
+			ASSMCZLTJdataSource = data.data;
+			ASSMCZLTJdataTitle = data.header;
             //console.log(SMdataSource);
             insertASSMCZLTJTable();
         },
