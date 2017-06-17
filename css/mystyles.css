@@ -334,12 +334,44 @@ a{
 }
 .popover.left{
 	max-width:1500px;
-	width:800px;
-	height: 500px;
+	width:750px;
+	max-height: 500px;
 	overflow-y: auto;
 }
 .popover.top{
 	width:300px;
 	max-height: 150px;
 	overflow-y: auto;
+}
+#table21, #MZFS_table{
+	width: 100%;
+	font-size: 14px;
+}
+#table21 td, #MZFS_table th{
+	width: 50%;
+}
+#a0:link {
+	color: black;
+	text-decoration:none;
+}
+#a0:visited {
+	color: black;
+	text-decoration:none;
+}
+#a0:hover {
+	color: black;
+	text-decoration:none;
+}
+#a0:active {
+	color: black;
+	text-decoration:none;
+}
+#table22{
+	width: 100%;
+}
+#table22 td{
+	width: 50%;
+}
+.panel-heading{
+	/*padding: 0;*/
 }

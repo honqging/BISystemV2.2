@@ -19,55 +19,203 @@ $.ajax({
         MZFSdataSource = data.data;
         MZFSdataTitle = data.header;
         insertMZXGTable();
-		test();
+		//test();
+        //addLinkClick();
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         alert(errorThrown);
     }
 });
+
 function insertMZXGTable(){
-	var subId = 1000;
-    //�������
     var table = doc.getElementById("MZFS_table");
-    table.innerHTML = '';
-    //������ӱ�ͷ
+    var divAccordion = doc.getElementById("accordion");
+
+    table.innerHTML = "";
+    divAccordion.innerHTML = "";
+
+    // 插入表头
     for(var t=0;t<MZFSdataTitle.length;t++){
+        console.log("标有");
         var th = doc.createElement("th"),
             thData = doc.createTextNode(MZFSdataTitle[t]);
         th.appendChild(thData);
         table.appendChild(th);
     }
-    for(var i=0;i<MZFSdataSource.length;i++){
-        var tr1 = doc.createElement("tr");
-		var data1 = doc.createTextNode(MZFSdataSource[i].groupName),
-			td1 = doc.createElement("td");
-		td1.appendChild(data1);
-		var data2 = doc.createTextNode(MZFSdataSource[i].sum),
-			a = doc.createElement("a"),
-			td2 = doc.createElement("td");
-		a.appendChild(data2);
-		td2.appendChild(a);
-		tr1.appendChild(td1);
-		tr1.appendChild(td2);
-		tr1.lang = "{id:"+(i+1)+",pid:0,level:0}";
-		table.appendChild(tr1);
-		for(var k=0;k<MZFSdataSource[i].groupRows.length;k++){
-			var tr2 = doc.createElement("tr");
-			var data3 = doc.createTextNode(MZFSdataSource[i].groupRows[k][0]),
-				td3 = doc.createElement("td");
-			td3.appendChild(data3);
-			var data4 = doc.createTextNode(MZFSdataSource[i].groupRows[k][1]),
-				a = doc.createElement("a"),
-				td4 = doc.createElement("td");
-			a.appendChild(data4);
-			td4.appendChild(a);
-			tr2.appendChild(td3);
-			tr2.appendChild(td4);
-			tr2.lang = "{id:"+subId+",pid:"+(i+1)+",level:1}";
-			subId ++;
-			table.appendChild(tr2);
-		}
+
+    // 插入数据
+    for(var i=1;i<MZFSdataSource.length;i++){
+        // Bootstrap collapse plugin
+        var div1 = doc.createElement("div"),
+            div21 = doc.createElement("div"),
+            div22 = doc.createElement("div"),
+            div3 = doc.createElement("div"),
+            divh4 = doc.createElement("h4"),
+            table21 = doc.createElement("table"),
+            table22 = doc.createElement("table");
+
+        // bootstrap div adds class
+        divh4.setAttribute("class", "panel-title");
+        div21.setAttribute("class", "panel-heading");
+        div1.setAttribute("class", "panel panel-default");
+        div3.setAttribute("class", "panel-body");
+        div22.setAttribute("class", "panel-collapse collapse");
+
+        div22.id = "collapse" + i;
+        table21.id = "table21";
+        table22.id = "table22";
+
+
+
+        //var tr1 = doc.createElement("tr");
+        var data1 = doc.createTextNode(MZFSdataSource[i].groupName),
+            a0 = doc.createElement("a"),
+            td1 = doc.createElement("td");
+        a0.setAttribute("data-toggle", "collapse");
+        a0.setAttribute("data-parent", "#accordion");
+        var a0Href = "#collapse" + i;
+        a0.setAttribute("href", a0Href);
+        a0.appendChild(data1);
+        a0.id = "a0";
+        td1.appendChild(a0);
+
+        //var xx = doc.getElementById(a0Href);
+        //$(a0Href).collapse("hide");
+
+        var data2 = doc.createTextNode(MZFSdataSource[i].sum),
+            a = doc.createElement("a"),
+            td2 = doc.createElement("td");
+        a.setAttribute("tabindex","0");
+        a.setAttribute("role","button");
+        a.setAttribute("data-toggle","popover");
+        a.setAttribute("data-trigger","focus");
+        a.setAttribute("data-placement","left");
+        //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
+        a.id = MZFSdataSource[i].groupName;
+        var departmentName = MZFSdataSource[i].groupName;
+
+        a.onclick = function(){
+            console.log("对的么？");
+            var result;
+            $("[data-toggle='popover']").popover({
+                html:true,
+                content:'<div id="content">loading...</div>'
+            });
+            $.ajax({
+                type: "get",
+                url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiDepartmentQuery?department="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    var result = data.data;
+                    var title = data.header;
+                    var table2 = doc.createElement("table");
+                    insertLCLJGGSubTable(result,title,table2);
+                    $('#content').html(table2);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+
+
+        a.appendChild(data2);
+        td2.appendChild(a);
+        table21.appendChild(td1);
+        table21.appendChild(td2);
+        //table21.appendChild(tr1);
+        divh4.appendChild(table21);
+        div21.appendChild(divh4);
+
+
+        // 插入子表table22
+        for(var k=0; k<MZFSdataSource[i].groupRows.length; k++){
+            var tr2 = doc.createElement("tr");
+            var data3 = doc.createTextNode(MZFSdataSource[i].groupRows[k][0]),
+                td3 = doc.createElement("td");
+            td3.appendChild(data3);
+            var data4 = doc.createTextNode(MZFSdataSource[i].groupRows[k][1]),
+                a2 = doc.createElement("a"),
+                td4 = doc.createElement("td");
+
+            a2.setAttribute("tabindex","0");
+            a2.setAttribute("role","button");
+            a2.setAttribute("data-toggle","popover");
+            a2.setAttribute("data-trigger","focus");
+            a2.setAttribute("data-placement","left");
+            //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
+            a2.id = MZFSdataSource[i].groupRows[k][0];
+
+            a2.onclick = function(){
+                console.log("对的么memmeme？");
+                var result;
+                $("[data-toggle='popover']").popover({
+                    html:true,
+                    content:'<div id="content">loading...</div>'
+                });
+                $.ajax({
+                    type: "get",
+                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?department="+departmentName+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                    dataType: "json",
+                    jsonp:"callback",
+                    success: function (data) {
+                        var result = data.data;
+                        var title = data.header;
+                        var table2 = doc.createElement("table");
+                        insertLCLJGGSubTable(result,title,table2);
+                        $('#content').html(table2);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+
+            a2.appendChild(data4);
+            td4.appendChild(a2);
+            tr2.appendChild(td3);
+            tr2.appendChild(td4);
+            table22.appendChild(tr2);
+            div3.appendChild(table22);
+            div22.appendChild(div3);
+            //table.getElementsByTagName("tr").onclick = function(){
+            //    console.log("wwwww");
+            //}
+        }
+
+
+        div1.appendChild(div21);
+        div1.appendChild(div22);
+        divAccordion.appendChild(div1);
     }
+
+
+    }
+
+function insertLCLJGGSubTable(result,title,table){
+    for(var t=0;t<title.length;t++) {
+        var th = doc.createElement("th"),
+            thData = doc.createTextNode(title[t]);
+        th.appendChild(thData);
+        table.appendChild(th);
+    }
+    for(var i=0;i<result.length;i++) {
+        var tr = doc.createElement("tr");
+        for (var j = 0; j < result[i].length; j++) {
+            var td = doc.createElement("td");
+            var insertData = doc.createTextNode(result[i][j]);
+            td.appendChild(insertData);
+            if(i==7 || i==8){
+                td.style.width = "60px";
+            }else{
+                td.style.width = "30px";
+            }
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    //table.style.width = "1000px";
 }
 
 //��ҳ
@@ -90,7 +238,7 @@ MZFSpageBefore.onclick = function(){
                 MZFSdataTitle = data.header;
                 MZFSpageNum.placeholder = MZFSpage;
                 insertMZXGTable();
-				test();
+				//test();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);
@@ -111,7 +259,7 @@ MZFSpageNext.onclick = function(){
             MZFSdataTitle = data.header;
             MZFSpageNum.placeholder = MZFSpage;
             insertMZXGTable();
-			test();
+			//test();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
@@ -134,7 +282,7 @@ MZFSsubmitDate.onclick = function () {
             MZFSdataSource = data.data;
             MZFSdataTitle = data.header;
             insertMZXGTable();
-			test();
+			//test();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
