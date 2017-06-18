@@ -223,7 +223,7 @@ var MZFSpageBefore = doc.getElementById("MZFSPageBefore"),
     MZFSpageNum = doc.getElementById("MZFSPageNum");
 
 MZFSpageBefore.onclick = function(){
-    if(MZFSpage==1){alert("�Ѿ��ǵ�һҳ");}
+    if(MZFSpage==1){alert("已经是第一页");}
     else{
         MZFSpage --;
         var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;

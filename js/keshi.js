@@ -29,10 +29,8 @@ $.ajax({
 		 } 
 	 });
 function insertKSTable(){
-	//¥¥Ω®±Ì∏Ò
 	var table = doc.getElementById("KSGZL_table");
 	table.innerHTML = '';
-	//µ•∂¿ÃÌº”±ÌÕ∑
 	for(var t=0;t<KSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(KSdataTitle[t]);
@@ -70,9 +68,9 @@ function insertKSTable(){
                               var result = data.data;
                               var title = data.header;
                               var table2 = doc.createElement("table");
-                                          insertkeshiSubTable(result,title,table2);
-										  $('#content').html(table2);
-										   },
+							  insertkeshiSubTable(result,title,table2);
+							  $('#content').html(table2);
+						  },
 						  error: function (XMLHttpRequest, textStatus, errorThrown) {
 						  alert(errorThrown);
 						 }
@@ -105,20 +103,18 @@ function insertkeshiSubTable(result,title,table){
             var td = doc.createElement("td");
             var insertData = doc.createTextNode(result[i][j]);
             td.appendChild(insertData);
-            td.style.width = "500px";
-            tr.appendChild(td);
+			tr.appendChild(td);
         }
         table.appendChild(tr);
     }
 }
 
-//∑÷“≥
 var KSpageBefore = doc.getElementById("KSpageBefore"),
     KSpageNext = doc.getElementById("KSpageNext"),
 	KSpageNum = doc.getElementById("KSpageNum");
 
 	KSpageBefore.onclick = function(){
-		if(KSpage==1){alert("“—æ≠ «µ⁄“ª“≥");}
+		if(KSpage==1){alert("Â∑≤ÁªèÊòØÁ¨¨‰∏ÄÈ°µ");}
 		else{
             KSpage --;
 			//console.log(KSpage);
@@ -168,8 +164,7 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 		KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		KScharts2();
 	}
-	
-//…Ë∂® ±º‰
+
 KSsubmitDate.onclick = function () {
     getDate(KSstartDate,KSendDate);
     KSurlStartTime = getDate(KSstartDate,KSendDate)[0],

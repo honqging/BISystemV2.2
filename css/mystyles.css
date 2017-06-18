@@ -241,6 +241,9 @@ pre {
 th{
 	border-bottom:1px solid #CCC;
 }
+.table_title h4{
+	margin-bottom: 20px;
+}
 .timeBar{
 	margin-top:-10px;
 	margin-left: 15px;
@@ -334,7 +337,13 @@ a{
 }
 .popover.left{
 	max-width:1500px;
-	width:750px;
+	width:600px;
+	max-height: 500px;
+	overflow-y: auto;
+}
+.popover.leftSmall{
+	max-width:1500px;
+	width:500px;
 	max-height: 500px;
 	overflow-y: auto;
 }
