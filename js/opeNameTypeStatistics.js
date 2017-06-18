@@ -25,16 +25,23 @@ $.ajax({
 		 }
 	 });
 function insertASSMCZLTJTable(){
-	console.log("手术名称");
-	//�������
+	//console.log("手术名称");
+	//创建表格
 	var table = doc.getElementById("ASSMCZLTJ_table");
+	var thead = doc.getElementById("ASSMCZLTJ_table_head");
 	table.innerHTML = '';
-	//������ӱ�ͷ
+	thead.innerHTML = '';
+	//单独添加表头
 	for(var t=0;t<ASSMCZLTJdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASSMCZLTJdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		if(t==0){
+			th.style.width = '70%';
+		}else{
+			th.style.width = '15%';
+		}
+		thead.appendChild(th);
 	}
 	for(var i=0;i<ASSMCZLTJdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -52,6 +59,11 @@ function insertASSMCZLTJTable(){
 			var td = doc.createElement("td");
 			td.title = ASSMCZLTJdataSource[i][j];
 			td.appendChild(data);
+			if(j==0){
+				td.style.width = '70%';
+			}else{
+				td.style.width = '15%';
+			}
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);

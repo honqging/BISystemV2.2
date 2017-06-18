@@ -28,13 +28,20 @@ $.ajax({
 function insertTWTable(){
     //创建表格
     var table = doc.getElementById("TW_table");
+    var thead = doc.getElementById("TW_table_head");
     table.innerHTML = '';
+    thead.innerHTML = '';
     //单独添加表头
     for(var t=0;t<TWdataTitle.length;t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(TWdataTitle[t]);
         th.appendChild(thData);
-        table.appendChild(th);
+        if(t==0){
+            th.style.width = '40%';
+        }else{
+            th.style.width = '10%';
+        }
+        thead.appendChild(th);
     }
     for(var i=0;i<TWdataSource.length;i++){
         var tr = doc.createElement("tr");
@@ -82,6 +89,11 @@ function insertTWTable(){
                 var td = doc.createElement("td");
                 td.title = TWdataSource[i][j];
                 td.appendChild(data);
+            }
+            if(j==0){
+                td.style.width = '40%';
+            }else{
+                td.style.width = '10%';
             }
             tr.appendChild(td);
         }

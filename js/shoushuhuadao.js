@@ -28,13 +28,22 @@ $.ajax({
 function insertSSHDTable(){
 	//�������
 	var table = doc.getElementById("SSHD_table");
-	table.innerHTML = '';
-	//������ӱ�ͷ
+    var thead = doc.getElementById("SSHD_table_head");
+
+    table.innerHTML = '';
+    thead.innerHTML = '';
+
+    //������ӱ�ͷ
 	for(var t=0;t<SSHDtableTiTle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SSHDtableTiTle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+        if(t==1){
+            th.style.width = '16%';
+        }else{
+            th.style.width = '8%';
+        }
+		thead.appendChild(th);
 	}
 	for(var i=1;i<SSHDtableData.length;i++){
 		var tr = doc.createElement("tr");
@@ -43,6 +52,11 @@ function insertSSHDTable(){
 				td = doc.createElement("td");
 			td.title = SSHDtableData[i][j];
 			td.appendChild(data);
+            if(j==1){
+                td.style.width = '16%';
+            }else{
+                td.style.width = '8%';
+            }
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);

@@ -30,13 +30,22 @@ $.ajax({
 function insertSMTable(){
 	//�������
 	var table = doc.getElementById("SMBR_table");
-	table.innerHTML = '';
-	//������ӱ�ͷ
+    var thead = doc.getElementById("SMBR_table_head");
+
+    table.innerHTML = '';
+    thead.innerHTML = '';
+
+    //������ӱ�ͷ
 	for(var t=0;t<SMdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SMdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+        if(t==5|t==6|t==7){
+            th.style.width = '14%';
+        }else{
+            th.style.width = '7%';
+        }
+		thead.appendChild(th);
 	}
 	for(var i=0;i<SMdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -45,7 +54,12 @@ function insertSMTable(){
 				td = doc.createElement("td");
 			td.title = SMdataSource[i][j];
 			td.appendChild(data);
-			tr.appendChild(td);
+            if(j==5|j==6|j==7){
+                td.style.width = '14%';
+            }else{
+                td.style.width = '7%';
+            }
+            tr.appendChild(td);
 		}
 		table.appendChild(tr);
 	}

@@ -26,16 +26,20 @@ $.ajax({
 		 }
 	 });
 function insertSSHSGZLTable(){
-	//�������
+	//创建表格
 	var table = doc.getElementById("SSHSGZL_table");
-	table.innerHTML ='';
-	//������ӱ�ͷ
+	var thead = doc.getElementById("SSHSGZL_table_head");
+	table.innerHTML = '';
+	thead.innerHTML = '';
+	//单独添加表头
 	for(var t=0;t<SSHSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SSHSdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		th.style.width = '25%'
+		thead.appendChild(th);
 	}
+
 	for(var i=0;i<SSHSGZLdataSource.length;i++){
 		var tr = doc.createElement("tr");
 		for(var j=0;j<SSHSGZLdataSource[i].length;j++){
@@ -43,6 +47,7 @@ function insertSSHSGZLTable(){
 				td = doc.createElement("td");
 			td.title = SSHSGZLdataSource[i][j];
 			td.appendChild(data);
+			td.style.width = '25%'
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);
@@ -54,7 +59,7 @@ var SSHSGZLbeforePage = doc.getElementById("SSHSGZLPageBefore"),
 	SSHSGZLpageNum = doc.getElementById("SSHSGZLPageNum");
 
 	SSHSGZLbeforePage.onclick = function(){
-		if(SSHSGZLpage==1){alert("�Ѿ��ǵ�һҳ");}
+		if(SSHSGZLpage==1){alert("已经是第一页");}
 		else{
             SSHSGZLpage --;
 			//console.log(page);

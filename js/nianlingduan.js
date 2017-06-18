@@ -28,13 +28,20 @@ $.ajax({
 function insertNLDTable(){
 	//�������
 	var table = doc.getElementById("NLD_table");
+	var thead = doc.getElementById("NLD_table_head");
+	thead.innerHTML = '';
 	table.innerHTML = '';
 	//������ӱ�ͷ
 	for(var t=0;t<NLDdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(NLDdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		if(t==0){
+			th.style.width = '44%';
+		}else{
+			th.style.width = '8%';
+		}
+		thead.appendChild(th);
 	}
 	for(var i=0;i<NLDdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -82,6 +89,11 @@ function insertNLDTable(){
 				var td = doc.createElement("td");
 				td.title = NLDdataSource[i][j];
 				td.appendChild(data);
+			}
+			if(j==0){
+				td.style.width = '44%';
+			}else{
+				td.style.width = '8%';
 			}
 			tr.appendChild(td);
 		}

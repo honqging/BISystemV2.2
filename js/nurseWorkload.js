@@ -32,18 +32,24 @@ function insertHSGZLTable(){
 	var totalRow = 0;
 	//创建表格
 	var table = doc.getElementById("HSGZL_table");
+    var thead = doc.getElementById("HSGZL_table_head");
+
     table.innerHTML = '';
-	//单独添加表头
+    thead.innerHTML = '';
+
+    //单独添加表头
 	var th = doc.createElement("th"),
 			thData = doc.createTextNode('科室'),
         	td = doc.createElement("td");
 		th.appendChild(thData);
-		table.appendChild(th);
+        th.style.width = '40%';
+        thead.appendChild(th);
 	for(var t=0;t<HSGZLtableTiTle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(HSGZLtableTiTle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+        th.style.width = '12%';
+        thead.appendChild(th);
 	}
 
 	for(var x=0;x<HSGZLtableData.length;x++){
@@ -55,14 +61,16 @@ function insertHSGZLTable(){
 					td = doc.createElement("td");
 					td.title = "office";
 					td.appendChild(data);
-					tr.appendChild(td);
+                    td.style.width = '40%';
+                    tr.appendChild(td);
 				}
 				else{
 					var data = doc.createTextNode(HSGZLtableData[x].groupRows[i][j]),
 						td = doc.createElement("td");
 					td.title = HSGZLtableData[x].groupRows[i][j];
 					td.appendChild(data);
-					tr.appendChild(td);
+                    td.style.width = '12%';
+                    tr.appendChild(td);
 				}
 			}
 			table.appendChild(tr);

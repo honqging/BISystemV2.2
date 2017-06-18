@@ -31,13 +31,18 @@ $.ajax({
 function insertASATable(){
 	//创建表格
 	var table = doc.getElementById("ASA_table");
+	var thead = doc.getElementById("ASA_table_head");
+
 	table.innerHTML = '';
+	thead.innerHTML = '';
+
 	//单独添加表头
 	for(var t=0;t<ASAdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		th.style.width = '50%';
+		thead.appendChild(th);
 	}
 	for(var i=0;i<ASAdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -88,6 +93,7 @@ function insertASATable(){
 				td.title = ASAdataSource[i][j];
 				td.appendChild(data);
 			}
+			td.style.width = '50%';
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);

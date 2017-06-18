@@ -27,13 +27,20 @@ $.ajax({
 function createMZXGtable(){
     //创建表格
     var table = doc.getElementById("MZXG_table");
+    var thead = doc.getElementById("MZXG_table_head");
     table.innerHTML = '';
+    thead.innerHTML = '';
     //单独添加表头
     for(var t=0;t<MZXGdataTitle.length;t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(MZXGdataTitle[t]);
         th.appendChild(thData);
-        table.appendChild(th);
+        if(t==0){
+            th.style.width = '40%';
+        }else{
+            th.style.width = '15%';
+        }
+        thead.appendChild(th);
     }
     for(var i=0;i<MZXGdataSource.length;i++){
         var tr = doc.createElement("tr");
@@ -81,6 +88,11 @@ function createMZXGtable(){
                 var td = doc.createElement("td");
                 td.title = MZXGdataSource[i][j];
                 td.appendChild(data);
+            }
+            if(j==0){
+                td.style.width = '40%';
+            }else{
+                td.style.width = '15%';
             }
             tr.appendChild(td);
         }

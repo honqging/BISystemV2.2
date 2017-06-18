@@ -26,13 +26,20 @@ $.ajax({
 	 });
 function insertMZJZZQTable(){
 	var table = doc.getElementById("MZJZZQ_table");
+	var thead = doc.getElementById("MZJZZQ_table_head");
 	table.innerHTML = '';
+	thead.innerHTML = '';
 	//add table head
 	for(var t=0;t<MZJZZQdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(MZJZZQdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		if(t==0){
+			th.style.width = '70%';
+		}else{
+			th.style.width = '10%';
+		}
+		thead.appendChild(th);
 	}
 
 	// add a row containing total number of operation methods
@@ -80,6 +87,11 @@ function insertMZJZZQTable(){
 			}else{
 				td.title = MZJZZQdataSource[i][j];
 				td.appendChild(data);
+			}
+			if(j==0){
+				td.style.width = '70%';
+			}else{
+				td.style.width = '10%';
 			}
 			tr.appendChild(td);
 		}

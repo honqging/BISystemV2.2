@@ -28,19 +28,22 @@ $.ajax({
 });
 
 function insertMZXGTable(){
-    var table = doc.getElementById("MZFS_table");
+    //var table = doc.getElementById("MZFS_table");
+    var thead = doc.getElementById("MZFS_table_head");
+
     var divAccordion = doc.getElementById("accordion");
 
-    table.innerHTML = "";
+    //table.innerHTML = "";
+    thead.innerHTML = "";
     divAccordion.innerHTML = "";
 
     // 插入表头
     for(var t=0;t<MZFSdataTitle.length;t++){
-        console.log("标有");
         var th = doc.createElement("th"),
             thData = doc.createTextNode(MZFSdataTitle[t]);
         th.appendChild(thData);
-        table.appendChild(th);
+        th.style.width = '50%';
+        thead.appendChild(th);
     }
 
     // 插入数据

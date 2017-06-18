@@ -30,12 +30,20 @@ $.ajax({
 	 });
 function insertKSTable(){
 	var table = doc.getElementById("KSGZL_table");
+	var thead = doc.getElementById("KSGZL_table_head");
+
 	table.innerHTML = '';
+	thead.innerHTML = '';
 	for(var t=0;t<KSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(KSdataTitle[t]);
 		th.appendChild(thData);
-		table.appendChild(th);
+		if(t==0){
+			th.style.width = '36%';
+		}else{
+			th.style.width = '8%';
+		}
+		thead.appendChild(th);
 	}
 	for(var i=0;i<KSdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -84,6 +92,11 @@ function insertKSTable(){
 				var td = doc.createElement("td");
 				td.title = KSdataSource[i][j];
 				td.appendChild(data);
+			}
+			if(j==0){
+				td.style.width = '36%';
+			}else{
+				td.style.width = '8%';
 			}
 			tr.appendChild(td);
 		}
