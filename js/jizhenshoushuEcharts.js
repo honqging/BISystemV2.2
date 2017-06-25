@@ -76,11 +76,15 @@ function JZSScharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('JZSS_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#3C98DC'];
+				var colors = ['#FBCF3D'];
 				var option = {
 					color: colors,
 					title: {
 						text: '科室名称',
+						textStyle : {
+							fontSize : '15',
+							fontWeight : 'normal'
+						},
 						x: 'center',
 						y: 'bottom'
 					},
@@ -142,6 +146,13 @@ function JZSScharts(){
 						{
 							name:'急诊手术数量',
 							type:'bar',
+							itemStyle: {
+								normal: {
+									label : {
+										show : true
+									}
+								}
+							},
 							data:dataSource.y
 						}
 					]

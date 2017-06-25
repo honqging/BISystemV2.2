@@ -54,11 +54,15 @@ function ZDSScharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('ZDSS_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#3C98DC'];
+				var colors = ['#2A92FF'];
 				var option = {
 					color: colors,
 					title: {
 						text: '开台时间',
+						textStyle : {
+							fontSize : '15',
+							fontWeight : 'normal'
+						},
 						x: 'center',
 						y: 'bottom'
 					},
@@ -106,6 +110,13 @@ function ZDSScharts(){
 						{
 							name:'开台例数',
 							type:'bar',
+							itemStyle: {
+								normal: {
+									label : {
+										show : true
+									}
+								}
+							},
 							data:dataSource.y
 						}
 					]

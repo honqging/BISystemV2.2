@@ -81,6 +81,10 @@ function MZFFcharts(){
 					color: colors,
 					title: {
 						text: '麻醉方法',
+						textStyle : {
+							fontSize : '15',
+							fontWeight : 'normal'
+						},
 						x: 'center',
 						y: 'bottom'
 					},
@@ -142,6 +146,13 @@ function MZFFcharts(){
 						{
 							name:'麻醉方法数量',
 							type:'bar',
+							itemStyle: {
+								normal: {
+									label : {
+										show : true
+									}
+								}
+							},
 							data:dataSource.y
 						}
 					]
