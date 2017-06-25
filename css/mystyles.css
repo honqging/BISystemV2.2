@@ -325,6 +325,9 @@ a{
 	width: 1000px;
 	height: 400px;
 }
+.page-middle{
+	text-align: center;
+}
 .pagination-middle{
 	margin-left:300px;
 }
@@ -385,6 +388,10 @@ a{
 	/*padding: 0;*/
 }
 .Echarts{
+	width: 1000px;
+	height: 400px;
+}
+.Echarts600{
 	width: 1000px;
 	height: 600px;
 }
