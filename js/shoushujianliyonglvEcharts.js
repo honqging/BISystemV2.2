@@ -1,46 +1,46 @@
-var JZSSpage = 1,
+var SSJLYLpage = 1,
 	doc = document,
-	JZSSurlStartTime = "2010-01-01",
-	JZSSurlEndTime = currentDate,
-	// JZSSEchartsUrl = "",
-	JZSSstartDate = doc.getElementById("JZSSstartTime"),
-	JZSSendDate = doc.getElementById("JZSSendTime"),
-	JZSSsubmitDate = doc.getElementById("JZSSsubmitTime");
-	JZSSexport = doc.getElementById("JZSSexport");
+	SSJLYLurlStartTime = "2010-01-01",
+	SSJLYLurlEndTime = currentDate,
+	// SSJLYLEchartsUrl = "",
+	SSJLYLstartDate = doc.getElementById("SSJLYLstartTime"),
+	SSJLYLendDate = doc.getElementById("SSJLYLendTime"),
+	SSJLYLsubmitDate = doc.getElementById("SSJLYLsubmitTime");
+	SSJLYLexport = doc.getElementById("SSJLYLexport");
 
-var JZSSpageBefore = doc.getElementById("JZSSPageBefore"),
-	JZSSpageNext = doc.getElementById("JZSSPageNext"),
-	JZSSpageNum = doc.getElementById("JZSSPageNum");
+var SSJLYLpageBefore = doc.getElementById("SSJLYLPageBefore"),
+	SSJLYLpageNext = doc.getElementById("SSJLYLPageNext"),
+	SSJLYLpageNum = doc.getElementById("SSJLYLPageNum");
 
-JZSSpageBefore.onclick = function(){
-	if(JZSSpage==1){alert("已经是第一页");}
+SSJLYLpageBefore.onclick = function(){
+	if(SSJLYLpage==1){alert("已经是第一页");}
 	else{
-		JZSSpage --;
-		JZSScharts();
+		SSJLYLpage --;
+		SSJLYLcharts();
 	}
 }
 
-JZSSpageNext.onclick = function(){
-	console.log("1"+JZSSpage);
-	JZSSpage ++;
-	console.log("2"+JZSSpage);
-	JZSScharts();
+SSJLYLpageNext.onclick = function(){
+	console.log("1"+SSJLYLpage);
+	SSJLYLpage ++;
+	console.log("2"+SSJLYLpage);
+	SSJLYLcharts();
 }
 
 //设定时间
-JZSSsubmitDate.onclick = function () {
-	getDate(JZSSstartDate,JZSSendDate);
-	JZSSurlStartTime = getDate(JZSSstartDate,JZSSendDate)[0],
-		JZSSurlEndTime = getDate(JZSSstartDate,JZSSendDate)[1];
-	JZSScharts();
+SSJLYLsubmitDate.onclick = function () {
+	getDate(SSJLYLstartDate,SSJLYLendDate);
+	SSJLYLurlStartTime = getDate(SSJLYLstartDate,SSJLYLendDate)[0],
+		SSJLYLurlEndTime = getDate(SSJLYLstartDate,SSJLYLendDate)[1];
+	SSJLYLcharts();
 }
 
-JZSSexport.onclick = function () {
+SSJLYLexport.onclick = function () {
 	// no interface yet
 }
-addLoadEvent(initialPicker(JZSSstartDate, JZSSendDate));
+addLoadEvent(initialPicker(SSJLYLstartDate, SSJLYLendDate));
 
-function JZSScharts(){
+function SSJLYLcharts(){
 	require.config({
 		paths: {
 			echarts: './build/dist' //引用资源文件夹路径，注意路径
@@ -53,8 +53,8 @@ function JZSScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var JZSSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/jizhen?page="+JZSSpage+"&startTime="+JZSSurlStartTime+"&endTime="+JZSSurlEndTime;
-			var url = JZSSEchartsUrl;
+			var SSJLYLEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/liyonglv?page="+SSJLYLpage+"&startTime="+SSJLYLurlStartTime+"&endTime="+SSJLYLurlEndTime;
+			var url = SSJLYLEchartsUrl;
 			console.log(url);
 			var dataSource = [];
 			$.ajax({
@@ -64,7 +64,7 @@ function JZSScharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
-					JZSSpageNum.placeholder = JZSSpage;
+					SSJLYLpageNum.placeholder = SSJLYLpage;
 					//console.log(dataSource);
 					addData();
 				},
@@ -74,13 +74,13 @@ function JZSScharts(){
 			});
 			//result ajax
 			function addData(){
-				var myChart = ec.init(document.getElementById('JZSS_Echarts'));
+				var myChart = ec.init(document.getElementById('SSJLYL_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#FBCF3D'];
+				var colors = ['#7743DC'];
 				var option = {
 					color: colors,
 					title: {
-						text: '科室名称',
+						text: '手术间',
 						textStyle : {
 							fontSize : '15',
 							fontWeight : 'normal'
@@ -105,10 +105,6 @@ function JZSScharts(){
 							saveAsImage: {show: true}
 						}
 					},
-					//legend: {
-					//	data: ['科室名称'],
-					//	align: 'left'
-					//},
 					xAxis: [
 						{
 							type: 'category',
@@ -138,13 +134,13 @@ function JZSScharts(){
 					yAxis: [
 						{
 							type: 'value',
-							name: '急诊数',
+							name: '手术例数',
 							min: 0
 						}
 					],
 					series: [
 						{
-							name:'急诊手术数量',
+							name:'手术例数',
 							type:'bar',
 							barCategoryGap: '70%',
 							itemStyle: {
@@ -163,4 +159,4 @@ function JZSScharts(){
 		}
 	);
 }
-addLoadEvent(JZSScharts());
+addLoadEvent(SSJLYLcharts());

@@ -96,7 +96,7 @@ function MZFFcharts(){
 					},
 					grid: {
 						right: '20%',
-						y2: 200
+						y2: 80
 					},
 					toolbox: {
 						feature: {
@@ -105,10 +105,6 @@ function MZFFcharts(){
 							saveAsImage: {show: true}
 						}
 					},
-					//legend: {
-					//	data: ['麻醉方法'],
-					//	align: 'left'
-					//},
 					xAxis: [
 						{
 							type: 'category',
@@ -125,7 +121,7 @@ function MZFFcharts(){
 									var newVal = '';
 									var vList = val.split("");
 									for(var j = 0; j<vList.length; j++){
-										if(j%3 == 0 && j!=0){
+										if(j%12 == 0 && j!=0){
 											newVal += '\n';
 										}
 										newVal += vList[j];
@@ -146,6 +142,7 @@ function MZFFcharts(){
 						{
 							name:'麻醉方法数量',
 							type:'bar',
+							barCategoryGap: '70%',
 							itemStyle: {
 								normal: {
 									label : {

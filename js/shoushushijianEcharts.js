@@ -1,46 +1,46 @@
-var JZSSpage = 1,
+var SSSJpage = 1,
 	doc = document,
-	JZSSurlStartTime = "2010-01-01",
-	JZSSurlEndTime = currentDate,
-	// JZSSEchartsUrl = "",
-	JZSSstartDate = doc.getElementById("JZSSstartTime"),
-	JZSSendDate = doc.getElementById("JZSSendTime"),
-	JZSSsubmitDate = doc.getElementById("JZSSsubmitTime");
-	JZSSexport = doc.getElementById("JZSSexport");
+	SSSJurlStartTime = "2010-01-01",
+	SSSJurlEndTime = currentDate,
+	// SSSJEchartsUrl = "",
+	SSSJstartDate = doc.getElementById("SSSJstartTime"),
+	SSSJendDate = doc.getElementById("SSSJendTime"),
+	SSSJsubmitDate = doc.getElementById("SSSJsubmitTime");
+	SSSJexport = doc.getElementById("SSSJexport");
 
-var JZSSpageBefore = doc.getElementById("JZSSPageBefore"),
-	JZSSpageNext = doc.getElementById("JZSSPageNext"),
-	JZSSpageNum = doc.getElementById("JZSSPageNum");
+var SSSJpageBefore = doc.getElementById("SSSJPageBefore"),
+	SSSJpageNext = doc.getElementById("SSSJPageNext"),
+	SSSJpageNum = doc.getElementById("SSSJPageNum");
 
-JZSSpageBefore.onclick = function(){
-	if(JZSSpage==1){alert("已经是第一页");}
+SSSJpageBefore.onclick = function(){
+	if(SSSJpage==1){alert("已经是第一页");}
 	else{
-		JZSSpage --;
-		JZSScharts();
+		SSSJpage --;
+		SSSJcharts();
 	}
 }
 
-JZSSpageNext.onclick = function(){
-	console.log("1"+JZSSpage);
-	JZSSpage ++;
-	console.log("2"+JZSSpage);
-	JZSScharts();
+SSSJpageNext.onclick = function(){
+	console.log("1"+SSSJpage);
+	SSSJpage ++;
+	console.log("2"+SSSJpage);
+	SSSJcharts();
 }
 
 //设定时间
-JZSSsubmitDate.onclick = function () {
-	getDate(JZSSstartDate,JZSSendDate);
-	JZSSurlStartTime = getDate(JZSSstartDate,JZSSendDate)[0],
-		JZSSurlEndTime = getDate(JZSSstartDate,JZSSendDate)[1];
-	JZSScharts();
+SSSJsubmitDate.onclick = function () {
+	getDate(SSSJstartDate,SSSJendDate);
+	SSSJurlStartTime = getDate(SSSJstartDate,SSSJendDate)[0],
+		SSSJurlEndTime = getDate(SSSJstartDate,SSSJendDate)[1];
+	SSSJcharts();
 }
 
-JZSSexport.onclick = function () {
+SSSJexport.onclick = function () {
 	// no interface yet
 }
-addLoadEvent(initialPicker(JZSSstartDate, JZSSendDate));
+addLoadEvent(initialPicker(SSSJstartDate, SSSJendDate));
 
-function JZSScharts(){
+function SSSJcharts(){
 	require.config({
 		paths: {
 			echarts: './build/dist' //引用资源文件夹路径，注意路径
@@ -53,8 +53,8 @@ function JZSScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var JZSSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/jizhen?page="+JZSSpage+"&startTime="+JZSSurlStartTime+"&endTime="+JZSSurlEndTime;
-			var url = JZSSEchartsUrl;
+			var SSSJEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/shoushushijian?page="+SSSJpage+"&startTime="+SSSJurlStartTime+"&endTime="+SSSJurlEndTime;
+			var url = SSSJEchartsUrl;
 			console.log(url);
 			var dataSource = [];
 			$.ajax({
@@ -64,7 +64,7 @@ function JZSScharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
-					JZSSpageNum.placeholder = JZSSpage;
+					SSSJpageNum.placeholder = SSSJpage;
 					//console.log(dataSource);
 					addData();
 				},
@@ -74,13 +74,13 @@ function JZSScharts(){
 			});
 			//result ajax
 			function addData(){
-				var myChart = ec.init(document.getElementById('JZSS_Echarts'));
+				var myChart = ec.init(document.getElementById('SSSJ_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#FBCF3D'];
+				var colors = ['#FD843C'];
 				var option = {
 					color: colors,
 					title: {
-						text: '科室名称',
+						text: '手术间',
 						textStyle : {
 							fontSize : '15',
 							fontWeight : 'normal'
@@ -105,10 +105,6 @@ function JZSScharts(){
 							saveAsImage: {show: true}
 						}
 					},
-					//legend: {
-					//	data: ['科室名称'],
-					//	align: 'left'
-					//},
 					xAxis: [
 						{
 							type: 'category',
@@ -138,13 +134,13 @@ function JZSScharts(){
 					yAxis: [
 						{
 							type: 'value',
-							name: '急诊数',
+							name: '小时',
 							min: 0
 						}
 					],
 					series: [
 						{
-							name:'急诊手术数量',
+							name:'手术时间',
 							type:'bar',
 							barCategoryGap: '70%',
 							itemStyle: {
@@ -163,4 +159,4 @@ function JZSScharts(){
 		}
 	);
 }
-addLoadEvent(JZSScharts());
+addLoadEvent(SSSJcharts());
