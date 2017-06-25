@@ -1,46 +1,46 @@
-var MZpage = 1,
+var JZSSpage = 1,
 	doc = document,
-	MZurlStartTime = "2010-01-01",
-	MZurlEndTime = currentDate,
-	//MZEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime,
-	MZstartDate = doc.getElementById("MZstartTime"),
-	MZendDate = doc.getElementById("MZendTime"),
-	MZsubmitDate = doc.getElementById("MZsubmitTime");
-	MZexport = doc.getElementById("MZexport");
+	JZSSurlStartTime = "2010-01-01",
+	JZSSurlEndTime = currentDate,
+	// JZSSEchartsUrl = "",
+	JZSSstartDate = doc.getElementById("JZSSstartTime"),
+	JZSSendDate = doc.getElementById("JZSSendTime"),
+	JZSSsubmitDate = doc.getElementById("JZSSsubmitTime");
+	JZSSexport = doc.getElementById("JZSSexport");
 
-var MZpageBefore = doc.getElementById("MZPageBefore"),
-	MZpageNext = doc.getElementById("MZPageNext"),
-	MZpageNum = doc.getElementById("MZPageNum");
+var JZSSpageBefore = doc.getElementById("JZSSPageBefore"),
+	JZSSpageNext = doc.getElementById("JZSSPageNext"),
+	JZSSpageNum = doc.getElementById("JZSSPageNum");
 
-MZpageBefore.onclick = function(){
-	if(MZpage==1){alert("已经是第一页");}
+JZSSpageBefore.onclick = function(){
+	if(JZSSpage==1){alert("已经是第一页");}
 	else{
-		MZpage --;
-		MZFFcharts();
+		JZSSpage --;
+		JZSScharts();
 	}
 }
 
-MZpageNext.onclick = function(){
-	console.log("1"+MZpage);
-	MZpage ++;
-	console.log("2"+MZpage);
-	MZFFcharts();
+JZSSpageNext.onclick = function(){
+	console.log("1"+JZSSpage);
+	JZSSpage ++;
+	console.log("2"+JZSSpage);
+	JZSScharts();
 }
 
 //设定时间
-MZsubmitDate.onclick = function () {
-	getDate(MZstartDate,MZendDate);
-	MZurlStartTime = getDate(MZstartDate,MZendDate)[0],
-		MZurlEndTime = getDate(MZstartDate,MZendDate)[1];
-	MZFFcharts();
+JZSSsubmitDate.onclick = function () {
+	getDate(JZSSstartDate,JZSSendDate);
+	JZSSurlStartTime = getDate(JZSSstartDate,JZSSendDate)[0],
+		JZSSurlEndTime = getDate(JZSSstartDate,JZSSendDate)[1];
+	JZSScharts();
 }
 
-MZexport.onclick = function () {
+JZSSexport.onclick = function () {
 	// no interface yet
 }
-addLoadEvent(initialPicker(MZstartDate, MZendDate));
+addLoadEvent(initialPicker(JZSSstartDate, JZSSendDate));
 
-function MZFFcharts(){
+function JZSScharts(){
 	require.config({
 		paths: {
 			echarts: './build/dist' //引用资源文件夹路径，注意路径
@@ -53,8 +53,8 @@ function MZFFcharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var MZEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime;
-			var url = MZEchartsUrl;
+			var JZSSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/jizhen?page="+JZSSpage+"&startTime="+JZSSurlStartTime+"&endTime="+JZSSurlEndTime;
+			var url = JZSSEchartsUrl;
 			console.log(url);
 			var dataSource = [];
 			$.ajax({
@@ -64,7 +64,7 @@ function MZFFcharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
-					MZpageNum.placeholder = MZpage;
+					JZSSpageNum.placeholder = JZSSpage;
 					//console.log(dataSource);
 					addData();
 				},
@@ -74,13 +74,13 @@ function MZFFcharts(){
 			});
 			//result ajax
 			function addData(){
-				var myChart = ec.init(document.getElementById('MZFFTJT_Echarts'));
+				var myChart = ec.init(document.getElementById('JZSS_Echarts'));
 				var ecConfig = require('echarts/config');
 				var colors = ['#3C98DC'];
 				var option = {
 					color: colors,
 					title: {
-						text: '麻醉方法',
+						text: '科室名称',
 						x: 'center',
 						y: 'bottom'
 					},
@@ -92,7 +92,7 @@ function MZFFcharts(){
 					},
 					grid: {
 						right: '20%',
-						y2: 200
+						y2: 100
 					},
 					toolbox: {
 						feature: {
@@ -102,7 +102,7 @@ function MZFFcharts(){
 						}
 					},
 					//legend: {
-					//	data: ['麻醉方法'],
+					//	data: ['科室名称'],
 					//	align: 'left'
 					//},
 					xAxis: [
@@ -134,13 +134,13 @@ function MZFFcharts(){
 					yAxis: [
 						{
 							type: 'value',
-							name: '手术例数',
+							name: '急诊数',
 							min: 0
 						}
 					],
 					series: [
 						{
-							name:'麻醉方法数量',
+							name:'急诊手术数量',
 							type:'bar',
 							data:dataSource.y
 						}
@@ -151,4 +151,4 @@ function MZFFcharts(){
 		}
 	);
 }
-addLoadEvent(MZFFcharts());
+addLoadEvent(JZSScharts());
