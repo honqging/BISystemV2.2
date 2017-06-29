@@ -525,7 +525,7 @@
 										输血次数统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#ANLDTJ" aria-controls="ANLDTJ" role="tab" data-toggle="tab">
+									<a href="#NLDKS" aria-controls="NLDKS" role="tab" data-toggle="tab">
 										按年龄段统计科室麻醉手术次数</a>
 								</li>
 							</ul>
@@ -771,34 +771,44 @@
 										</div>
 									</div>
 									<!-- 按年龄段统计科室麻醉手术次数 -->
-									<div role="tabpanel" class="tab-pane fade" id="ANLDTJ">
+									<div role="tabpanel" class="tab-pane fade" id="NLDKS">
 										<div class="table_title">
 											<h4 class="col-sm-12">按年龄段统计科室麻醉手术次数</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ANLDTJstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDKSstartTime" readonly>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ANLDTJendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDKSendTime" readonly>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
-												<button type="button" class="timeBar searchBtn" id="ANLDTJsubmitTime"></button>
+												<button type="button" class="timeBar searchBtn" id="NLDKSsubmitTime"></button>
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="ANLDTJexport"></button>
+												<button type="button" class="exportBtn" id="NLDKSexport"></button>
 											</div>.
 										</div>
-										<div class="col-sm-12 Echarts" id="ANLDTJ_Echarts">not developed yet...</div>
+										<table class="table table-striped table-hover table-head">
+											<tbody id="NLDKS_table_head"></tbody>
+										</table>
+										<div class="table-div">
+											<table class="table table-striped table-hover">
+												<tbody id="NLDKS_table"></tbody>
+											</table>
+										</div>
 										<div class='page-middle'>
-											<ul class="pagination" id="ANLDTJPage">
-												<li><a href="javascript:void(0)" id="ANLDTJPageBefore">&laquo;</a></li>
+											<ul class="pagination" id="NLDKSPage">
+												<li><a href="javascript:void(0)" id="NLDKSPageBefore">&laquo;</a></li>
 												<li><a href="javascript:void(0)" style="cursor:default">
-													第<input type="text" class="pageInput" placeholder="1" id="ANLDTJPageNum" disabled/>页
+													第<input type="text" class="pageInput" placeholder="1" id="NLDKSPageNum" disabled/>页
 												</a><li/>
-												<li><a href="javascript:void(0)" id="ANLDTJPageNext">&raquo;</a></li>
+												<li><a href="javascript:void(0)" id="NLDKSPageNext">&raquo;</a></li>
 											</ul>
+										</div>
+										<div>
+											<div class="col-sm-12 Echarts" id="NLDKS_Echarts">1</div>
 										</div>
 									</div>
 								</div>
@@ -1122,6 +1132,7 @@
 		<script src="js/shoushujianliyonglvEcharts.js"></script>
 		<script src="js/antaishichangEcharts.js"></script>
 		<script src="js/antaijunshichangEcharts.js"></script>
-
+		<script src="js/nianlingduankeshimazui.js"></script>
+		<script src="js/nianlingduanksmzEcharts.js"></script>
 	</body>
 </html>
