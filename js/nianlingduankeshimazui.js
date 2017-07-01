@@ -113,7 +113,6 @@ var NLDKSbeforePage = doc.getElementById("NLDKSPageBefore"),
 			NLDKSloadpage --;
 			//console.log(NLDKSloadpage);
 			var url2 = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
-				;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -124,7 +123,8 @@ var NLDKSbeforePage = doc.getElementById("NLDKSPageBefore"),
 					  NLDKSdataTitle = data.header;
 					  NLDKSPageNum.placeholder = NLDKSloadpage;
 					  insertNLDKSTable();
-					   },
+					  NLDKSEcharts();
+				  },
 				  error: function (XMLHttpRequest, textStatus, errorThrown) {
 				  alert(errorThrown);
 				 }
@@ -144,12 +144,13 @@ NLDKSnextPage.onclick = function(){
 			  NLDKSdataTitle = data.header;
 			  NLDKSPageNum.placeholder = NLDKSloadpage;
 			  insertNLDKSTable();
-			   },
+			  NLDKSEcharts();
+		  },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
 		  alert(errorThrown);
 		 }
 	 });
-	}
+}
 
 // 设定时间
 NLDKSsubmitDate.onclick = function () {
@@ -167,17 +168,17 @@ NLDKSsubmitDate.onclick = function () {
 			NLDKSdataTitle = data.header;
             //console.log(SMdataSource);
             insertNLDKSTable();
-        },
+			NLDKSEcharts();
+		},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
-
 }
 
 NLDKSexport.onclick = function () {
     // no interface yet, add later
-    window.location="";
+    window.location="http://123.206.134.34:8080/Medicals_war/export/keshinianlingduan?startTime=" + NLDKSurlStartTime + "&endTime=" + NLDKSurlEndTime;
 }
 
 addLoadEvent(initialPicker(NLDKSstartDate,NLDKSendDate));
