@@ -4,7 +4,6 @@ var doc = document,
 	ZDSSstartDate = doc.getElementById("ZDSSstartTime"),
 	ZDSSendDate = doc.getElementById("ZDSSendTime"),
 	ZDSSsubmitDate = doc.getElementById("ZDSSsubmitTime");
-	ZDSSexport = doc.getElementById("ZDSSexport");
 
 //设定时间
 ZDSSsubmitDate.onclick = function () {
@@ -14,9 +13,6 @@ ZDSSsubmitDate.onclick = function () {
 	ZDSScharts();
 }
 
-ZDSSexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(ZDSSstartDate, ZDSSendDate));
 
 function ZDSScharts(){

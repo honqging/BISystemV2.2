@@ -6,7 +6,6 @@ var MZpage = 1,
 	MZstartDate = doc.getElementById("MZstartTime"),
 	MZendDate = doc.getElementById("MZendTime"),
 	MZsubmitDate = doc.getElementById("MZsubmitTime");
-	MZexport = doc.getElementById("MZexport");
 
 var MZpageBefore = doc.getElementById("MZPageBefore"),
 	MZpageNext = doc.getElementById("MZPageNext"),
@@ -35,9 +34,6 @@ MZsubmitDate.onclick = function () {
 	MZFFcharts();
 }
 
-MZexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(MZstartDate, MZendDate));
 
 function MZFFcharts(){

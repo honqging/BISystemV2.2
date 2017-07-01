@@ -51,6 +51,12 @@
 							<p class="side_font">报表统计</p>
 							</a>
 						</li>
+						<li role="presentation" class="li_border">
+							<a href="#recoveryState" aria-controls="recoveryState" role="tab" data-toggle="tab">
+								<img src="img/恢复室情况.png" class="side_logo"></img>
+								<p class="side_font">恢复室情况</p>
+							</a>
+						</li>
 					</ul>
 				</div>
 				<div class="col-sm-11">
@@ -548,7 +554,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="ZDSSexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="ZDSS_Echarts">loading...</div>
@@ -570,7 +575,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="JZSSexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="JZSS_Echarts">loading...</div>
@@ -601,7 +605,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="SSSJexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="SSSJ_Echarts">loading...</div>
@@ -632,7 +635,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="MZexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="MZFFTJT_Echarts">loading...</div>
@@ -663,7 +665,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="SSJLYLexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="SSJLYL_Echarts">loading...</div>
@@ -694,7 +695,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="ATSCexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="ATSC_Echarts">loading...</div>
@@ -725,7 +725,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="ATJSCexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="ATJSC_Echarts">loading...</div>
@@ -756,7 +755,6 @@
 											</div>
 											<div class="col-sm-4 rightBtn">
 												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn" id="SXCSexport"></button>
 											</div>.
 										</div>
 										<div class="col-sm-12 Echarts" id="SXCS_Echarts">not developed yet...</div>
@@ -1096,6 +1094,56 @@
 								</div>
 							</div>
 						</div>
+						<!-- 恢复室情况 -->
+						<div role="tabpanel" class="tab-pane fade" id="recoveryState">
+							<ul class="nav vertical-tab col-sm-2 sideBar">
+								<div class="side_title">细类划分</div>
+								<li role="presentation" class="active">
+									<a href="#HFSSC" aria-controls="NLD" role="tab" data-toggle="tab">
+										恢复室时长超过1小时情况分析</a>
+								</li>
+							</ul>
+							<div class="col-sm-10">
+								<div class="tab-content contentR">
+									<!-- 按年龄段统计麻醉方法麻醉次数 -->
+									<div role="tabpanel" class="tab-pane fade in active" id="HFSSC">
+										<div class="table_title">
+											<h4 class="col-sm-12">恢复室时长超过1小时情况分析</h4>
+											<div class="col-sm-8 dataArea">
+												<div class="input-append date col-sm-2 timeBar">
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HFSSCstartTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HFSSCendTime" readonly>
+													<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+												<button type="button" class="timeBar searchBtn" id="HFSSCsubmitTime"></button>
+											</div>
+											<div class="col-sm-4 rightBtn">
+												<button type="button" class="configBtn"></button>
+												<button type="button" class="exportBtn" id="HFSSCexport"></button>
+											</div>.
+										</div>
+										<table class="table table-striped table-hover table-head">
+											<tbody id="HFSSC_table_head"></tbody>
+										</table>
+										<div class="table-div">
+											<table class="table table-striped table-hover">
+												<tbody id="HFSSC_table"></tbody>
+											</table>
+										</div>
+										<ul class="pagination pagination-middle" id="HFSSCPage">
+											<li><a href="javascript:void(0)" id="HFSSCPageBefore">&laquo;</a></li>
+											<li><a href="javascript:void(0)" style="cursor:default">
+												第<input type="text" class="pageInput" placeholder="1" id="HFSSCPageNum" disabled/>页
+											</a><li/>
+											<li><a href="javascript:void(0)" id="HFSSCPageNext">&raquo;</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1134,5 +1182,6 @@
 		<script src="js/antaijunshichangEcharts.js"></script>
 		<script src="js/nianlingduankeshimazui.js"></script>
 		<script src="js/nianlingduanksmzEcharts.js"></script>
+		<script src="js/huifushishichang.js"></script>
 	</body>
 </html>

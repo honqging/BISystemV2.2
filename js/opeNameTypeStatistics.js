@@ -70,7 +70,6 @@ function insertASSMCZLTJTable(){
 	}
 }
 
-//��ҳ
 var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 	ASSMCZLTJnextPage = doc.getElementById("ASSMCZLTJPageNext"),
 	ASSMCZLTJPageNum = doc.getElementById("ASSMCZLTJPageNum");

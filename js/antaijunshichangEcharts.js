@@ -6,7 +6,6 @@ var ATJSCpage = 1,
 	ATJSCstartDate = doc.getElementById("ATJSCstartTime"),
 	ATJSCendDate = doc.getElementById("ATJSCendTime"),
 	ATJSCsubmitDate = doc.getElementById("ATJSCsubmitTime");
-	ATJSCexport = doc.getElementById("ATJSCexport");
 
 var ATJSCpageBefore = doc.getElementById("ATJSCPageBefore"),
 	ATJSCpageNext = doc.getElementById("ATJSCPageNext"),
@@ -35,9 +34,6 @@ ATJSCsubmitDate.onclick = function () {
 	ATJSCcharts();
 }
 
-ATJSCexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(ATJSCstartDate, ATJSCendDate));
 
 function ATJSCcharts(){

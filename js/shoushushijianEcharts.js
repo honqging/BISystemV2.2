@@ -6,7 +6,6 @@ var SSSJpage = 1,
 	SSSJstartDate = doc.getElementById("SSSJstartTime"),
 	SSSJendDate = doc.getElementById("SSSJendTime"),
 	SSSJsubmitDate = doc.getElementById("SSSJsubmitTime");
-	SSSJexport = doc.getElementById("SSSJexport");
 
 var SSSJpageBefore = doc.getElementById("SSSJPageBefore"),
 	SSSJpageNext = doc.getElementById("SSSJPageNext"),
@@ -35,9 +34,6 @@ SSSJsubmitDate.onclick = function () {
 	SSSJcharts();
 }
 
-SSSJexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(SSSJstartDate, SSSJendDate));
 
 function SSSJcharts(){

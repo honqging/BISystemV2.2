@@ -6,7 +6,6 @@ var JZSSpage = 1,
 	JZSSstartDate = doc.getElementById("JZSSstartTime"),
 	JZSSendDate = doc.getElementById("JZSSendTime"),
 	JZSSsubmitDate = doc.getElementById("JZSSsubmitTime");
-	JZSSexport = doc.getElementById("JZSSexport");
 
 var JZSSpageBefore = doc.getElementById("JZSSPageBefore"),
 	JZSSpageNext = doc.getElementById("JZSSPageNext"),
@@ -35,9 +34,6 @@ JZSSsubmitDate.onclick = function () {
 	JZSScharts();
 }
 
-JZSSexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(JZSSstartDate, JZSSendDate));
 
 function JZSScharts(){

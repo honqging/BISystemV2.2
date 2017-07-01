@@ -6,7 +6,6 @@ var ATSCpage = 1,
 	ATSCstartDate = doc.getElementById("ATSCstartTime"),
 	ATSCendDate = doc.getElementById("ATSCendTime"),
 	ATSCsubmitDate = doc.getElementById("ATSCsubmitTime");
-	ATSCexport = doc.getElementById("ATSCexport");
 
 var ATSCpageBefore = doc.getElementById("ATSCPageBefore"),
 	ATSCpageNext = doc.getElementById("ATSCPageNext"),
@@ -35,9 +34,6 @@ ATSCsubmitDate.onclick = function () {
 	ATSCcharts();
 }
 
-ATSCexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(ATSCstartDate, ATSCendDate));
 
 function ATSCcharts(){

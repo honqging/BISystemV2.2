@@ -6,7 +6,6 @@ var SSJLYLpage = 1,
 	SSJLYLstartDate = doc.getElementById("SSJLYLstartTime"),
 	SSJLYLendDate = doc.getElementById("SSJLYLendTime"),
 	SSJLYLsubmitDate = doc.getElementById("SSJLYLsubmitTime");
-	SSJLYLexport = doc.getElementById("SSJLYLexport");
 
 var SSJLYLpageBefore = doc.getElementById("SSJLYLPageBefore"),
 	SSJLYLpageNext = doc.getElementById("SSJLYLPageNext"),
@@ -35,9 +34,6 @@ SSJLYLsubmitDate.onclick = function () {
 	SSJLYLcharts();
 }
 
-SSJLYLexport.onclick = function () {
-	// no interface yet
-}
 addLoadEvent(initialPicker(SSJLYLstartDate, SSJLYLendDate));
 
 function SSJLYLcharts(){
