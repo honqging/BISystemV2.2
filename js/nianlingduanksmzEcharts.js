@@ -72,22 +72,23 @@
 							itemStyle : {
 								normal : {
 									label : {
-										show : false
+										show : true,
+										formatter: '{b} : {c} 人'
 									},
 									labelLine : {
 										show : false
 									}
-								},
-								emphasis : {
-									label : {
-										show : true,
-										position : 'center',
-										textStyle : {
-											fontSize : '20',
-											fontWeight : 'bold'
-										}
-									}
 								}
+								//emphasis : {
+								//	label : {
+								//		show : true,
+								//		position : 'outer',
+								//		textStyle : {
+								//			fontSize : '20',
+								//			fontWeight : 'bold'
+								//		}
+								//	}
+								//}
 							},
 							data: res
 						}

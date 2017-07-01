@@ -52,15 +52,15 @@
 								radius : '55%',
 								center: ['50%', '60%'],
 								data: result,
-								 itemStyle:{ 
-										normal:{ 
-											  label:{ 
-												show: true, 
-												formatter: '{b} : {c} ({d}%)' 
-											  }, 
-											  labelLine :{show:false} 
-											} 
-										} 
+								itemStyle:{
+									normal:{
+										label:{
+											show: true,
+											formatter: '{b} : {c} ({d}%)'
+									  	},
+									  	labelLine :{show:false}
+									}
+								}
 							}
 						]
 					};
