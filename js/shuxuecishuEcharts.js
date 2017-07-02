@@ -1,11 +1,11 @@
 var SXCSpage = 1,
 	doc = document;
-	//SXCSurlStartTime = "2010-01-01",
-	//SXCSurlEndTime = currentDate;
-	// SXCSEchartsUrl = "",
-	//SXCSstartDate = doc.getElementById("SXCSstartTime"),
-	//SXCSendDate = doc.getElementById("SXCSendTime"),
-	//SXCSsubmitDate = doc.getElementById("SXCSsubmitTime");
+	SXCSurlStartTime = "2010-01-01",
+	SXCSurlEndTime = currentDate;
+    SXCSEchartsUrl = "",
+	SXCSstartDate = doc.getElementById("SXCSstartTime"),
+	SXCSendDate = doc.getElementById("SXCSendTime"),
+	SXCSsubmitDate = doc.getElementById("SXCSsubmitTime");
 
 var SXCSpageBefore = doc.getElementById("SXCSPageBefore"),
 	SXCSpageNext = doc.getElementById("SXCSPageNext"),
@@ -25,14 +25,14 @@ SXCSpageNext.onclick = function(){
 }
 
 //设定时间
-//SXCSsubmitDate.onclick = function () {
-//	getDate(SXCSstartDate,SXCSendDate);
-//	SXCSurlStartTime = getDate(SXCSstartDate,SXCSendDate)[0],
-//		SXCSurlEndTime = getDate(SXCSstartDate,SXCSendDate)[1];
-//	SXCScharts();
-//}
+SXCSsubmitDate.onclick = function () {
+	getDate(SXCSstartDate,SXCSendDate);
+	SXCSurlStartTime = getDate(SXCSstartDate,SXCSendDate)[0],
+		SXCSurlEndTime = getDate(SXCSstartDate,SXCSendDate)[1];
+	SXCScharts();
+}
 
-//addLoadEvent(initialPicker(SXCSstartDate, SXCSendDate));
+addLoadEvent(initialPicker(SXCSstartDate, SXCSendDate));
 
 function SXCScharts(){
 	require.config({
@@ -47,7 +47,7 @@ function SXCScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var SXCSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/shuxuecishu?page="+SXCSpage;
+			var SXCSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/shuxuecishu?page="+SXCSpage+"&startTime="+SXCSurlStartTime+"&endTime="+SXCSurlEndTime;
 			var url = SXCSEchartsUrl;
 			console.log(url);
 			var dataSource = [];
