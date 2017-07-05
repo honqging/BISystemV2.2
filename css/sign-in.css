@@ -1,0 +1,36 @@
+body{
+    background-image: url(../img/signin);
+    height: 500px;
+}
+
+.form-signin {
+    max-width: 310px;
+    padding: 15px;
+    margin: 100px auto;
+}
+
+.input-group{
+    margin-top: 20px;
+}
+
+.form-control{
+	height: 35px;
+	border-radius: 20px;
+	border: 1px #FA693A solid;
+	background-color: transparent;
+}
+
+.input-before{
+	border-radius: 20px;
+	color: #FEF4EC;
+	border: 1px #FA693A solid;
+	background-color: #FA693A;
+}
+
+.btn-sign-in{
+	margin-top: 50px;
+	height: 35px;
+	color: white;
+	border-radius: 20px;
+	background-color: #FA693A;
+}
