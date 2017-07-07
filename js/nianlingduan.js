@@ -4,7 +4,7 @@ var NLDpage = 1,
 	doc = document,
 	NLDurlStartTime = "2010-01-01",
     NLDurlEndTime = currentDate,
-    NLDurl = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
+    NLDurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
     NLDstartDate = doc.getElementById("NLDstartTime"),
     NLDendDate = doc.getElementById("NLDendTime"),
     NLDsubmitDate = doc.getElementById("NLDsubmitTime");
@@ -66,7 +66,7 @@ function insertNLDTable(){
 					});
 					$.ajax({
 						  type: "get",
-						  url: "http://123.206.134.34:8080/Medicals_temp/reportform/mazuifangfaQuery?method="+this.method.replace(/\+/g, "%2B")+"&age="+this.age+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfaQuery?method="+this.method.replace(/\+/g, "%2B")+"&age="+this.age+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) {
@@ -132,7 +132,7 @@ var NLDPageBefore = doc.getElementById("NLDPageBefore"),
 		else{
             NLDpage --;
 			//console.log(NLDpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -152,7 +152,7 @@ var NLDPageBefore = doc.getElementById("NLDPageBefore"),
 	}
 	NLDPageNext.onclick = function(){
         NLDpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
 		//console.log(NLDpage);
 			$.ajax({
 				  type: "get",
@@ -176,7 +176,7 @@ NLDsubmitDate.onclick = function () {
     getDate(NLDstartDate,NLDendDate);
     NLDurlStartTime = getDate(NLDstartDate,NLDendDate)[0],
     NLDurlEndTime = getDate(NLDstartDate,NLDendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -195,7 +195,7 @@ NLDsubmitDate.onclick = function () {
 }
 
 NLDexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/mazuifangfa?&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/mazuifangfa?&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
 }
 
 addLoadEvent(initialPicker(NLDstartDate,NLDendDate));

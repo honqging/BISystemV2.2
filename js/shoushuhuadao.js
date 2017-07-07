@@ -1,7 +1,7 @@
 var SSHDpage = 1,
 	SSHDurlStartTime = "2010-01-01",
     SSHDurlEndTime = currentDate,
-	SSHDurl = "http://123.206.134.34:8080/Medicals_temp/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime,
+	SSHDurl = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime,
 	SSHDtableData = [],
 	SSHDtableTiTle = [],
 	doc = document,
@@ -72,7 +72,7 @@ SSHDbeforePage.onclick = function(){
     if(SSHDpage==1){alert("已经是第一页");}
     else{
         SSHDpage --;
-        var url2 = "http://123.206.134.34:8080/Medicals_temp/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -92,7 +92,7 @@ SSHDbeforePage.onclick = function(){
 }
 SSHDnextPage.onclick = function(){
     SSHDpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_temp/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
     $.ajax({
         type: "get",
         url: url2,
@@ -116,7 +116,7 @@ SSHDsubmitDate.onclick = function () {
     SSHDurlStartTime = getDate(SSHDstartDate,SSHDendDate)[0],
     SSHDurlEndTime = getDate(SSHDstartDate,SSHDendDate)[1];
 	console.log(SSHDpage,SSHDurlStartTime,SSHDurlEndTime);
-    var urlTime = "http://123.206.134.34:8080/Medicals_temp/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -135,7 +135,7 @@ SSHDsubmitDate.onclick = function () {
 }
 
 SSHDexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/shoushuhuadao?&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/shoushuhuadao?&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
 }
 
 addLoadEvent(initialPicker(SSHDstartDate,SSHDendDate));

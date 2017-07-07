@@ -49,7 +49,7 @@ function ATSCcharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var ATSCEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/antaishichang?page="+ATSCpage+"&startTime="+ATSCurlStartTime+"&endTime="+ATSCurlEndTime;
+			var ATSCEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/antaishichang?page="+ATSCpage+"&startTime="+ATSCurlStartTime+"&endTime="+ATSCurlEndTime;
 			var url = ATSCEchartsUrl;
 			console.log(url);
 			var dataSource = [];

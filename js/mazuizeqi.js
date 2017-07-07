@@ -4,7 +4,7 @@ var MZJZZQloadpage = 1,
 	doc = document,
 	MZJZZQurlStartTime = "2010-01-01",
 	MZJZZQurlEndTime = currentDate,
-	MZJZZQurl = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime,
+	MZJZZQurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime,
 	MZJZZQstartDate = doc.getElementById("MZJZZQstartTime"),
 	MZJZZQendDate = doc.getElementById("MZJZZQendTime"),
 	MZJZZQsubmitDate = doc.getElementById("MZJZZQsubmitTime");
@@ -109,7 +109,7 @@ var MZJZZQbeforePage = doc.getElementById("MZJZZQPageBefore"),
 		else{
 			MZJZZQloadpage --;
 			//console.log(MZJZZQloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -129,7 +129,7 @@ var MZJZZQbeforePage = doc.getElementById("MZJZZQPageBefore"),
 	}
 MZJZZQnextPage.onclick = function(){
 	MZJZZQloadpage ++;
-	var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
+	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
 	$.ajax({
 		  type: "get",
 		  url: url2,
@@ -152,7 +152,7 @@ MZJZZQsubmitDate.onclick = function () {
     getDate(MZJZZQstartDate,MZJZZQendDate);
 	MZJZZQurlStartTime = getDate(MZJZZQstartDate,MZJZZQendDate)[0],
 	MZJZZQurlEndTime = getDate(MZJZZQstartDate,MZJZZQendDate)[1];
-	var urlTime = "http://123.206.134.34:8080/Medicals_temp/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
+	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -172,7 +172,7 @@ MZJZZQsubmitDate.onclick = function () {
 
 MZJZZQexport.onclick = function () {
     // no interface yet, add later
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/mazuijizhenzeqi?&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/mazuijizhenzeqi?&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
 }
 
 addLoadEvent(initialPicker(MZJZZQstartDate,MZJZZQendDate));

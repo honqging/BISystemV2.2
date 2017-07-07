@@ -4,7 +4,7 @@ var HFSSCloadpage = 1,
 	doc = document,
 	HFSSCurlStartTime = "2010-01-01",
 	HFSSCurlEndTime = currentDate,
-	HFSSCurl = "http://123.206.134.34:8080/Medicals_temp/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime,
+	HFSSCurl = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime,
 	HFSSCstartDate = doc.getElementById("HFSSCstartTime"),
 	HFSSCendDate = doc.getElementById("HFSSCendTime"),
 	HFSSCsubmitDate = doc.getElementById("HFSSCsubmitTime");
@@ -130,7 +130,7 @@ var HFSSCbeforePage = doc.getElementById("HFSSCPageBefore"),
 		else{
 			HFSSCloadpage --;
 			//console.log(HFSSCloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_temp/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -150,7 +150,7 @@ var HFSSCbeforePage = doc.getElementById("HFSSCPageBefore"),
 	}
 HFSSCnextPage.onclick = function(){
 	HFSSCloadpage ++;
-	var url2 = "http://123.206.134.34:8080/Medicals_temp/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
+	var url2 = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
 	$.ajax({
 		  type: "get",
 		  url: url2,
@@ -173,7 +173,7 @@ HFSSCsubmitDate.onclick = function () {
     getDate(HFSSCstartDate,HFSSCendDate);
 	HFSSCurlStartTime = getDate(HFSSCstartDate,HFSSCendDate)[0],
 	HFSSCurlEndTime = getDate(HFSSCstartDate,HFSSCendDate)[1];
-	var urlTime = "http://123.206.134.34:8080/Medicals_temp/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
+	var urlTime = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -193,7 +193,7 @@ HFSSCsubmitDate.onclick = function () {
 
 HFSSCexport.onclick = function () {
     // no interface yet, add later
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/morethan1hour?startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/morethan1hour?startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
 }
 
 addLoadEvent(initialPicker(HFSSCstartDate,HFSSCendDate));

@@ -4,9 +4,9 @@ var KSpage = 1,
 	doc = document,
 	KSurlStartTime = "2010-01-01",
     KSurlEndTime = currentDate,
-    KSurl = "http://123.206.134.34:8080/Medicals_temp/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
-	KSCharts1url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
-	KSCharts2url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+    KSurl = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
     KSstartDate = doc.getElementById("KSGZLstartTime"),
     KSendDate = doc.getElementById("KSGZLendTime"),
     KSsubmitDate = doc.getElementById("KSsubmitTime");
@@ -69,7 +69,7 @@ function insertKSTable(){
 					});
 					$.ajax({
 						  type: "get",
-						  url: "http://123.206.134.34:8080/Medicals_temp/statistic/keshiQuery?department="+this.office+"&feature="+this.level+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?department="+this.office+"&feature="+this.level+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) {
@@ -131,7 +131,7 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 		else{
             KSpage --;
 			//console.log(KSpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 			$.ajax({ 
 				  type: "get", 
 				  url: url2,
@@ -147,15 +147,15 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 				  alert(errorThrown); 
 				 } 
 			 });
-			KSCharts1url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 			KScharts1();
-			KSCharts2url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 			KScharts2();
 		}
 	}
 	KSpageNext.onclick = function(){
         KSpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		//console.log(KSpage);
 			$.ajax({ 
 				  type: "get", 
@@ -172,9 +172,9 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 				  alert(errorThrown); 
 				 } 
 			 });
-		KSCharts1url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+		KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		KScharts1();
-		KSCharts2url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+		KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		KScharts2();
 	}
 
@@ -182,7 +182,7 @@ KSsubmitDate.onclick = function () {
     getDate(KSstartDate,KSendDate);
     KSurlStartTime = getDate(KSstartDate,KSendDate)[0],
     KSurlEndTime = getDate(KSstartDate,KSendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_temp/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -198,13 +198,13 @@ KSsubmitDate.onclick = function () {
             alert(errorThrown);
         }
     });
-	KSCharts1url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
-	KSCharts2url = "http://123.206.134.34:8080/Medicals_temp/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 	KScharts1();
 	KScharts2();
 }
 
 KSexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/keshi?&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/keshi?&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 }
 addLoadEvent(initialPicker(KSstartDate,KSendDate));

@@ -2,7 +2,7 @@ var MZpage = 1,
 	doc = document,
 	MZurlStartTime = "2010-01-01",
 	MZurlEndTime = currentDate,
-	//MZEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime,
+	//MZEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime,
 	MZstartDate = doc.getElementById("MZstartTime"),
 	MZendDate = doc.getElementById("MZendTime"),
 	MZsubmitDate = doc.getElementById("MZsubmitTime");
@@ -49,7 +49,7 @@ function MZFFcharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var MZEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime;
+			var MZEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime;
 			var url = MZEchartsUrl;
 			console.log(url);
 			var dataSource = [];

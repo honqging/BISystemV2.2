@@ -4,7 +4,7 @@ var MzDocZongWorkloadpage = 1,
 	doc = document,
 	MZYSZGZLurlStartTime = "2010-01-01",
     MZYSZGZLurlEndTime = currentDate,
-    MZYSZGZLurl = "http://123.206.134.34:8080/Medicals_temp/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
+    MZYSZGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
     MZYSZGZLstartDate = doc.getElementById("MZYSZGZLstartTime"),
     MZYSZGZLendDate = doc.getElementById("MZYSZGZLendTime"),
     MZYSZGZLsubmitDate = doc.getElementById("MZYSZGZLsubmitTime");
@@ -66,7 +66,7 @@ function insertMZYSZGZLTable(){
                     });
                     $.ajax({
                           type: "get",
-                          url: "http://123.206.134.34:8080/Medicals_temp/statistic/mazuiyishengzongQuery?name="+this.id+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
+                          url: "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzongQuery?name="+this.id+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
                           dataType: "json",
                           jsonp:"callback",
                           success: function (data) {
@@ -111,7 +111,7 @@ var MZYSZGZLbeforePage = doc.getElementById("MZYSZGZLPageBefore"),
 		else{
             MzDocZongWorkloadpage --;
 			//console.log(MzDocZongWorkloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -131,7 +131,7 @@ var MZYSZGZLbeforePage = doc.getElementById("MZYSZGZLPageBefore"),
 	}
 	MZYSZGZLnextPage.onclick = function(){
         MzDocZongWorkloadpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
 		//console.log(MzDocZongWorkloadpage);
 			$.ajax({
 				  type: "get",
@@ -155,7 +155,7 @@ MZYSZGZLsubmitDate.onclick = function () {
     getDate(MZYSZGZLstartDate,MZYSZGZLendDate);
     MZYSZGZLurlStartTime = getDate(MZYSZGZLstartDate,MZYSZGZLendDate)[0],
     MZYSZGZLurlEndTime = getDate(MZYSZGZLstartDate,MZYSZGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_temp/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -174,7 +174,7 @@ MZYSZGZLsubmitDate.onclick = function () {
 }
 
 MZYSZGZLexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/mazuiyishengzong?&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/mazuiyishengzong?&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
 }
 
 addLoadEvent(initialPicker(MZYSZGZLstartDate,MZYSZGZLendDate));

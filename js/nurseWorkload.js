@@ -1,7 +1,7 @@
 ﻿var nurseWorkloadpage = 1,
 	HSGZLurlStartTime = "2010-01-01",
     HSGZLurlEndTime = currentDate,
-    HSGZLurl = "http://123.206.134.34:8080/Medicals_temp/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime,
+    HSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime,
 	HSGZLtableData = [],
 	HSGZLtableTiTle = [],
 	doc = document,
@@ -100,7 +100,7 @@ nurseWorkloadbeforePage.onclick = function(){
     else{
         nurseWorkloadpage --;
         //console.log(nurseWorkloadpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -120,7 +120,7 @@ nurseWorkloadbeforePage.onclick = function(){
 }
 nurseWorkloadnextPage.onclick = function(){
     nurseWorkloadpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     //console.log(nurseWorkloadpage);
     $.ajax({
         type: "get",
@@ -145,7 +145,7 @@ HSGZLsubmitDate.onclick = function () {
     getDate(HSGZLstartDate,HSGZLendDate);
     HSGZLurlStartTime = getDate(HSGZLstartDate,HSGZLendDate)[0],
     HSGZLurlEndTime = getDate(HSGZLstartDate,HSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_temp/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -164,7 +164,7 @@ HSGZLsubmitDate.onclick = function () {
 }
 
 HSGZLexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_temp/export/hushi?&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_war/export/hushi?&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
 }
 
 addLoadEvent(initialPicker(HSGZLstartDate,HSGZLendDate));

@@ -1,4 +1,4 @@
-﻿var SSZKurl = "http://123.206.134.34:8080/Medicals_temp/operation/shoushuzhikong",
+﻿var SSZKurl = "http://123.206.134.34:8080/Medicals_war/operation/shoushuzhikong",
 	SSZKdataSource = [],
 	SSZKdataTitle = [],
 	zkTitle = doc.getElementById("zkTitle"),
@@ -67,4 +67,4 @@ var item4 = doc.getElementById("zk4").onclick = function(){
 };
 var item5 = doc.getElementById("zk5").onclick = function(){
 	insertSSZKtable(4);
-};
+};
