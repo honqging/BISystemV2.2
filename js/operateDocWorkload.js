@@ -4,7 +4,7 @@
 	doc = document,
 	SSYSGZLurlStartTime = "2010-01-01",
     SSYSGZLurlEndTime = currentDate,
-    SSYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime,
+    SSYSGZLurl = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime,
     SSYSGZLstartDate = doc.getElementById("SSYSGZLstartTime"),
     SSYSGZLendDate = doc.getElementById("SSYSGZLendTime"),
     SSYSGZLsubmitDate = doc.getElementById("SSYSGZLsubmitTime");
@@ -100,7 +100,7 @@ operateDocWorkloadbeforePage.onclick = function(){
     else{
         operateDocWorkLoadpage --;
         //console.log(MzDocZongWorkloadpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -120,7 +120,7 @@ operateDocWorkloadbeforePage.onclick = function(){
 }
 operateDocWorkloadnextPage.onclick = function(){
     operateDocWorkLoadpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     //console.log(MzDocZongWorkloadpage);
     $.ajax({
         type: "get",
@@ -145,7 +145,7 @@ SSYSGZLsubmitDate.onclick = function () {
     getDate(SSYSGZLstartDate,SSYSGZLendDate);
     SSYSGZLurlStartTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[0],
     SSYSGZLurlEndTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -163,7 +163,7 @@ SSYSGZLsubmitDate.onclick = function () {
 }
 
 SSYSGZLexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/shoushuyisheng?&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/shoushuyisheng?&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
 }
 
 addLoadEvent(initialPicker(SSYSGZLstartDate,SSYSGZLendDate));

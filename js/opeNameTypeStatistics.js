@@ -4,7 +4,7 @@ var ASSMCZLTJloadpage = 1,
 	doc = document,
 	ASSMCZLTJurlStartTime = "2010-01-01",
 	ASSMCZLTJurlEndTime = currentDate,
-	ASSMCZLTJurl = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime,
+	ASSMCZLTJurl = "http://123.206.134.34:8080/Medicals_temp/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime,
 	ASSMCZLTJstartDate = doc.getElementById("ASSMCZLTJstartTime"),
 	ASSMCZLTJendDate = doc.getElementById("ASSMCZLTJendTime"),
 	ASSMCZLTJsubmitDate = doc.getElementById("ASSMCZLTJsubmitTime");
@@ -79,7 +79,7 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 		else{
 			ASSMCZLTJloadpage --;
 			//console.log(ASSMCZLTJloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -99,7 +99,7 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 	}
 ASSMCZLTJnextPage.onclick = function(){
 	ASSMCZLTJloadpage ++;
-	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+	var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
 	$.ajax({
 		  type: "get",
 		  url: url2,
@@ -123,7 +123,7 @@ ASSMCZLTJsubmitDate.onclick = function () {
     getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate);
 	ASSMCZLTJurlStartTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[0],
 	ASSMCZLTJurlEndTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[1];
-	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+	var urlTime = "http://123.206.134.34:8080/Medicals_temp/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -143,7 +143,7 @@ ASSMCZLTJsubmitDate.onclick = function () {
 
 ASSMCZLTJexport.onclick = function () {
     // no interface yet, add later
-    window.location="http://123.206.134.34:8080/Medicals_war/export/shoushumingcheng?&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/shoushumingcheng?&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
 }
 
 addLoadEvent(initialPicker(ASSMCZLTJstartDate,ASSMCZLTJendDate));

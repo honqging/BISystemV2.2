@@ -5,7 +5,7 @@ var SMBRpage = 1,
 	doc = document,
 	SMBRurlStartTime = "2010-01-01",
     SMBRurlEndTime = currentDate,
-    url = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
+    url = "http://123.206.134.34:8080/Medicals_temp/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
     SMstartDate = doc.getElementById("SMstartTime"),
     SMendDate = doc.getElementById("SMendTime"),
     SMsubmitDate = doc.getElementById("SMsubmitTime");
@@ -74,7 +74,7 @@ SMBRbeforePage.onclick = function(){
     if(SMBRpage==1){alert("已经是第一页");}
     else{
         SMBRpage --;
-        var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_temp/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -95,7 +95,7 @@ SMBRbeforePage.onclick = function(){
 SMBRnextPage.onclick = function(){
     console.log(SMBRurlStartTime,SMBRurlStartTime);
     SMBRpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_temp/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
     console.log(url2);
     $.ajax({
         type: "get",
@@ -119,7 +119,7 @@ SMsubmitDate.onclick = function () {
     getDate(SMstartDate,SMendDate);
     SMBRurlStartTime = getDate(SMstartDate,SMendDate)[0],
     SMBRurlEndTime = getDate(SMstartDate,SMendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_temp/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -139,7 +139,7 @@ SMsubmitDate.onclick = function () {
 }
 
 SMexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/shoumabingren?&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/shoumabingren?&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
 }
 
 addLoadEvent(initialPicker(SMstartDate,SMendDate));

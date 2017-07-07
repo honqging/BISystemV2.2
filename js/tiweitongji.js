@@ -4,7 +4,7 @@ var TWpage = 1,
     doc = document,
 	TWurlStartTime = "2010-01-01",
     TWurlEndTime = currentDate,
-    TWurl = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+    TWurl = "http://123.206.134.34:8080/Medicals_temp/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
     TWstartDate = doc.getElementById("SSTWstartTime"),
     TWendDate = doc.getElementById("SSTWendTime"),
     TWsubmitDate = doc.getElementById("SSTWsubmitTime");
@@ -66,7 +66,7 @@ function insertTWTable(){
                     });
                     $.ajax({
                         type: "get",
-                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+                        url: "http://123.206.134.34:8080/Medicals_temp/reportform/tiweiQuery?department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
                         dataType: "json",
                         jsonp:"callback",
                         success: function (data) {
@@ -132,7 +132,7 @@ TWPageBefore.onclick = function(){
     else{
         TWpage --;
         //console.log(TWpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -152,7 +152,7 @@ TWPageBefore.onclick = function(){
 }
 TWPageNext.onclick = function(){
     TWpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_temp/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     //console.log(TWpage);
     $.ajax({
         type: "get",
@@ -176,7 +176,7 @@ TWsubmitDate.onclick = function () {
     getDate(TWstartDate,TWendDate);
     TWurlStartTime = getDate(TWstartDate,TWendDate)[0],
     TWurlEndTime = getDate(TWstartDate,TWendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_temp/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -195,7 +195,7 @@ TWsubmitDate.onclick = function () {
 }
 
 TWexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/tiwei?&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/tiwei?&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
 }
 
 addLoadEvent(initialPicker(TWstartDate,TWendDate));

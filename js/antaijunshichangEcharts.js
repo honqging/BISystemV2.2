@@ -49,7 +49,7 @@ function ATJSCcharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var ATJSCEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/antaijunshichang?page="+ATJSCpage+"&startTime="+ATJSCurlStartTime+"&endTime="+ATJSCurlEndTime;
+			var ATJSCEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/antaijunshichang?page="+ATJSCpage+"&startTime="+ATJSCurlStartTime+"&endTime="+ATJSCurlEndTime;
 			var url = ATJSCEchartsUrl;
 			console.log(url);
 			var dataSource = [];

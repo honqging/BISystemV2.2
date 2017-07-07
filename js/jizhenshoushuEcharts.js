@@ -49,7 +49,7 @@ function JZSScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var JZSSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/jizhen?page="+JZSSpage+"&startTime="+JZSSurlStartTime+"&endTime="+JZSSurlEndTime;
+			var JZSSEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/jizhen?page="+JZSSpage+"&startTime="+JZSSurlStartTime+"&endTime="+JZSSurlEndTime;
 			var url = JZSSEchartsUrl;
 			console.log(url);
 			var dataSource = [];

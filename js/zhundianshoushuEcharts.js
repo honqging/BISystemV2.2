@@ -28,7 +28,7 @@ function ZDSScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var ZDSSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/zhundian?startTime="+ZDSSurlStartTime+"&endTime="+ZDSSurlEndTime;
+			var ZDSSEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/zhundian?startTime="+ZDSSurlStartTime+"&endTime="+ZDSSurlEndTime;
 			var url = ZDSSEchartsUrl;
 			console.log(url);
 			var dataSource = [];

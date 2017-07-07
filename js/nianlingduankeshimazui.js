@@ -4,7 +4,7 @@ var NLDKSloadpage = 1,
 	doc = document,
 	NLDKSurlStartTime = "2010-01-01",
 	NLDKSurlEndTime = currentDate,
-	NLDKSurl = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime,
+	NLDKSurl = "http://123.206.134.34:8080/Medicals_temp/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime,
 	NLDKSstartDate = doc.getElementById("NLDKSstartTime"),
 	NLDKSendDate = doc.getElementById("NLDKSendTime"),
 	NLDKSsubmitDate = doc.getElementById("NLDKSsubmitTime");
@@ -112,7 +112,7 @@ var NLDKSbeforePage = doc.getElementById("NLDKSPageBefore"),
 		else{
 			NLDKSloadpage --;
 			//console.log(NLDKSloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_temp/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -133,7 +133,7 @@ var NLDKSbeforePage = doc.getElementById("NLDKSPageBefore"),
 	}
 NLDKSnextPage.onclick = function(){
 	NLDKSloadpage ++;
-	var url2 = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
+	var url2 = "http://123.206.134.34:8080/Medicals_temp/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
 	$.ajax({
 		  type: "get",
 		  url: url2,
@@ -157,7 +157,7 @@ NLDKSsubmitDate.onclick = function () {
     getDate(NLDKSstartDate,NLDKSendDate);
 	NLDKSurlStartTime = getDate(NLDKSstartDate,NLDKSendDate)[0],
 	NLDKSurlEndTime = getDate(NLDKSstartDate,NLDKSendDate)[1];
-	var urlTime = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
+	var urlTime = "http://123.206.134.34:8080/Medicals_temp/charts/keshinianlingduan?page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -178,7 +178,7 @@ NLDKSsubmitDate.onclick = function () {
 
 NLDKSexport.onclick = function () {
     // no interface yet, add later
-    window.location="http://123.206.134.34:8080/Medicals_war/export/keshinianlingduan?startTime=" + NLDKSurlStartTime + "&endTime=" + NLDKSurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/keshinianlingduan?startTime=" + NLDKSurlStartTime + "&endTime=" + NLDKSurlEndTime;
 }
 
 addLoadEvent(initialPicker(NLDKSstartDate,NLDKSendDate));

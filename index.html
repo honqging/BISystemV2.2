@@ -11,6 +11,11 @@
 		<link href="css/mystyles.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/otreetable.js"></script>
 		<title>BI system</title>
+		<script type="text/javascript">
+//			window.onload = function(){
+//				$('.dataSelector').attr('disabled', 'disabled');
+//			}
+		</script>
 	</head>
 	<body>
 		<header class="jumbotron">
@@ -94,11 +99,11 @@
 											<h4 class="col-sm-12">手麻病人一览表</h4>
 											<div class="col-sm-5 col-xs-4 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SMstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SMstartTime" readonly disabled="disabled">
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SMendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SMendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SMsubmitTime"></button>
@@ -130,11 +135,11 @@
 											<h4 class="col-sm-12">手术滑刀时间一览表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHDstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHDstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHDendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHDendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSHDsubmitTime"></button>
@@ -166,11 +171,11 @@
 											<h4 class="col-sm-12">手术质控统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSZKstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSZKstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSZKendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSZKendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn"></button>
@@ -207,11 +212,11 @@
 											<h4 class="col-sm-12">ASA分级统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASAstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASAstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASAendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASAendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="ASAsubmitTime"></button>
@@ -276,11 +281,11 @@
 											<h4 class="col-sm-12">护士工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HSGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HSGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HSGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HSGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="HSGZLsubmitTime"></button>
@@ -312,11 +317,11 @@
 											<h4 class="col-sm-12">麻醉医生工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZYSGZLsubmitTime"></button>
@@ -349,11 +354,11 @@
 											<h4 class="col-sm-12">麻醉医生总工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSZGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZYSZGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSZGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZYSZGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZYSZGZLsubmitTime"></button>
@@ -385,11 +390,11 @@
 											<h4 class="col-sm-12">手术护士工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHSGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSHSGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHSGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSHSGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSHSGZLsubmitTime"></button>
@@ -421,11 +426,11 @@
 											<h4 class="col-sm-12">手术医生工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSYSGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSYSGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSYSGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSYSGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSYSGZLsubmitTime"></button>
@@ -457,11 +462,11 @@
 											<h4 class="col-sm-12">科室工作量统计表</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="KSGZLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="KSGZLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="KSGZLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="KSGZLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="KSsubmitTime"></button>
@@ -543,11 +548,11 @@
 											<h4 class="col-sm-12">准点手术开台率</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ZDSSstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ZDSSstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ZDSSendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ZDSSendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="ZDSSsubmitTime"></button>
@@ -564,11 +569,11 @@
 											<h4 class="col-sm-12">急诊手术统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="JZSSstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="JZSSstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="JZSSendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="JZSSendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="JZSSsubmitTime"></button>
@@ -594,11 +599,11 @@
 											<h4 class="col-sm-12">手术时间分布图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSSJstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSSJstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSSJendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSSJendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSSJsubmitTime"></button>
@@ -624,11 +629,11 @@
 											<h4 class="col-sm-12">麻醉方法统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZsubmitTime"></button>
@@ -654,11 +659,11 @@
 											<h4 class="col-sm-12">手术间利用率统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSJLYLstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSJLYLstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSJLYLendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSJLYLendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSJLYLsubmitTime"></button>
@@ -684,11 +689,11 @@
 											<h4 class="col-sm-12">按台时长统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ATSCstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ATSCstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ATSCendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ATSCendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="ATSCsubmitTime"></button>
@@ -714,11 +719,11 @@
 											<h4 class="col-sm-12">按台均时长统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ATJSCstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ATJSCstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ATJSCendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ATJSCendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="ATJSCsubmitTime"></button>
@@ -744,11 +749,11 @@
 											<h4 class="col-sm-12">输血次数统计图</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SXCSstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SXCSstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SXCSendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SXCSendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SXCSsubmitTime"></button>
@@ -774,11 +779,11 @@
 											<h4 class="col-sm-12">按年龄段统计科室麻醉手术次数</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDKSstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDKSstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDKSendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDKSendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="NLDKSsubmitTime"></button>
@@ -853,11 +858,11 @@
 											<h4 class="col-sm-12">按年龄段统计麻醉方法麻醉次数</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="NLDstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="NLDendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="NLDsubmitTime"></button>
@@ -889,11 +894,11 @@
 											<h4 class="col-sm-12">按手术体位统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSTWstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSTWstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSTWendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSTWendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="SSTWsubmitTime"></button>
@@ -925,11 +930,11 @@
 											<h4 class="col-sm-12">麻醉效果统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZXGstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZXGstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZXGendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZXGendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZXGsubmitTime"></button>
@@ -961,11 +966,11 @@
 											<h4 class="col-sm-12">临床路径更改麻醉方式统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZFSstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZFSstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZFSGendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZFSGendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZFSsubmitTime"></button>
@@ -995,11 +1000,11 @@
 											<h4 class="col-sm-12">麻醉记录单插管统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZJLDCGstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZJLDCGstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZJLDCGendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZJLDCGendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn"></button>
@@ -1024,11 +1029,11 @@
 											<h4 class="col-sm-12">按手术名称种类统计</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASSMCZLTJstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="ASSMCZLTJstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASSMCZLTJendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="ASSMCZLTJendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="ASSMCZLTJsubmitTime"></button>
@@ -1060,11 +1065,11 @@
 											<h4 class="col-sm-12">按麻醉方法统计急诊择期手术例数</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZJZZQstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="MZJZZQstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZJZZQendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="MZJZZQendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="MZJZZQsubmitTime"></button>
@@ -1111,11 +1116,11 @@
 											<h4 class="col-sm-12">恢复室时长超过1小时情况分析</h4>
 											<div class="col-sm-8 dataArea">
 												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HFSSCstartTime" readonly>
+													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="HFSSCstartTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HFSSCendTime" readonly>
+													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="HFSSCendTime" readonly disabled='disabled'>
 													<span class="add-on"><i class="icon-th"></i></span>
 												</div>
 												<button type="button" class="timeBar searchBtn" id="HFSSCsubmitTime"></button>

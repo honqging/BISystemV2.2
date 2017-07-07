@@ -49,7 +49,7 @@ function SSJLYLcharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var SSJLYLEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/liyonglv?page="+SSJLYLpage+"&startTime="+SSJLYLurlStartTime+"&endTime="+SSJLYLurlEndTime;
+			var SSJLYLEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/liyonglv?page="+SSJLYLpage+"&startTime="+SSJLYLurlStartTime+"&endTime="+SSJLYLurlEndTime;
 			var url = SSJLYLEchartsUrl;
 			console.log(url);
 			var dataSource = [];

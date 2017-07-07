@@ -4,7 +4,7 @@ var SSHSGZLdataSource = [],
     SSHSGZLpage = 1,
 	SSHSGZLurlStartTime = "2010-01-01",
     SSHSGZLurlEndTime = currentDate,
-    SSHSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime,
+    SSHSGZLurl = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime,
     SSHSGZLstartDate = doc.getElementById("SSHSGZLstartTime"),
     SSHSGZLendDate = doc.getElementById("SSHSGZLendTime"),
     SSHSGZLsubmitDate = doc.getElementById("SSHSGZLsubmitTime");
@@ -63,7 +63,7 @@ var SSHSGZLbeforePage = doc.getElementById("SSHSGZLPageBefore"),
 		else{
             SSHSGZLpage --;
 			//console.log(page);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -83,7 +83,7 @@ var SSHSGZLbeforePage = doc.getElementById("SSHSGZLPageBefore"),
 	}
 	SSHSGZLnextPage.onclick = function(){
         SSHSGZLpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
 		//console.log(SSHSGZLpage);
 			$.ajax({
 				  type: "get",
@@ -107,7 +107,7 @@ SSHSGZLsubmitDate.onclick = function () {
     getDate(SSHSGZLstartDate,SSHSGZLendDate);
     SSHSGZLurlStartTime = getDate(SSHSGZLstartDate,SSHSGZLendDate)[0],
     SSHSGZLurlEndTime = getDate(SSHSGZLstartDate,SSHSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_temp/statistic/shoushuhushi?page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -125,7 +125,7 @@ SSHSGZLsubmitDate.onclick = function () {
 }
 
 SSHSGZLexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/shoushuhushi?&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/shoushuhushi?&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
 }
 
 addLoadEvent(initialPicker(SSHSGZLstartDate,SSHSGZLendDate));

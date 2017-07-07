@@ -1,7 +1,7 @@
 var ASAurlStartTime = "2010-01-01",
     ASAurlEndTime = currentDate,
-    ASAurl = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
-	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_war/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+    ASAurl = "http://123.206.134.34:8080/Medicals_temp/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_temp/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 	ASAdataSource = [],
 	ASAdataTitle = [],
 	ASAdetail = [],
@@ -12,7 +12,7 @@ var ASAurlStartTime = "2010-01-01",
     ASAsubmitDate = doc.getElementById("ASAsubmitTime");
     ASAexport = doc.getElementById("ASAexport");
 
-//»ñÈ¡ÊÖÂé²¡ÈËÊý¾Ý
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½é²¡ï¿½ï¿½ï¿½ï¿½ï¿½
 $.ajax({ 
           type: "get", 
           url: ASAurl,
@@ -29,14 +29,14 @@ $.ajax({
 		 } 
 	 });
 function insertASATable(){
-	//´´½¨±í¸ñ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	var table = doc.getElementById("ASA_table");
 	var thead = doc.getElementById("ASA_table_head");
 
 	table.innerHTML = '';
 	thead.innerHTML = '';
 
-	//µ¥¶ÀÌí¼Ó±íÍ·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½Í·
 	for(var t=0;t<ASAdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdataTitle[t]);
@@ -68,7 +68,7 @@ function insertASATable(){
 					});
 					$.ajax({ 
 						  type: "get", 
-						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_temp/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) { 
@@ -84,7 +84,7 @@ function insertASATable(){
 						 } 
 					 });
 				}
-				//a.onclick = getDetailData("http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName=1");
+				//a.onclick = getDetailData("http://123.206.134.34:8080/Medicals_temp/operation/asaQuery?asaName=1");
 				td.appendChild(a);
 			}
 			else{
@@ -100,7 +100,7 @@ function insertASATable(){
 	}
 }
 function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
-	//µ¥¶ÀÌí¼Ó±íÍ·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½Í·
 	for(var t=0;t<ASAdetailTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdetailTitle[t]);
@@ -121,12 +121,12 @@ function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 	}
 }
 
-//Éè¶¨Ê±¼ä
+//ï¿½è¶¨Ê±ï¿½ï¿½
 ASAsubmitDate.onclick = function () {
     getDate(ASAstartDate,ASAendDate);
     ASAurlStartTime = getDate(ASAstartDate,ASAendDate)[0],
     ASAurlEndTime = getDate(ASAstartDate,ASAendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_temp/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -142,12 +142,12 @@ ASAsubmitDate.onclick = function () {
             alert(errorThrown);
         }
     });
-	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_war/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
+	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_temp/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
 	ASAEcharts();
 }
 
 ASAexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
+    window.location="http://123.206.134.34:8080/Medicals_temp/export/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
 }
 
 addLoadEvent(initialPicker(ASAstartDate,ASAendDate));

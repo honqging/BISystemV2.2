@@ -47,7 +47,7 @@ function SXCScharts(){
 			//'echarts/chart/line'    //折线图
 		],
 		function (ec) {
-			var SXCSEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/shuxuecishu?page="+SXCSpage+"&startTime="+SXCSurlStartTime+"&endTime="+SXCSurlEndTime;
+			var SXCSEchartsUrl = "http://123.206.134.34:8080/Medicals_temp/charts/shuxuecishu?page="+SXCSpage+"&startTime="+SXCSurlStartTime+"&endTime="+SXCSurlEndTime;
 			var url = SXCSEchartsUrl;
 			console.log(url);
 			var dataSource = [];
