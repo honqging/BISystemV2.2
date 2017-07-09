@@ -409,7 +409,7 @@ a{
 	/*width: 50px;*/
 }
 
-#user-name, #sign-out{
+#user, #signOut{
 	float: right;
 	display: inline;
 	margin-right: 20px;

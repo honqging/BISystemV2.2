@@ -300,7 +300,7 @@ function isLogin(){
 			if(data.isLogin){
 				if(data.isLogin == 1){
 					//indexCheck(data.userName, data.modules);
-					return data;
+					return 1;
 				}else{
 					return 0;
 					//alert('您未登录，请返回登录');
@@ -315,6 +315,37 @@ function isLogin(){
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 			return 0;
+		}
+	});
+}
+
+function isLogin2(){
+	var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
+
+	$.ajax({
+		type: 'POST',
+		url: isLoginUrl,
+		dataType: 'json',
+		jsonp: 'callback',
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+		success: function(data){
+			if(data.isLogin){
+				if(data.isLogin == 1){
+					indexCheck(data.userName, data.modules);
+				}else{
+					alert('您未登录，请返回登录');
+					window.location.href = 'signIn.html';
+				}
+			}else{
+				alert('您未登录，请返回登录');
+				window.location.href = 'signIn.html';
+			}
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
 		}
 	});
 }

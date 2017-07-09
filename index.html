@@ -15,13 +15,14 @@
 		<title>BI system</title>
 		<script>
 			var logInfo = isLogin();
-			if(logInfo == 0){
+			console.log('logInfo', logInfo);
+			if(logInfo != 1){
 				alert('您未登录，请返回登录');
 				window.location.href = 'signIn.html';
 			}
 
 			window.onload = function (){
-				indexCheck(logInfo.userName, logInfo.modules);
+				isLogin2();
 			}
 		</script>
 	</head>
