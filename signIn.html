@@ -9,6 +9,12 @@
     <link href="css/sign-in.css" rel="stylesheet" />
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/sign.js"></script>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -19,12 +25,13 @@
                 <span class="input-group-addon input-before">用户名</span>
                 <input type="text" class="form-control" id="name"/>
             </div>
-            <label class="sr-only" for="password">Password</label>
+            <label class="sr-only" for="inPassword">Password</label>
             <div class="input-group">
                 <span class="input-group-addon input-before">&#12288密码</span>
-                <input type="password" class="form-control" id="password"/>
+                <input type="password" class="form-control" id="inPassword"/>
             </div>
-            <button class="btn btn-block btn-sign-in" type="submit">登&#12288&#12288录</button>
+            <button class="btn btn-block btn-sign-in" type="button" onclick="checkUser()">登&#12288&#12288录</button>
+            <p align="center"><a href="signUp.html">没有账户？注册一个！</a></p>
         </form>
     </div>
 </body>

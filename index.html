@@ -10,7 +10,47 @@
 		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		<link href="css/mystyles.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/otreetable.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/sign.js"></script>
 		<title>BI system</title>
+		<script>
+//			window.onload = function hhh(){
+//				var smbr = document.getElementById('SMBR');
+//				smbr.style.display = 'none';
+//			};
+//			isLogin();
+//			indexCheck();
+			window.onload = function signIn(name, password){
+				var signInUrl = 'http://123.206.134.34:8080/Medicals_war/login';
+				var inData = {
+					userName: 'administrator',
+					password: '12345'
+//					userName: 'test',
+//					password: 'abc123'
+				};
+				$.ajax({
+					type: 'POST',
+					url: signInUrl,
+					data: inData,
+					dataType: 'json',
+					jsonp: 'callback',
+					success: function(data){
+						console.log(data);
+						if(data.result == 1){
+							alert("用户名或密码错误，请重新输入");
+						}else{
+							//modules = data.modules;
+							indexCheck(data.modules);
+							//window.location.href = 'index.html?modules=' + modulesG;
+
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				})
+			}
+		</script>
 	</head>
 	<body>
 		<header class="jumbotron">
@@ -70,19 +110,19 @@
 							<ul class="nav vertical-tab col-sm-2 sideBar">
 								<div class="side_title">细类划分</div>
 								<li role="presentation" class="active">
-									<a href="#SMBR" aria-controls="SMBR" role="tab" data-toggle="tab">
+									<a href="#SMBR" aria-controls="SMBR" role="tab" data-toggle="tab" id='SMBR2'>
 									手麻病人一览表</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSHD" aria-controls="SSHD" role="tab" data-toggle="tab">
+									<a href="#SSHD" aria-controls="SSHD" role="tab" data-toggle="tab" id="SSHD2">
 									手术滑刀时间一览表</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSZK" aria-controls="SSZK" role="tab" data-toggle="tab">
+									<a href="#SSZK" aria-controls="SSZK" role="tab" data-toggle="tab" id="SSZK2">
 									手术质控统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#ASA" aria-controls="ASA" role="tab" data-toggle="tab">
+									<a href="#ASA" aria-controls="ASA" role="tab" data-toggle="tab" id="ASA2">
 									ASA分级统计</a>
 								</li>
 							</ul>
@@ -244,27 +284,27 @@
 							<ul class="nav vertical-tab col-sm-2 sideBar">
 								<div class="side_title">细类划分</div>
 								<li role="presentation" class="active">
-									<a href="#HSGZL" aria-controls="HSGZL" role="tab" data-toggle="tab">
+									<a href="#HSGZL" id="HSGZL2" aria-controls="HSGZL" role="tab" data-toggle="tab">
 									护士工作量统计表</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZYSGZL" aria-controls="MZYSGZL" role="tab" data-toggle="tab">
+									<a href="#MZYSGZL" id="MZYSGZL2" aria-controls="MZYSGZL" role="tab" data-toggle="tab">
 									麻醉医生工作量统计表</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZYSZGZL" aria-controls="MZYSZGZL" role="tab" data-toggle="tab">
+									<a href="#MZYSZGZL" id="MZYSZGZL2" aria-controls="MZYSZGZL" role="tab" data-toggle="tab">
 									麻醉医生总工作量统计表</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSHSGZL" aria-controls="SSHSGZL" role="tab" data-toggle="tab">
+									<a href="#SSHSGZL" id="SSHSGZL2" aria-controls="SSHSGZL" role="tab" data-toggle="tab">
 									手术护士工作量统计表</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSYSGZL" aria-controls="SSYSGZL" role="tab" data-toggle="tab">
+									<a href="#SSYSGZL" id="SSYSGZL2" aria-controls="SSYSGZL" role="tab" data-toggle="tab">
 									手术医生工作量统计表</a>
 								</li>
 								<li role="presentation">
-									<a href="#KSGZL" aria-controls="KSGZL" role="tab" data-toggle="tab">
+									<a href="#KSGZL" id="KSGZL2" aria-controls="KSGZL" role="tab" data-toggle="tab">
 									科室工作量统计表</a>
 								</li>
 							</ul>
@@ -499,39 +539,39 @@
 							<ul class="nav vertical-tab col-sm-2 sideBar">
 								<div class="side_title">细类划分</div>
 								<li role="presentation" class="active">
-									<a href="#ZDSS" aria-controls="ZDSS" role="tab" data-toggle="tab">
+									<a href="#ZDSS" id="ZDSS2" aria-controls="ZDSS" role="tab" data-toggle="tab">
 										准点手术开台率</a>
 								</li>
 								<li role="presentation">
-									<a href="#JZSS" aria-controls="JZSS" role="tab" data-toggle="tab">
+									<a href="#JZSS" id="JZSS2" aria-controls="JZSS" role="tab" data-toggle="tab">
 										急诊手术统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSSJ" aria-controls="SSSJ" role="tab" data-toggle="tab">
+									<a href="#SSSJ" id="SSSJ2" aria-controls="SSSJ" role="tab" data-toggle="tab">
 										手术时间分布图</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZFFTJT" aria-controls="MZFFTJT" role="tab" data-toggle="tab">
+									<a href="#MZFFTJT" id="MZFFTJT2" aria-controls="MZFFTJT" role="tab" data-toggle="tab">
 										麻醉方法统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSJLYL" aria-controls="SSJLYL" role="tab" data-toggle="tab">
+									<a href="#SSJLYL" id="SSJLYL2" aria-controls="SSJLYL" role="tab" data-toggle="tab">
 										手术间利用率统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#ATSC" aria-controls="ATSC" role="tab" data-toggle="tab">
+									<a href="#ATSC" id="ATSC2" aria-controls="ATSC" role="tab" data-toggle="tab">
 										按台时长统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#ATJSC" aria-controls="ATJSC" role="tab" data-toggle="tab">
+									<a href="#ATJSC" id="ATJSC2" aria-controls="ATJSC" role="tab" data-toggle="tab">
 										按台均时长统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#SXCS" aria-controls="SXCS" role="tab" data-toggle="tab">
+									<a href="#SXCS" id="SXCS2" aria-controls="SXCS" role="tab" data-toggle="tab">
 										输血次数统计图</a>
 								</li>
 								<li role="presentation">
-									<a href="#NLDKS" aria-controls="NLDKS" role="tab" data-toggle="tab">
+									<a href="#NLDKS" id="NLDKS2" aria-controls="NLDKS" role="tab" data-toggle="tab">
 										按年龄段统计科室麻醉手术次数</a>
 								</li>
 							</ul>
@@ -817,31 +857,31 @@
 							<ul class="nav vertical-tab col-sm-2 sideBar">
 								<div class="side_title">细类划分</div>
 								<li role="presentation" class="active">
-									<a href="#NLD" aria-controls="NLD" role="tab" data-toggle="tab">
+									<a href="#NLD" id="NLD2" aria-controls="NLD" role="tab" data-toggle="tab">
 									按年龄段统计麻醉方法麻醉次数</a>
 								</li>
 								<li role="presentation">
-									<a href="#SSTW" aria-controls="SSTW" role="tab" data-toggle="tab">
+									<a href="#SSTW" id="SSTW2" aria-controls="SSTW" role="tab" data-toggle="tab">
 									按手术体位统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZXG" aria-controls="MZXG" role="tab" data-toggle="tab">
+									<a href="#MZXG" id="MZXG2" aria-controls="MZXG" role="tab" data-toggle="tab">
 									麻醉效果统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#LCLJGGMZFS" aria-controls="LCLJGGMZFS" role="tab" data-toggle="tab">
+									<a href="#LCLJGGMZFS" id="LCLJGGMZFS2" aria-controls="LCLJGGMZFS" role="tab" data-toggle="tab">
 									临床路径更改麻醉方式统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZJLDCG" aria-controls="MZJLDCG" role="tab" data-toggle="tab">
+									<a href="#MZJLDCG" id="MZJLDCG2" aria-controls="MZJLDCG" role="tab" data-toggle="tab">
 									麻醉记录单插管统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#ASSMCZLTJ" aria-controls="ASSMCZLTJ" role="tab" data-toggle="tab">
+									<a href="#ASSMCZLTJ" id="ASSMCZLTJ2" aria-controls="ASSMCZLTJ" role="tab" data-toggle="tab">
 									按手术名称种类统计</a>
 								</li>
 								<li role="presentation">
-									<a href="#MZJZZQ" aria-controls="MZJZZQ" role="tab" data-toggle="tab">
+									<a href="#MZJZZQ" id="MZJZZQ2" aria-controls="MZJZZQ" role="tab" data-toggle="tab">
 									按麻醉方法统计急诊择期手术例数</a>
 								</li>
 							</ul>
@@ -1099,7 +1139,7 @@
 							<ul class="nav vertical-tab col-sm-2 sideBar">
 								<div class="side_title">细类划分</div>
 								<li role="presentation" class="active">
-									<a href="#HFSSC" aria-controls="NLD" role="tab" data-toggle="tab">
+									<a href="#HFSSC" id="HFSSC2" aria-controls="NLD" role="tab" data-toggle="tab">
 										恢复室时长超过1小时情况分析</a>
 								</li>
 							</ul>
@@ -1186,5 +1226,6 @@
 		<script src="js/nianlingduanksmzEcharts.js"></script>
 		<script src="js/huifushishichang.js"></script>
 		<script src="js/shuxuecishuEcharts.js"></script>
+
 	</body>
 </html>

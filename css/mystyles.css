@@ -144,21 +144,21 @@ address{
 	overflow-x:auto;
 }
 .sideBar{
-	min-height:600px;
+	min-height:900px;
 	height:100%;
 	background-color:#E5F5EC;
 	margin-left:-40px;
 }
 .sideBarL{
-	min-height:600px;
+	min-height:900px;
 	height:100%;
 	background-color:#DCF2E6;
 	margin-left:-30px;
 	margin-right:10px;
 }
 .contentR{
-	min-height:600px;
-	height:600px;
+	min-height:900px;
+	/*height:900px;*/
 	overflow: auto;
 	margin-left:-15px;
 	margin-right:-85px;
