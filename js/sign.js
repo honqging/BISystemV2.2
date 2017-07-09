@@ -209,19 +209,17 @@ function indexCheck(userName, modulesJson){
 		//console.log(ifFirst);
 
 		if(ifFirst == 0){
-			console.log('administrator..');
+			var noSubMenu = doc.getElementById(subListId[i][0]);
+			if(noSubMenu != null ){
+				//console.log(i);
+				noSubMenu.setAttribute('class', 'tab-pane fade in active');
+			}
 
 		}else{
 			//var noSubMenu = doc.getElementById(subListId[i][0]),
-			var noSubMenu = doc.getElementById(subListId[i][0]),
-				yesSubMenu = doc.getElementById(subListId[i][ifFirst]);
+			//var noSubMenu = doc.getElementById(subListId[i][0]),
+			var	yesSubMenu = doc.getElementById(subListId[i][ifFirst]);
 
-			//console.log(noSubMenu.getAttribute('class'));
-
-			if(noSubMenu != null ){
-				//console.log(i);
-				noSubMenu.setAttribute('class', 'tab-pane fade');
-			}
 			if(yesSubMenu != null){
 				//console.log(subListId[i][0]);
 				yesSubMenu.setAttribute('class', 'tab-pane fade in active');
