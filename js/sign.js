@@ -299,22 +299,24 @@ function isLogin(){
 		success: function(data){
 			if(data.isLogin){
 				if(data.isLogin == 1){
-					//indexCheck(data.userName, data.modules);
-					return 1;
+					window.onload = function(){
+						indexCheck(data.userName, data.modules);
+					};
+					//return 1;
 				}else{
-					return 0;
-					//alert('您未登录，请返回登录');
-					//window.location.href = 'signIn.html';
+					//return 0;
+					alert('您未登录，请返回登录');
+					window.location.href = 'signIn.html';
 				}
 			}else{
-				return 0;
-				//alert('您未登录，请返回登录');
-				//window.location.href = 'signIn.html';
+				//return 0;
+				alert('您未登录，请返回登录');
+				window.location.href = 'signIn.html';
 			}
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
-			return 0;
+			//return 0;
 		}
 	});
 }

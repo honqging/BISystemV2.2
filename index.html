@@ -14,16 +14,7 @@
 		<script src="js/sign.js"></script>
 		<title>BI system</title>
 		<script>
-			var logInfo = isLogin();
-			console.log('logInfo', logInfo);
-			if(logInfo != 1){
-				alert('您未登录，请返回登录');
-				window.location.href = 'signIn.html';
-			}
-
-			window.onload = function (){
-				isLogin2();
-			}
+			isLogin();
 		</script>
 	</head>
 	<body>
