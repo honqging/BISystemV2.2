@@ -1,44 +1,11 @@
 var doc = document;
 var modules = '';
 
-function checkUser(){
-	var name = doc.getElementById('name').value;
-	var password = doc.getElementById('inPassword').value;
-
-	//window.location.href='hello.html';
-
-	//HttpSession session=request.getSession();
-	//session.getAttribute(name);
-	var mmm = '<%=Session['+ name +'] %>';
-	var myName="<%=session.getAttribute(name)%>";
-
-	//alert(ticket);
-	//console.log(password);
-	var checkUrl = "http://123.206.134.34:8080/Medicals_war/checkusername?userName=" + name;
-
-	$.ajax({
-		type: 'GET',
-		url: checkUrl,
-		dataType: 'json',
-		jsonp: 'callback',
-		success: function(data){
-			if(data.result == 1){
-				//console.log('exist');
-				signIn(name, password);
-			}else{
-				//console.log('not exist');
-				alert('用户名不存在')
-			}
-		},
-		error: function (XMLHttpRequest, textStatus, errorThrown) {
-			alert(errorThrown);
-		}
-	});
-}
-
 // sign in
-function signIn(name, password){
+function signIn(){
 	var signInUrl = 'http://123.206.134.34:8080/Medicals_war/login';
+	var name = doc.getElementById('name').value,
+		password = doc.getElementById('inPassword').value;
 	var inData = {
 		userName: name,
 		password: password
@@ -50,23 +17,15 @@ function signIn(name, password){
 		dataType: 'json',
 		jsonp: 'callback',
 		success: function(data, textStatus, jqXHR){
-			console.log(data);
 			if(data.result == 1){
 				alert("用户名或密码错误，请重新输入");
 			}else{
-				//modules = data.modules;
-				var modulesG = JSON.stringify(data.modules);
-				console.log('sign in: ' + data.modules[2]['ModuleName']);
-				document.cookie = "name=" + name;
-				//alert(jqXHR.getResponseHeader("Content-Type"));
-				//alert(jqXHR.getResponseHeader("Set-Cookie"));
-				//indexCheck();
-				//window.location.href = 'index.html?modules=' + modulesG;
+				window.location.href = 'index.html';
 			}
 
 
-			var coo = doc.cookie;
-			alert('cookie.length: ', getCookie('JSESSIONID'));
+			//var coo = doc.cookie;
+			//alert('cookie.length: ', getCookie('JSESSIONID'));
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
@@ -191,7 +150,10 @@ function signUp(){
 }
 
 // limits of authority
-function indexCheck(modulesJson){
+function indexCheck(userName, modulesJson){
+	var user = doc.getElementById('user');
+	user.innerHTML = userName;
+
 	var subList = [[],
 		['手麻病人一览表', '手术滑刀时间一览表', '手术质控统计', 'ASA分级统计'],
 		['护士工作量统计表', '麻醉医生工作量统计表', '麻醉医生总工作量统计表', '手术护士工作量统计表', '手术医生工作量统计表', '科室工作量统计表'],
@@ -215,19 +177,6 @@ function indexCheck(modulesJson){
 		['HFSSC2']
 	];
 
-	console.log('before for...');
-	//console.log(modules[0]['ModuleName']);
-
-	//console.log(Request['id']);
-	//console.log('getPara: ' + getPara('modules'));
-    //
-	//var modulesGet = getPara('modules');
-	//console.log('modulesGet:' + modulesGet);
-
-	//var modulesJson = JSON.parse(modulesGet);
-	console.log('modulesJson:' + modulesJson[1]['ModuleName']);
-
-	var pModule = 0;
 	for(var i=0; i<subList.length; i++){
 		var ifFirst = -1;
 		for(var j=0; j<subList[i].length; j++){
@@ -244,11 +193,10 @@ function indexCheck(modulesJson){
 					//console.log(subList[i][j]);
 
 					if(modulesJson[t]['ModuleName'] == subList[i][j]){
-						console.log(subList[i][j] + subMenu);
+						//console.log(subList[i][j] + subMenu);
 
 						if(subMenu != null){
 							subMenu.style.display = 'block';
-							console.log('blockkkkk');
 						}
 
 						if(ifFirst == -1){
@@ -258,7 +206,7 @@ function indexCheck(modulesJson){
 				}
 			}
 		}
-		console.log(ifFirst);
+		//console.log(ifFirst);
 
 		if(ifFirst == 0){
 			console.log('administrator..');
@@ -312,12 +260,35 @@ function getPara(para) {
 	}
 }
 
-function isLogin(){
-	//var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
-	var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
+function signOut(){
+	var signOutUrl = 'http://123.206.134.34:8080/Medicals_war/logout';
 
 	$.ajax({
 		type: 'GET',
+		url: signOutUrl,
+		dataType: 'json',
+		jsonp: 'callback',
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+		success: function(data){
+			alert('登出成功，即将返回登录界面');
+			window.location.href = 'signIn.html';
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert('登出失败，请重新登录');
+			window.location.href = 'signIn.html';
+			//alert(errorThrown);
+		}
+	});
+}
+
+function isLogin(){
+	var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
+
+	$.ajax({
+		type: 'POST',
 		url: isLoginUrl,
 		dataType: 'json',
 		jsonp: 'callback',
@@ -328,24 +299,22 @@ function isLogin(){
 		success: function(data){
 			if(data.isLogin){
 				if(data.isLogin == 1){
-					indexCheck();
+					//indexCheck(data.userName, data.modules);
+					return data;
 				}else{
-					alert('您未登录，请返回登录');
-					window.location.href = 'signIn.html';
+					return 0;
+					//alert('您未登录，请返回登录');
+					//window.location.href = 'signIn.html';
 				}
 			}else{
-				alert('您未登录，请返回登录');
-				window.location.href = 'signIn.html';
+				return 0;
+				//alert('您未登录，请返回登录');
+				//window.location.href = 'signIn.html';
 			}
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
+			return 0;
 		}
 	});
 }
-
-function setMinHeight(){
-	var smbr = document.getElementsByClassName('SMBR2');
-	smbr.style.display = 'none';
-}
-//window.onload = indexCheck;

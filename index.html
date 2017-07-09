@@ -14,41 +14,14 @@
 		<script src="js/sign.js"></script>
 		<title>BI system</title>
 		<script>
-//			window.onload = function hhh(){
-//				var smbr = document.getElementById('SMBR');
-//				smbr.style.display = 'none';
-//			};
-//			isLogin();
-//			indexCheck();
-			window.onload = function signIn(name, password){
-				var signInUrl = 'http://123.206.134.34:8080/Medicals_war/login';
-				var inData = {
-					userName: 'administrator',
-					password: '12345'
-//					userName: 'test',
-//					password: 'abc123'
-				};
-				$.ajax({
-					type: 'POST',
-					url: signInUrl,
-					data: inData,
-					dataType: 'json',
-					jsonp: 'callback',
-					success: function(data){
-						console.log(data);
-						if(data.result == 1){
-							alert("用户名或密码错误，请重新输入");
-						}else{
-							//modules = data.modules;
-							indexCheck(data.modules);
-							//window.location.href = 'index.html?modules=' + modulesG;
+			var logInfo = isLogin();
+			if(logInfo == 0){
+				alert('您未登录，请返回登录');
+				window.location.href = 'signIn.html';
+			}
 
-						}
-					},
-					error: function (XMLHttpRequest, textStatus, errorThrown) {
-						alert(errorThrown);
-					}
-				})
+			window.onload = function (){
+				indexCheck(logInfo.userName, logInfo.modules);
 			}
 		</script>
 	</head>
@@ -56,6 +29,10 @@
 		<header class="jumbotron">
 			<img src="img/logo.png" id="logo"></img>
 			<strong id="head_title">山东省千佛山医院————手术室临床BI系统</strong>
+			<!--<div style="text-align: right">-->
+			<a id="signOut" onclick="signOut()">登出</a>
+			<p id="user">Name</p>
+			<!--</div>-->
 		</header>
 		<div class="container-fluid">
 			<div class="rows">

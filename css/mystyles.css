@@ -408,3 +408,10 @@ a{
 	text-align: left;
 	/*width: 50px;*/
 }
+
+#user-name, #sign-out{
+	float: right;
+	display: inline;
+	margin-right: 20px;
+	font-size: 15px;
+}

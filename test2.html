@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <!-- <meta charset="gb2312" /> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/otreetable.js"></script>
+    <title>BI system</title>
+    <script>
+        function isLogin(){
+            //var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
+            var isLoginUrl = 'http://123.206.134.34:8080/Medicals_war/islogin';
+
+            $.ajax({
+                type: 'POST',
+                url: isLoginUrl,
+                dataType: 'json',
+                jsonp: 'callback',
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data){
+                    if(data.isLogin){
+                        if(data.isLogin == 1){
+//                            indexCheck();
+                        }else{
+                        }
+                    }else{
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+    <button onclick="isLogin()">nihaoa </button>
+
+</body>
+</html>
