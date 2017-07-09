@@ -266,7 +266,6 @@ function signOut(){
 	$.ajax({
 		type: 'GET',
 		url: signOutUrl,
-		dataType: 'json',
 		jsonp: 'callback',
 		crossDomain: true,
 		xhrFields: {
