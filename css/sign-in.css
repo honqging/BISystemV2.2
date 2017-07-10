@@ -99,9 +99,9 @@ body{
 
 
 @media screen and (max-width: 920px){
-	.title1{
-		color: blue;
-	}
+	/*.title1{*/
+		/*color: blue;*/
+	/*}*/
 	.container{
 		margin: 10% auto;
 	}
