@@ -40,10 +40,14 @@ function insertSMTable(){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SMdataTitle[t]);
 		th.appendChild(thData);
-        if(t==5|t==6|t==7){
-            th.style.width = '14%';
+        if(t==5|t==6){
+            th.style.width = '12%';
+        }else if(t==7|t==8){
+            th.style.width = '10%';
+        }else if(t==9){
+            th.style.width = '20%';
         }else{
-            th.style.width = '7%';
+            th.style.width = '6%';
         }
 		thead.appendChild(th);
 	}
@@ -54,10 +58,14 @@ function insertSMTable(){
 				td = doc.createElement("td");
 			td.title = SMdataSource[i][j];
 			td.appendChild(data);
-            if(j==5|j==6|j==7){
-                td.style.width = '14%';
+            if(j==5|j==6){
+                td.style.width = '12%';
+            }else if(j==7|j==8){
+                td.style.width = '10%';
+            }else if(j==9){
+                td.style.width = "20%";
             }else{
-                td.style.width = '7%';
+                td.style.width = '6%';
             }
             tr.appendChild(td);
 		}
