@@ -30,12 +30,18 @@ function insertMZJZZQTable(){
 	table.innerHTML = '';
 	thead.innerHTML = '';
 	//add table head
-	for(var t=0;t<MZJZZQdataTitle.length;t++){
-		var th = doc.createElement("th"),
+	for(var t=0;t<MZJZZQdataTitle.length+1;t++){
+		var th = doc.createElement("th");
+		if(t<MZJZZQdataTitle.length){
 			thData = doc.createTextNode(MZJZZQdataTitle[t]);
+		}else{
+			thData = doc.createTextNode('');
+		}
 		th.appendChild(thData);
 		if(t==0){
-			th.style.width = '70%';
+			th.style.width = '20%';
+		}else if(t==MZJZZQdataTitle.length){
+			th.style.width = '50%';
 		}else{
 			th.style.width = '10%';
 		}
@@ -76,8 +82,12 @@ function insertMZJZZQTable(){
 	// add data rows
 	for(var i=0;i<MZJZZQdataSource.length;i++){
 		var tr = doc.createElement("tr");
-		for(var j=0;j<MZJZZQdataSource[i].length;j++){
-			var data = doc.createTextNode(MZJZZQdataSource[i][j]);
+		for(var j=0;j<MZJZZQdataSource[i].length+1;j++){
+			if(j<MZJZZQdataSource[i].length){
+				var data = doc.createTextNode(MZJZZQdataSource[i][j]);
+			}else{
+				var data = doc.createTextNode('');
+			}
 			var td = doc.createElement("td");
 			if(j>1){
 				var a = doc.createElement("a");
@@ -89,7 +99,9 @@ function insertMZJZZQTable(){
 				td.appendChild(data);
 			}
 			if(j==0){
-				td.style.width = '70%';
+				td.style.width = '20%';
+			}else if(j==MZJZZQdataSource[i].length){
+				td.style.width = '50%';
 			}else{
 				td.style.width = '10%';
 			}

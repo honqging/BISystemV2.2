@@ -39,9 +39,9 @@ function insertKSTable(){
 			thData = doc.createTextNode(KSdataTitle[t]);
 		th.appendChild(thData);
 		if(t==0){
-			th.style.width = '36%';
+			th.style.width = '20%';
 		}else{
-			th.style.width = '8%';
+			th.style.width = '10%';
 		}
 		thead.appendChild(th);
 	}
@@ -94,9 +94,9 @@ function insertKSTable(){
 				td.appendChild(data);
 			}
 			if(j==0){
-				td.style.width = '36%';
+				td.style.width = '20%';
 			}else{
-				td.style.width = '8%';
+				td.style.width = '10%';
 			}
 			tr.appendChild(td);
 		}

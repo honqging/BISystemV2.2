@@ -32,14 +32,20 @@ function insertASSMCZLTJTable(){
 	table.innerHTML = '';
 	thead.innerHTML = '';
 	//单独添加表头
-	for(var t=0;t<ASSMCZLTJdataTitle.length;t++){
-		var th = doc.createElement("th"),
+	for(var t=0;t<ASSMCZLTJdataTitle.length+1;t++){
+		var th = doc.createElement("th");
+		if(t<ASSMCZLTJdataTitle.length){
 			thData = doc.createTextNode(ASSMCZLTJdataTitle[t]);
+		}else{
+			thData = doc.createTextNode('');
+		}
 		th.appendChild(thData);
 		if(t==0){
-			th.style.width = '70%';
+			th.style.width = '30%';
+		}else if(t==ASSMCZLTJdataTitle.length){
+			th.style.width = '50%';
 		}else{
-			th.style.width = '15%';
+			th.style.width = '10%';
 		}
 		thead.appendChild(th);
 	}
@@ -54,15 +60,21 @@ function insertASSMCZLTJTable(){
 		//b.appendChild(datab);
 		//tr.appendChild(b);
 
-		for(var j=0;j<ASSMCZLTJdataSource[i].length;j++){
-			var data = doc.createTextNode(ASSMCZLTJdataSource[i][j]);
+		for(var j=0;j<ASSMCZLTJdataSource[i].length+1;j++){
+			if(j<ASSMCZLTJdataSource[i].length){
+				var data = doc.createTextNode(ASSMCZLTJdataSource[i][j]);
+			}else{
+				var data = doc.createTextNode('');
+			}
 			var td = doc.createElement("td");
 			td.title = ASSMCZLTJdataSource[i][j];
 			td.appendChild(data);
 			if(j==0){
-				td.style.width = '70%';
+				td.style.width = '30%';
+			}else if(j==ASSMCZLTJdataSource[i].length){
+				td.style.width = '50%';
 			}else{
-				td.style.width = '15%';
+				td.style.width = '10%';
 			}
 			tr.appendChild(td);
 		}
