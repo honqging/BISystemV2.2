@@ -79,6 +79,7 @@ function insertMZXGTable(){
         var a0Href = "#collapse" + i;
         a0.setAttribute("href", a0Href);
         a0.appendChild(data1);
+        a0.style.fontWeight = 'normal';
         a0.id = "a0";
         td1.appendChild(a0);
 
