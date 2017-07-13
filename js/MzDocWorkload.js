@@ -43,13 +43,13 @@ function insertMZYSGZLTable(){
         thData = doc.createTextNode('科室'),
         td = doc.createElement("td");
     th.appendChild(thData);
-    th.style.width = '40%';
+    th.style.width = '20%';
     thead.appendChild(th);
     for(var t=0; t<MZYSGZLtableTiTle.length; t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(MZYSGZLtableTiTle[t]);
         th.appendChild(thData);
-        th.style.width = '15%';
+        th.style.width = '20%';
         thead.appendChild(th);
     }
 
@@ -62,7 +62,7 @@ function insertMZYSGZLTable(){
                         td = doc.createElement("td");
                     td.title = "office";
                     td.appendChild(data);
-                    td.style.width = '40%';
+                    td.style.width = '20%';
                     tr.appendChild(td);
                 }
                 else{
@@ -114,7 +114,7 @@ function insertMZYSGZLTable(){
 						td.title = MZYSGZLtableData[x].groupRows[i][j];
 						td.appendChild(data);
 					}
-                    td.style.width = '15%';
+                    td.style.width = '20%';
                     //td.style.textAlign = 'left';
                     tr.appendChild(td);
                 }
@@ -131,6 +131,8 @@ function insertMZYSGZLTable(){
                table.rows[del].deleteCell(0);
                table.rows[titleRow].cells[0].rowSpan = totalRow;
            }
+           table.rows[titleRow].cells[0].style.verticalAlign = 'middle';
+           table.rows[titleRow].cells[0].style.borderRight = '1px #D6D6D6 solid';
        }
 	   titleRow += totalRow;
     }

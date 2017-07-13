@@ -42,13 +42,13 @@ function insertHSGZLTable(){
 			thData = doc.createTextNode('科室'),
         	td = doc.createElement("td");
 		th.appendChild(thData);
-        th.style.width = '40%';
+        th.style.width = '16%';
         thead.appendChild(th);
 	for(var t=0;t<HSGZLtableTiTle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(HSGZLtableTiTle[t]);
 		th.appendChild(thData);
-        th.style.width = '12%';
+        th.style.width = '16%';
         thead.appendChild(th);
 	}
 
@@ -61,7 +61,7 @@ function insertHSGZLTable(){
 					td = doc.createElement("td");
 					td.title = "office";
 					td.appendChild(data);
-                    td.style.width = '40%';
+                    td.style.width = '16%';
                     tr.appendChild(td);
 				}
 				else{
@@ -69,7 +69,7 @@ function insertHSGZLTable(){
 						td = doc.createElement("td");
 					td.title = HSGZLtableData[x].groupRows[i][j];
 					td.appendChild(data);
-                    td.style.width = '12%';
+                    td.style.width = '16%';
                     tr.appendChild(td);
 				}
 			}
@@ -77,7 +77,7 @@ function insertHSGZLTable(){
 		}
 	}
 	//合并office单元格
-	for(var y=0;y<HSGZLtableData.length;y++) {
+    for(var y=0;y<HSGZLtableData.length;y++) {
         totalRow = HSGZLtableData[y].groupRows.length;
 		//w设为公有变量，否则每次会对表格再次重头进行遍历。
        for(var w=0;w<totalRow;w++,del++) {
@@ -85,6 +85,8 @@ function insertHSGZLTable(){
                table.rows[del].deleteCell(0);
                table.rows[titleRow].cells[0].rowSpan = totalRow;
            }
+           table.rows[titleRow].cells[0].style.verticalAlign = 'middle';
+           table.rows[titleRow].cells[0].style.borderRight = '1px #D6D6D6 solid';
        }
 	   titleRow += totalRow;
     }
