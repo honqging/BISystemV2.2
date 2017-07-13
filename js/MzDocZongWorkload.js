@@ -44,7 +44,7 @@ function insertMZYSZGZLTable(){
 		thead.appendChild(th);
 	}
 
-	for(var i=1;i<MZYSZGZLdataSource.length;i++){
+	for(var i=0;i<MZYSZGZLdataSource.length;i++){
 		var tr = doc.createElement("tr");
 		for(var j=0;j<MZYSZGZLdataSource[i].length;j++){
 			if(j == MZYSZGZLdataSource[i].length-1){
