@@ -405,7 +405,7 @@ a{
 }
 .table-head th{
 	border-bottom: none;
-	text-align: left;
+	/*text-align: left;*/
 	/*width: 50px;*/
 }
 
@@ -418,4 +418,13 @@ a{
 
 .subMenu > li > a{
 	/*display: none;*/
+}
+
+table{
+	text-align: center;
+}
+
+table th{
+	text-align: center;
+	font-weight: normal;
 }
