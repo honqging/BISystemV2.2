@@ -24,6 +24,7 @@ $.ajax({
 		  alert(errorThrown);
 		 }
 	 });
+
 function insertHFSSCTable(){
 	var table = doc.getElementById("HFSSC_table");
 	var thead = doc.getElementById("HFSSC_table_head");
@@ -41,18 +42,19 @@ function insertHFSSCTable(){
 					th.appendChild(thData);
 					th.rowSpan = '2';
 					th.style.width = '20%';
-					th.vAlign = "center";
+					th.style.verticalAlign = "middle";
+					th.style.borderRight = '1px #D6D6D6 solid';
 					th.id = "tdd";
 				}else if(t == 1){
 					thData = doc.createTextNode("超过一小时");
 					th.appendChild(thData);
 					th.colSpan = '2';
-					th.style.width = '20%';
+					th.style.width = '30%';
 				}
 			}else if(rows == 1){
 				thData = doc.createTextNode(HFSSCdataTitle[t+1]);
 				th.appendChild(thData);
-				th.style.width = '10%';
+				th.style.width = '15%';
 			}
 			th.style.textAlign = "center";
 			trHead.appendChild(th);
@@ -112,7 +114,7 @@ function insertHFSSCTable(){
 			if(j==0){
 				td.style.width = '20%';
 			}else{
-				td.style.width = '10%';
+				td.style.width = '15%';
 			}
 			tr.appendChild(td);
 		}
