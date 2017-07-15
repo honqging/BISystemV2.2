@@ -316,6 +316,7 @@ a{
 	/*width:60%;*/
 	float:left;
 	overflow:auto;
+	margin-top: 30px;
 }
 #ASA_Echarts{
 	width: 500px;
