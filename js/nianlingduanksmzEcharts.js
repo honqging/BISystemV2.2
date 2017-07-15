@@ -50,6 +50,7 @@
 				var myChart = ec.init(document.getElementById('NLDKS_Echarts'));
 				var ecConfig = require('echarts/config');
 				var option = {
+					color: ['#CFDDEA', '#56CEFE', '#6BB9A1', '#E7982D', '#F4D739', '#DF63A4', '#F1CA8F'],
 					title : {
 						text: '按年龄段统计麻醉手术次数',
 						x:'center',
@@ -73,6 +74,7 @@
 								normal : {
 									label : {
 										show : true,
+										//position: 'inner',
 										formatter: '{b} : {c} 人'
 									},
 									labelLine : {

@@ -39,7 +39,8 @@
 				var myChart = ec.init(document.getElementById('ASA_Echarts'));
 				var ecConfig = require('echarts/config');
 				var option = {
-						title : {
+					color: ['#E7982D', '#F4D739', '#7F95FC', '#E38081', '#AEE5FE', '#C2A0FC', '#CFDDEA', '#56CEFE', '#6BB9A1'],
+					title : {
 							text: '',
 							subtext: 'ASA分级手术统计饼图',
 							x:'center'
