@@ -53,19 +53,19 @@ function insertASATable(){
 					td = doc.createElement("td");
 				td.title = ASAdataSource[i][j];
 
-				a.setAttribute("tabindex","0");
-				a.setAttribute("role","button");
-				a.setAttribute("data-toggle","popover");
-				a.setAttribute("data-trigger","focus");
-				a.setAttribute("data-placement","left");
+				//a.setAttribute("tabindex","0");
+				//a.setAttribute("role","button");
+				//a.setAttribute("data-toggle","popover");
+				//a.setAttribute("data-trigger","focus");
+				//a.setAttribute("data-placement","left");
 				a.appendChild(data);
 				a.src = "#";
 				a.id = ASAdataSource[i][0];
 				a.onclick = function(){
-					$("[data-toggle='popover']").popover({
-						html:true,
-						content:'<div id="content">loading...</div>'
-					});
+					//$("[data-toggle='popover']").popover({
+					//	html:true,
+					//	content:'<div id="content">loading...</div>'
+					//});
 					$.ajax({ 
 						  type: "get", 
 						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
@@ -74,10 +74,11 @@ function insertASATable(){
 						  success: function (data) { 
 							  ASAdetail = data.data;
 							  ASAdetailTitle = data.header;
-							  var table2 = doc.createElement("table");
+							  var table2 = doc.getElementById("ASAdetail_table");
+							  table2.innerHTML = '';
 							  console.log(ASAdetail);
 							  insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2);
-							  $('#content').html(table2);
+							  //$('#ASAdetail_table').html(table2);
 						  },
 						  error: function (XMLHttpRequest, textStatus, errorThrown) { 
 						  alert(errorThrown); 
@@ -114,7 +115,7 @@ function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 				td = doc.createElement("td");
 			td.title = ASAdetail[i][j];
 			td.appendChild(data);
-			td.style.width = "500px";
+			//td.style.width = "500px";
 			tr.appendChild(td);
 		}
 		table2.appendChild(tr);

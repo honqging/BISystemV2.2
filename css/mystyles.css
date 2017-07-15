@@ -312,9 +312,9 @@ a{
 	overflow:auto;
 }
 .detail-scroll{
-	height: 250px;
-	width:60%;
-	float:right;
+	height: 600px;
+	/*width:60%;*/
+	float:left;
 	overflow:auto;
 }
 #ASA_Echarts{
