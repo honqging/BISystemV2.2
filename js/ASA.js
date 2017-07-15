@@ -66,6 +66,10 @@ function insertASATable(){
 					//	html:true,
 					//	content:'<div id="content">loading...</div>'
 					//});
+					var loadMes = doc.getElementById('loadMes');
+					var table2 = doc.getElementById("ASAdetail_table");
+					table2.innerHTML = '';
+					loadMes.innerHTML = 'loading...';
 					$.ajax({ 
 						  type: "get", 
 						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
@@ -74,8 +78,7 @@ function insertASATable(){
 						  success: function (data) { 
 							  ASAdetail = data.data;
 							  ASAdetailTitle = data.header;
-							  var table2 = doc.getElementById("ASAdetail_table");
-							  table2.innerHTML = '';
+							  loadMes.innerHTML = '';
 							  console.log(ASAdetail);
 							  insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2);
 							  //$('#ASAdetail_table').html(table2);
