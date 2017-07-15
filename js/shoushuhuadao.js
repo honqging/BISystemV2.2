@@ -104,7 +104,7 @@ SSHDbeforePage.onclick = function(){
 SSHDnextPage.onclick = function(){
     SSHDpage ++;
     var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?rowCount="+ SSHDnumPer +"&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
-    if(SSHDpage == SSHDTotalPage){
+    if(SSHDpage > SSHDTotalPage){
         alert('已经是最后一页');
     }else {
         $.ajax({

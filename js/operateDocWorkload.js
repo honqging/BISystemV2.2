@@ -138,7 +138,7 @@ operateDocWorkloadnextPage.onclick = function(){
     operateDocWorkLoadpage ++;
     var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     //console.log(MzDocZongWorkloadpage);
-    if(operateDocWorkLoadpage >= SSYSGZLTotalPage){
+    if(operateDocWorkLoadpage > SSYSGZLTotalPage){
         alert('已经是最后一页');
     }else {
         $.ajax({
