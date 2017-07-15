@@ -3,7 +3,6 @@ var SMBRTotal = doc.getElementById("SMBRTotal"),
     SMBRnumPerPage = doc.getElementById("SMBRnumPerPage"),
     SMBRnumPer = 20,
     SMBRassignPage = doc.getElementById("SMBRassignPage"),
-    SMBRassignP = 0,
     SMBRconfirm = doc.getElementById("SMBRconfirm");
 
 var SMBRpage = 1,
