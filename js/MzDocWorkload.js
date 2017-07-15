@@ -1,10 +1,17 @@
+var MZYSGZLTotal = doc.getElementById("MZYSGZLTotal"),
+    MZYSGZLTotalPage = 0,
+    MZYSGZLnumPerPage = doc.getElementById("MZYSGZLnumPerPage"),
+    MZYSGZLnumPer = 20,
+    MZYSGZLassignPage = doc.getElementById("MZYSGZLassignPage"),
+    MZYSGZLconfirm = doc.getElementById("MZYSGZLconfirm");
+
 var MzDocWorkloadpage = 1,
     MZYSGZLtableData = [],
     MZYSGZLtableTiTle = [],
     doc = document,
 	MZYSGZLurlStartTime = "2010-01-01",
     MZYSGZLurlEndTime = currentDate,
-    MZYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime,
+    MZYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount="+ MZYSGZLnumPer +"&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime,
     MZYSGZLstartDate = doc.getElementById("MZYSGZLstartTime"),
     MZYSGZLendDate = doc.getElementById("MZYSGZLendTime"),
     MZYSGZLsubmitDate = doc.getElementById("MZYSGZLsubmitTime");
@@ -19,6 +26,8 @@ $.ajax({
     success: function (data) {
         MZYSGZLtableData = data.data;
         MZYSGZLtableTiTle = data.header;
+        MZYSGZLTotalPage = data.pageCount;
+
         //console.log(MZYSGZLtableData[0].rows);
         insertMZYSGZLTable();
     },
@@ -136,6 +145,8 @@ function insertMZYSGZLTable(){
        }
 	   titleRow += totalRow;
     }
+
+    MZYSGZLTotal.innerHTML = MZYSGZLTotalPage;
 }
 
 //分页
@@ -148,7 +159,7 @@ var MZYSGZLbeforePage = doc.getElementById("MZYSGZLPageBefore"),
 		else{
             MzDocWorkloadpage --;
 			//console.log(MzDocWorkloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount="+ MZYSGZLnumPer +"&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
 			$.ajax({
 				type: "get",
 				url: url2,
@@ -157,7 +168,9 @@ var MZYSGZLbeforePage = doc.getElementById("MZYSGZLPageBefore"),
 				success: function (data) {
 					MZYSGZLtableData = data.data;
 					MZYSGZLtableTiTle = data.header;
-					MZYSGZLPageNum.placeholder = MzDocWorkloadpage;
+                    MZYSGZLTotalPage = data.pageCount;
+
+                    MZYSGZLPageNum.placeholder = MzDocWorkloadpage;
 					insertMZYSGZLTable();
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -168,24 +181,31 @@ var MZYSGZLbeforePage = doc.getElementById("MZYSGZLPageBefore"),
 	}
 	MZYSGZLnextPage.onclick = function(){
         MzDocWorkloadpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount="+ MZYSGZLnumPer +"&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
 		//console.log(MzDocWorkloadpage);
-			$.ajax({
-				type: "get",
-				url: url2,
-				dataType: "json",
-				jsonp:"callback",
-				success: function (data) {
-					MZYSGZLtableData = data.data;
-					MZYSGZLtableTiTle = data.header;
-					MZYSGZLPageNum.placeholder = MzDocWorkloadpage;
-					//console.log(pageNum.placeholder);
-					insertMZYSGZLTable();
-				},
-				error: function (XMLHttpRequest, textStatus, errorThrown) {
-					alert(errorThrown);
-				}
-			});
+        if(MzDocWorkloadpage >= MZYSGZLTotalPage){
+            console.log(MzDocWorkloadpage, MZYSGZLTotalPage);
+            alert('已经是最后一页');
+        }else {
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp: "callback",
+                success: function (data) {
+                    MZYSGZLtableData = data.data;
+                    MZYSGZLtableTiTle = data.header;
+                    MZYSGZLTotalPage = data.pageCount;
+
+                    MZYSGZLPageNum.placeholder = MzDocWorkloadpage;
+                    //console.log(pageNum.placeholder);
+                    insertMZYSGZLTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
 	}
 
 //设定时间
@@ -193,7 +213,7 @@ MZYSGZLsubmitDate.onclick = function () {
     getDate(MZYSGZLstartDate,MZYSGZLendDate);
     MZYSGZLurlStartTime = getDate(MZYSGZLstartDate,MZYSGZLendDate)[0],
     MZYSGZLurlEndTime = getDate(MZYSGZLstartDate,MZYSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount="+ MZYSGZLnumPer +"&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -202,6 +222,8 @@ MZYSGZLsubmitDate.onclick = function () {
         success: function (data) {
             MZYSGZLtableData = data.data;
             MZYSGZLtableTiTle = data.header;
+            MZYSGZLTotalPage = data.pageCount;
+
             //console.log(SMdataSource);
             insertMZYSGZLTable();
         },
@@ -211,6 +233,80 @@ MZYSGZLsubmitDate.onclick = function () {
     });
 }
 
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+MZYSGZLconfirm.onclick = function(){
+    tempPage = MzDocWorkloadpage;
+    MzDocWorkloadpage = parseFloat(MZYSGZLassignPage.value);
+    if(isInteger(MzDocWorkloadpage)){
+        console.log(MzDocWorkloadpage);
+        if(MzDocWorkloadpage <= MZYSGZLTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount=" + MZYSGZLnumPer + "&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    MZYSGZLtableData = data.data;
+                    MZYSGZLtableTiTle = data.header;
+                    MZYSGZLTotalPage = data.pageCount;
+                    MZYSGZLPageNum.placeholder = MzDocWorkloadpage;
+                    insertMZYSGZLTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            MzDocWorkloadpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+MZYSGZLnumPerPage.onchange = function(){
+    var tempPer = MZYSGZLnumPer,
+        tempTotalPage = MZYSGZLTotalPage,
+        tempSelected = MZYSGZLnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    MZYSGZLnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyisheng?rowCount=" + MZYSGZLnumPer + "&page="+MzDocWorkloadpage+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
+    $.ajax({
+        type: "get",
+        url: url2,
+        dataType: "json",
+        jsonp:"callback",
+        success: function (data) {
+            MZYSGZLtableData = data.data;
+            MZYSGZLtableTiTle = data.header;
+            MZYSGZLTotalPage = data.pageCount;
+
+            if(MZYSGZLTotalPage < MzDocWorkloadpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                MZYSGZLnumPer = tempPer;
+                MZYSGZLTotalPage = tempTotalPage;
+                for(var i = 0; i < MZYSGZLnumPerPage.options.length; i++){
+                    if(MZYSGZLnumPerPage.options[i].innerHTML == tempSelected){
+                        MZYSGZLnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertMZYSGZLTable();
+            }
+            console.log(url2);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
 MZYSGZLexport.onclick = function () {
     window.location="http://123.206.134.34:8080/Medicals_war/export/mazuiyisheng?&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime;
 }

@@ -1,7 +1,14 @@
-﻿var nurseWorkloadpage = 1,
+﻿var HSGZLTotal = doc.getElementById("HSGZLTotal"),
+    HSGZLTotalPage = 0,
+    HSGZLnumPerPage = doc.getElementById("HSGZLnumPerPage"),
+    HSGZLnumPer = 20,
+    HSGZLassignPage = doc.getElementById("HSGZLassignPage"),
+    HSGZLconfirm = doc.getElementById("HSGZLconfirm");
+
+var nurseWorkloadpage = 1,
 	HSGZLurlStartTime = "2010-01-01",
     HSGZLurlEndTime = currentDate,
-    HSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime,
+    HSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime,
 	HSGZLtableData = [],
 	HSGZLtableTiTle = [],
 	doc = document,
@@ -18,7 +25,9 @@ $.ajax({
           success: function (data) {
 						  HSGZLtableData = data.data;
 						  HSGZLtableTiTle = data.header;
-						  //console.log(HSGZLtableData[0].rows);
+                          HSGZLTotalPage = data.pageCount;
+
+                          //console.log(HSGZLtableData[0].rows);
 						  insertHSGZLTable();
                            },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -90,6 +99,8 @@ function insertHSGZLTable(){
        }
 	   titleRow += totalRow;
     }
+
+    HSGZLTotal.innerHTML = HSGZLTotalPage;
 }
 
 //分页
@@ -102,7 +113,7 @@ nurseWorkloadbeforePage.onclick = function(){
     else{
         nurseWorkloadpage --;
         //console.log(nurseWorkloadpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -111,6 +122,8 @@ nurseWorkloadbeforePage.onclick = function(){
             success: function (data) {
                 HSGZLtableData = data.data;
                 HSGZLtableTiTle = data.header;
+                HSGZLTotalPage = data.pageCount;
+
                 nurseWorkloadPageNum.placeholder = nurseWorkloadpage;
                 insertHSGZLTable();
             },
@@ -122,24 +135,30 @@ nurseWorkloadbeforePage.onclick = function(){
 }
 nurseWorkloadnextPage.onclick = function(){
     nurseWorkloadpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     //console.log(nurseWorkloadpage);
-    $.ajax({
-        type: "get",
-        url: url2,
-        dataType: "json",
-        jsonp:"callback",
-        success: function (data) {
-            HSGZLtableData = data.data;
-            HSGZLtableTiTle = data.header;
-            nurseWorkloadPageNum.placeholder = nurseWorkloadpage;
-            //console.log(pageNum.placeholder);
-            insertHSGZLTable();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+    if(nurseWorkloadpage == HSGZLTotalPage){
+        alert('已经是最后一页');
+    }else {
+        $.ajax({
+            type: "get",
+            url: url2,
+            dataType: "json",
+            jsonp: "callback",
+            success: function (data) {
+                HSGZLtableData = data.data;
+                HSGZLtableTiTle = data.header;
+                HSGZLTotalPage = data.pageCount;
+
+                nurseWorkloadPageNum.placeholder = nurseWorkloadpage;
+                //console.log(pageNum.placeholder);
+                insertHSGZLTable();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
 }
 
 //设定时间
@@ -147,7 +166,7 @@ HSGZLsubmitDate.onclick = function () {
     getDate(HSGZLstartDate,HSGZLendDate);
     HSGZLurlStartTime = getDate(HSGZLstartDate,HSGZLendDate)[0],
     HSGZLurlEndTime = getDate(HSGZLstartDate,HSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -156,8 +175,85 @@ HSGZLsubmitDate.onclick = function () {
         success: function (data) {
             HSGZLtableData = data.data;
             HSGZLtableTiTle = data.header;
+            HSGZLTotalPage = data.pageCount;
+
             //console.log(SMdataSource);
             insertHSGZLTable();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+HSGZLconfirm.onclick = function(){
+    tempPage = nurseWorkloadpage;
+    nurseWorkloadpage = parseFloat(HSGZLassignPage.value);
+    if(isInteger(nurseWorkloadpage)){
+        console.log(nurseWorkloadpage);
+        if(nurseWorkloadpage <= HSGZLTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount=" + HSGZLnumPer + "&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    HSGZLtableData = data.data;
+                    HSGZLtableTiTle = data.header;
+                    HSGZLTotalPage = data.pageCount;
+                    nurseWorkloadPageNum.placeholder = nurseWorkloadpage;
+                    insertHSGZLTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            nurseWorkloadpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+HSGZLnumPerPage.onchange = function(){
+    var tempPer = HSGZLnumPer,
+        tempTotalPage = HSGZLTotalPage,
+        tempSelected = HSGZLnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    HSGZLnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount=" + HSGZLnumPer + "&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
+    $.ajax({
+        type: "get",
+        url: url2,
+        dataType: "json",
+        jsonp:"callback",
+        success: function (data) {
+            HSGZLtableData = data.data;
+            HSGZLtableTiTle = data.header;
+            HSGZLTotalPage = data.pageCount;
+
+            if(HSGZLTotalPage < nurseWorkloadpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                HSGZLnumPer = tempPer;
+                HSGZLTotalPage = tempTotalPage;
+                for(var i = 0; i < HSGZLnumPerPage.options.length; i++){
+                    if(HSGZLnumPerPage.options[i].innerHTML == tempSelected){
+                        HSGZLnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertHSGZLTable();
+            }
+            console.log(url2);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

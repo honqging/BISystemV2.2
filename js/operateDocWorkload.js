@@ -1,10 +1,17 @@
-﻿var operateDocWorkLoadpage = 1,
+﻿var SSYSGZLTotal = doc.getElementById("SSYSGZLTotal"),
+    SSYSGZLTotalPage = 0,
+    SSYSGZLnumPerPage = doc.getElementById("SSYSGZLnumPerPage"),
+    SSYSGZLnumPer = 20,
+    SSYSGZLassignPage = doc.getElementById("SSYSGZLassignPage"),
+    SSYSGZLconfirm = doc.getElementById("SSYSGZLconfirm");
+
+var operateDocWorkLoadpage = 1,
 	SSYSGZLtableData = [],
 	SSYSGZLtableTitle = [],
 	doc = document,
 	SSYSGZLurlStartTime = "2010-01-01",
     SSYSGZLurlEndTime = currentDate,
-    SSYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime,
+    SSYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime,
     SSYSGZLstartDate = doc.getElementById("SSYSGZLstartTime"),
     SSYSGZLendDate = doc.getElementById("SSYSGZLendTime"),
     SSYSGZLsubmitDate = doc.getElementById("SSYSGZLsubmitTime");
@@ -19,7 +26,9 @@ $.ajax({
           success: function (data) {
 						  SSYSGZLtableData = data.data;
 						  SSYSGZLtableTitle = data.header;
-						  //console.log(SSYSGZLtableData[0].rows);
+                          SSYSGZLTotalPage = data.pageCount;
+
+                          //console.log(SSYSGZLtableData[0].rows);
 						  insertSSYSGZLTable();
                            },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -91,6 +100,8 @@ function insertSSYSGZLTable(){
        }
 	   titleRow += totalRow;
     }
+
+    SSYSGZLTotal.innerHTML = SSYSGZLTotalPage;
 }
 
 //分页
@@ -103,7 +114,7 @@ operateDocWorkloadbeforePage.onclick = function(){
     else{
         operateDocWorkLoadpage --;
         //console.log(MzDocZongWorkloadpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -112,6 +123,8 @@ operateDocWorkloadbeforePage.onclick = function(){
             success: function (data) {
                 SSYSGZLtableData = data.data;
                 SSYSGZLtableTitle = data.header;
+                SSYSGZLTotalPage = data.pageCount;
+
                 operateDocWorkloadPageNum.placeholder = operateDocWorkLoadpage;
                 insertSSYSGZLTable();
             },
@@ -123,24 +136,30 @@ operateDocWorkloadbeforePage.onclick = function(){
 }
 operateDocWorkloadnextPage.onclick = function(){
     operateDocWorkLoadpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     //console.log(MzDocZongWorkloadpage);
-    $.ajax({
-        type: "get",
-        url: url2,
-        dataType: "json",
-        jsonp:"callback",
-        success: function (data) {
-            SSYSGZLtableData = data.data;
-            SSYSGZLtableTitle = data.header;
-            //console.log(SSYSGZLtableData);
-            operateDocWorkloadPageNum.placeholder = operateDocWorkLoadpage;
-            insertSSYSGZLTable();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+    if(operateDocWorkLoadpage >= SSYSGZLTotalPage){
+        alert('已经是最后一页');
+    }else {
+        $.ajax({
+            type: "get",
+            url: url2,
+            dataType: "json",
+            jsonp: "callback",
+            success: function (data) {
+                SSYSGZLtableData = data.data;
+                SSYSGZLtableTitle = data.header;
+                SSYSGZLTotalPage = data.pageCount;
+
+                //console.log(SSYSGZLtableData);
+                operateDocWorkloadPageNum.placeholder = operateDocWorkLoadpage;
+                insertSSYSGZLTable();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
 }
 
 //设定时间
@@ -148,7 +167,7 @@ SSYSGZLsubmitDate.onclick = function () {
     getDate(SSYSGZLstartDate,SSYSGZLendDate);
     SSYSGZLurlStartTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[0],
     SSYSGZLurlEndTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -157,7 +176,84 @@ SSYSGZLsubmitDate.onclick = function () {
         success: function (data) {
             SSYSGZLtableData = data.data;
             SSYSGZLtableTitle = data.header;
+            SSYSGZLTotalPage = data.pageCount;
+
             insertSSYSGZLTable();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+SSYSGZLconfirm.onclick = function(){
+    tempPage = operateDocWorkLoadpage;
+    operateDocWorkLoadpage = parseFloat(SSYSGZLassignPage.value);
+    if(isInteger(operateDocWorkLoadpage)){
+        console.log(operateDocWorkLoadpage);
+        if(operateDocWorkLoadpage <= SSYSGZLTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount=" + SSYSGZLnumPer + "&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    SSYSGZLtableData = data.data;
+                    SSYSGZLtableTitle = data.header;
+                    SSYSGZLTotalPage = data.pageCount;
+                    SSYSGZLPageNum.placeholder = operateDocWorkLoadpage;
+                    insertSSYSGZLTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            operateDocWorkLoadpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+SSYSGZLnumPerPage.onchange = function(){
+    var tempPer = SSYSGZLnumPer,
+        tempTotalPage = SSYSGZLTotalPage,
+        tempSelected = SSYSGZLnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    SSYSGZLnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount=" + SSYSGZLnumPer + "&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
+    $.ajax({
+        type: "get",
+        url: url2,
+        dataType: "json",
+        jsonp:"callback",
+        success: function (data) {
+            SSYSGZLtableData = data.data;
+            SSYSGZLtableTitle = data.header;
+            SSYSGZLTotalPage = data.pageCount;
+
+            if(SSYSGZLTotalPage < operateDocWorkLoadpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                SSYSGZLnumPer = tempPer;
+                SSYSGZLTotalPage = tempTotalPage;
+                for(var i = 0; i < SSYSGZLnumPerPage.options.length; i++){
+                    if(SSYSGZLnumPerPage.options[i].innerHTML == tempSelected){
+                        SSYSGZLnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertSSYSGZLTable();
+            }
+            console.log(url2);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
