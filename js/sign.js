@@ -155,14 +155,14 @@ function indexCheck(userName, modulesJson){
 	user.innerHTML = userName;
 
 	var subList = [[],
-		['手麻病人一览表', '手术滑刀时间一览表', '手术质控统计', 'ASA分级统计'],
+		['手麻病人一览表', '手术滑刀时间一览表', 'ASA分级统计'],
 		['护士工作量统计表', '麻醉医生工作量统计表', '麻醉医生总工作量统计表', '手术护士工作量统计表', '手术医生工作量统计表', '科室工作量统计表'],
 		['准点手术开台率', '急诊手术统计图', '手术时间分布图', '麻醉方法统计图', '手术间利用率统计图', '按台时长统计图', '按台均时长统计图', '输血次数统计图', '按年龄段统计科室麻醉手术次数'],
 		['按年龄段统计麻醉方法麻醉次数', '按手术体位统计', '麻醉效果统计', '临床路径更改麻醉方式统计', '麻醉记录单插管统计', '按手术名称种类统计', '按麻醉方法统计急诊择期手术例数'],
 		['恢复室时长超过1小时情况分析']
 		];
 	var subListId = [[],
-		['SMBR', 'SSHD', 'SSZK', 'ASA'],
+		['SMBR', 'SSHD', 'ASA'],
 		['HSGZL', 'MZYSGZL', 'MZYSZGZL', 'SSHSGZL', 'SSYSGZL', 'KSGZL'],
 		['ZDSS', 'JZSS', 'SSSJ', 'MZFFTJT', 'SSJLYL', 'ATSC', 'ATJSC', 'SXCS', 'NLDKS'],
 		['NLD', 'SSTW', 'MZXG', 'LCLJGGMZFS', 'MZJLDCG', 'ASSMCZLTJ', 'MZJZZQ'],
