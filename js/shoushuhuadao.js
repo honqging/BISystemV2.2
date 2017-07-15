@@ -53,7 +53,7 @@ function insertSSHDTable(){
         }
 		thead.appendChild(th);
 	}
-	for(var i=1;i<SSHDtableData.length;i++){
+	for(var i=0;i<SSHDtableData.length;i++){
 		var tr = doc.createElement("tr");
 		for(var j=0;j<SSHDtableData[i].length;j++){
 			var data = doc.createTextNode(SSHDtableData[i][j]),
