@@ -1,32 +1,41 @@
+var KSTotal = doc.getElementById("KSTotal"),
+	KSTotalPage = 0,
+	KSnumPerPage = doc.getElementById("KSnumPerPage"),
+	KSnumPer = 20,
+	KSassignPage = doc.getElementById("KSassignPage"),
+	KSconfirm = doc.getElementById("KSconfirm");
+
 var KSpage = 1,
 	KSdataSource = [],
 	KSdataTitle = [],
 	doc = document,
 	KSurlStartTime = "2010-01-01",
     KSurlEndTime = currentDate,
-    KSurl = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
-	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
-	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+    KSurl = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
     KSstartDate = doc.getElementById("KSGZLstartTime"),
     KSendDate = doc.getElementById("KSGZLendTime"),
     KSsubmitDate = doc.getElementById("KSsubmitTime");
     KSexport = doc.getElementById("KSGZLexport");
 
 
-$.ajax({ 
-          type: "get", 
+$.ajax({
+          type: "get",
           url: KSurl,
           dataType: "json",
 		  jsonp:"callback",
-          success: function (data) { 
+          success: function (data) {
 						  KSdataSource = data.data;
 						  KSdataTitle = data.header;
+						  KSTotalPage = data.pageCount;
+
 						  //console.log(KSdataSource);
 						  insertKSTable();
-                           }, 
-		  error: function (XMLHttpRequest, textStatus, errorThrown) { 
-		  alert(errorThrown); 
-		 } 
+                           },
+		  error: function (XMLHttpRequest, textStatus, errorThrown) {
+		  alert(errorThrown);
+		 }
 	 });
 function insertKSTable(){
 	var table = doc.getElementById("KSGZL_table");
@@ -69,7 +78,7 @@ function insertKSTable(){
 					});
 					$.ajax({
 						  type: "get",
-						  url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?department="+this.office+"&feature="+this.level+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.office+"&feature="+this.level+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) {
@@ -102,6 +111,8 @@ function insertKSTable(){
 		}
 		table.appendChild(tr);
 	}
+
+	KSTotal.innerHTML = KSTotalPage;
 }
 function insertkeshiSubTable(result,title,table){
     for(var t=0;t<title.length;t++) {
@@ -131,58 +142,66 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 		else{
             KSpage --;
 			//console.log(KSpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
-			$.ajax({ 
-				  type: "get", 
+			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			$.ajax({
+				  type: "get",
 				  url: url2,
 				  dataType: "json",
 				  jsonp:"callback",
-				  success: function (data) { 
-								  KSdataSource = data.data;
-								  KSdataTitle = data.header;
-								  KSpageNum.placeholder = KSpage;
-								  insertKSTable();
-								   }, 
-				  error: function (XMLHttpRequest, textStatus, errorThrown) { 
-				  alert(errorThrown); 
-				 } 
+				  success: function (data) {
+					  KSdataSource = data.data;
+					  KSdataTitle = data.header;
+					  KSTotalPage = data.pageCount;
+
+					  KSpageNum.placeholder = KSpage;
+					  insertKSTable();
+				  },
+				  error: function (XMLHttpRequest, textStatus, errorThrown) {
+				  alert(errorThrown);
+				 }
 			 });
-			KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+ 1 +"&page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 			KScharts1();
-			KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+ 1 +"&page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 			KScharts2();
 		}
 	}
 	KSpageNext.onclick = function(){
         KSpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		//console.log(KSpage);
-			$.ajax({ 
-				  type: "get", 
-				  url: url2,
-				  dataType: "json",
-				  jsonp:"callback",
-				  success: function (data) { 
-								  KSdataSource = data.data;
-								  KSdataTitle = data.header;
-								  KSpageNum.placeholder = KSpage;
-								  insertKSTable();
-								   }, 
-				  error: function (XMLHttpRequest, textStatus, errorThrown) { 
-				  alert(errorThrown); 
-				 } 
-			 });
-		KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
-		KScharts1();
-		KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
-		KScharts2();
+		if(KSpage > KSTotalPage){
+			alert('已经是最后一页');
+		}else {
+			$.ajax({
+				type: "get",
+				url: url2,
+				dataType: "json",
+				jsonp: "callback",
+				success: function (data) {
+					KSdataSource = data.data;
+					KSdataTitle = data.header;
+					KSTotalPage = data.pageCount;
+
+					KSpageNum.placeholder = KSpage;
+					insertKSTable();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+			KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount=" + 20 + "&page=" + KSpage + "&type=0" + "&startTime=" + KSurlStartTime + "&endTime=" + KSurlEndTime;
+			KScharts1();
+			KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount=" + 20 + "&page=" + KSpage + "&type=1" + "&startTime=" + KSurlStartTime + "&endTime=" + KSurlEndTime;
+			KScharts2();
+		}
 	}
 
 KSsubmitDate.onclick = function () {
     getDate(KSstartDate,KSendDate);
     KSurlStartTime = getDate(KSstartDate,KSendDate)[0],
     KSurlEndTime = getDate(KSstartDate,KSendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -191,17 +210,94 @@ KSsubmitDate.onclick = function () {
         success: function (data) {
             KSdataSource = data.data;
             KSdataTitle = data.header;
-            //console.log(SMdataSource);
+			KSTotalPage = data.pageCount;
+
+			//console.log(KSdataSource);
             insertKSTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
-	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
-	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+	KSCharts2url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+KSpage+"&type=1"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 	KScharts1();
 	KScharts2();
+}
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+KSconfirm.onclick = function(){
+	tempPage = KSpage;
+	KSpage = parseFloat(KSassignPage.value);
+	if(isInteger(KSpage)){
+		console.log(KSpage);
+		if(KSpage <= KSTotalPage){
+			var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount=" + KSnumPer + "&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+			console.log(url2);
+			$.ajax({
+				type: "get",
+				url: url2,
+				dataType: "json",
+				jsonp:"callback",
+				success: function (data) {
+					KSdataSource = data.data;
+					KSdataTitle = data.header;
+					KSTotalPage = data.pageCount;
+					KSpageNum.placeholder = KSpage;
+					insertKSTable();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}else{
+			KSpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
+KSnumPerPage.onchange = function(){
+	var tempPer = KSnumPer,
+		tempTotalPage = KSTotalPage,
+		tempSelected = KSnumPer;
+	var p1 = $(this).children('option:selected').val();//这就是selected的值
+	KSnumPer = p1;
+	var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount=" + KSnumPer + "&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
+	$.ajax({
+		type: "get",
+		url: url2,
+		dataType: "json",
+		jsonp:"callback",
+		success: function (data) {
+			KSdataSource = data.data;
+			KSdataTitle = data.header;
+			KSTotalPage = data.pageCount;
+
+			if(KSTotalPage < KSpage){
+				alert('超出数据量上限，请重新选择页数或者每页数据条数');
+				KSnumPer = tempPer;
+				KSTotalPage = tempTotalPage;
+				for(var i = 0; i < KSnumPerPage.options.length; i++){
+					if(KSnumPerPage.options[i].innerHTML == tempSelected){
+						KSnumPerPage.options[i].selected = true;
+						break;
+					}
+				}
+			}else{
+				insertKSTable();
+			}
+			console.log(url2);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
 }
 
 KSexport.onclick = function () {
