@@ -1,3 +1,11 @@
+var SMBRTotal = doc.getElementById("SMBRTotal"),
+    SMBRTotalPage = 0,
+    SMBRnumPerPage = doc.getElementById("SMBRnumPerPage"),
+    SMBRnumPer = 20,
+    SMBRassignPage = doc.getElementById("SMBRassignPage"),
+    SMBRassignP = 0,
+    SMBRconfirm = doc.getElementById("SMBRconfirm");
+
 var SMBRpage = 1,
     currentDate = getNowFormatDate(),
 	SMdataSource = [],
@@ -5,10 +13,10 @@ var SMBRpage = 1,
 	doc = document,
 	SMBRurlStartTime = "2010-01-01",
     SMBRurlEndTime = currentDate,
-    url = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
+    url = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
     SMstartDate = doc.getElementById("SMstartTime"),
     SMendDate = doc.getElementById("SMendTime"),
-    SMsubmitDate = doc.getElementById("SMsubmitTime");
+    SMsubmitDate = doc.getElementById("SMsubmitTime"),
     SMexport = doc.getElementById("SMexport");
 
 //��ȡ���鲡������
@@ -20,7 +28,9 @@ $.ajax({
           success: function (data) {
 						  SMdataSource = data.data;
 						  SMdataTitle = data.header;
-						 //console.log(SMdataSource);
+                          SMBRTotalPage = data.pageCount;
+
+              //console.log(SMdataSource);
 						  insertSMTable();
                            },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -71,6 +81,8 @@ function insertSMTable(){
 		}
 		table.appendChild(tr);
 	}
+
+    SMBRTotal.innerHTML = SMBRTotalPage;
 }
 
 //分页
@@ -82,7 +94,7 @@ SMBRbeforePage.onclick = function(){
     if(SMBRpage==1){alert("已经是第一页");}
     else{
         SMBRpage --;
-        var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -91,6 +103,7 @@ SMBRbeforePage.onclick = function(){
             success: function (data) {
                 SMdataSource = data.data;
                 SMdataTitle = data.header;
+                SMBRTotalPage = data.pageCount;
                 SMBRPageNum.placeholder = SMBRpage;
                 insertSMTable();
             },
@@ -103,23 +116,28 @@ SMBRbeforePage.onclick = function(){
 SMBRnextPage.onclick = function(){
     console.log(SMBRurlStartTime,SMBRurlStartTime);
     SMBRpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
-    console.log(url2);
-    $.ajax({
-        type: "get",
-        url: url2,
-        dataType: "json",
-        jsonp:"callback",
-        success: function (data) {
-            SMdataSource = data.data;
-            SMdataTitle = data.header;
-            SMBRPageNum.placeholder = SMBRpage;
-            insertSMTable();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+    if(SMBRpage == SMBRTotalPage){
+        alert('已经是最后一页');
+    }else{
+        var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+        console.log(url2);
+        $.ajax({
+            type: "get",
+            url: url2,
+            dataType: "json",
+            jsonp:"callback",
+            success: function (data) {
+                SMdataSource = data.data;
+                SMdataTitle = data.header;
+                SMBRTotalPage = data.pageCount;
+                SMBRPageNum.placeholder = SMBRpage;
+                insertSMTable();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
 }
 
 //设定时间
@@ -127,7 +145,7 @@ SMsubmitDate.onclick = function () {
     getDate(SMstartDate,SMendDate);
     SMBRurlStartTime = getDate(SMstartDate,SMendDate)[0],
     SMBRurlEndTime = getDate(SMstartDate,SMendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -136,9 +154,83 @@ SMsubmitDate.onclick = function () {
         success: function (data) {
             SMdataSource = data.data;
             SMdataTitle = data.header;
-			console.log(urlTime);
+            SMBRTotalPage = data.pageCount;
+            console.log(urlTime);
             //console.log(SMdataSource);
             insertSMTable();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+SMBRconfirm.onclick = function(){
+    tempPage = SMBRpage;
+    SMBRpage = parseFloat(SMBRassignPage.value);
+    if(isInteger(SMBRpage)){
+        console.log(SMBRpage);
+        if(SMBRpage <= SMBRTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    SMdataSource = data.data;
+                    SMdataTitle = data.header;
+                    SMBRTotalPage = data.pageCount;
+                    SMBRPageNum.placeholder = SMBRpage;
+                    insertSMTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            SMBRpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+SMBRnumPerPage.onchange = function(){
+    var tempPer = SMBRnumPer,
+        tempSelected = SMBRnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    SMBRnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
+    $.ajax({
+        type: "get",
+        url: url2,
+        dataType: "json",
+        jsonp:"callback",
+        success: function (data) {
+            SMdataSource = data.data;
+            SMdataTitle = data.header;
+            SMBRTotalPage = data.pageCount;
+
+            if(SMBRTotalPage < SMBRpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                SMBRnumPer = tempPer;
+                for(var i = 0; i < SMBRnumPerPage.options.length; i++){
+                    if(SMBRnumPerPage.options[i].innerHTML == tempSelected){
+                        SMBRnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertSMTable();
+            }
+            console.log(url2);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

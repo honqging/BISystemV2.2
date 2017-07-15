@@ -432,3 +432,17 @@ table th{
 	text-align: center;
 	font-weight: normal;
 }
+
+.inWidth{
+	width: 60px;
+	display: inline;
+	margin-left: 50px;
+}
+
+.rightMargin{
+	margin-right: 50px;
+}
+
+.inlineB{
+	display: inline;
+}

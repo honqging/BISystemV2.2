@@ -86,10 +86,10 @@
 									<a href="#SSHD" aria-controls="SSHD" role="tab" data-toggle="tab" id="SSHD2">
 									手术滑刀时间一览表</a>
 								</li>
-								<li role="presentation">
-									<a href="#SSZK" aria-controls="SSZK" role="tab" data-toggle="tab" id="SSZK2">
-									手术质控统计</a>
-								</li>
+								<!--<li role="presentation">-->
+									<!--<a href="#SSZK" aria-controls="SSZK" role="tab" data-toggle="tab" id="SSZK2">-->
+									<!--手术质控统计</a>-->
+								<!--</li>-->
 								<li role="presentation">
 									<a href="#ASA" aria-controls="ASA" role="tab" data-toggle="tab" id="ASA2">
 									ASA分级统计</a>
@@ -125,13 +125,30 @@
 												<tbody id="SMBR_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="SMBRPage">
-											<li><a href="javascript:void(0)" id="SMBRPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="SMBRPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="SMBRPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="SMBRPage">
+												<li><a href="javascript:void(0)" id="SMBRPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="SMBRPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="SMBRPageNext">&raquo;</a></li>
+
+
+												<select class="form-control inWidth" id="SMBRnumPerPage">
+													<option>10</option>
+													<option selected>20</option>
+													<option>50</option>
+													<option>100</option>
+												</select>
+												条/页
+
+												<li><input type="text" class="form-control inWidth" placeholder="" id="SMBRassignPage">页</li>
+												<button type="button" class='btn btn-default inWidth rightMargin' id="SMBRconfirm">跳转</button>
+
+												共<p class="inlineB" id="SMBRTotal"></p>页
+											</ul>
+
+										</div>
 									</div>
 									<!-- 手术滑刀时间一览表 -->
 									<div role="tabpanel" class="tab-pane fade" id="SSHD">
@@ -161,55 +178,57 @@
 												<tbody id="SSHD_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="SSHDBRPage">
-											<li><a href="javascript:void(0)" id="SSHDPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="SSHDPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="SSHDPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="SSHDBRPage">
+												<li><a href="javascript:void(0)" id="SSHDPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="SSHDPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="SSHDPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 手术质控统计 -->
-									<div role="tabpanel" class="tab-pane fade" id="SSZK">
-										<div class="table_title">
-											<h4 class="col-sm-12">手术质控统计</h4>
-											<div class="col-sm-8 dataArea">
-												<div class="input-append date col-sm-2 timeBar">
-													<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSZKstartTime" readonly>
-													<span class="add-on"><i class="icon-th"></i></span>
-												</div>
-												<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">
-													<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSZKendTime" readonly>
-													<span class="add-on"><i class="icon-th"></i></span>
-												</div>
-												<button type="button" class="timeBar searchBtn"></button>
-											</div>
-											<div class="col-sm-4 rightBtn">
-												<button type="button" class="configBtn"></button>
-												<button type="button" class="exportBtn"></button>
-											</div>.
-										</div>
-										<table class="table table-striped">
-											<tr class="active">
-												<th>术中心率失常</th>
-												<th>术中严重过敏</th>
-												<th>术中严重误吸</th>
-												<th>血液回收</th>
-												<th>硬膜穿破</th>
-											</tr>
-											<tr style="background-color:white">
-												<td><a href="javascript:void(0)" id="zk1">3</a></td>
-												<td><a href="javascript:void(0)" id="zk2">0</a></td>
-												<td><a href="javascript:void(0)" id="zk3">0</a></td>
-												<td><a href="javascript:void(0)" id="zk4">2</a></td>
-												<td><a href="javascript:void(0)" id="zk5">0</a></td>
-											</tr>
-										</table>
-										<p class="table_titleL" id="zkTitle">术中心率失常——详情</p>
-										<table class="table table-striped table-hover">
-											<tbody id="SSZK_table"></tbody>
-										</table>
-									</div>
+									<!--<div role="tabpanel" class="tab-pane fade" id="SSZK">-->
+										<!--<div class="table_title">-->
+											<!--<h4 class="col-sm-12">手术质控统计</h4>-->
+											<!--<div class="col-sm-8 dataArea">-->
+												<!--<div class="input-append date col-sm-2 timeBar">-->
+													<!--<input size="6" type="text" value=""  placeholder="选择起始时间" class="dateSelector" id="SSZKstartTime" readonly>-->
+													<!--<span class="add-on"><i class="icon-th"></i></span>-->
+												<!--</div>-->
+												<!--<div class="input-append date col-sm-offset-1 col-sm-2 timeBar">-->
+													<!--<input size="6" type="text" value="" placeholder="选择结束时间" class="dateSelector" id="SSZKendTime" readonly>-->
+													<!--<span class="add-on"><i class="icon-th"></i></span>-->
+												<!--</div>-->
+												<!--<button type="button" class="timeBar searchBtn"></button>-->
+											<!--</div>-->
+											<!--<div class="col-sm-4 rightBtn">-->
+												<!--<button type="button" class="configBtn"></button>-->
+												<!--<button type="button" class="exportBtn"></button>-->
+											<!--</div>.-->
+										<!--</div>-->
+										<!--<table class="table table-striped">-->
+											<!--<tr class="active">-->
+												<!--<th>术中心率失常</th>-->
+												<!--<th>术中严重过敏</th>-->
+												<!--<th>术中严重误吸</th>-->
+												<!--<th>血液回收</th>-->
+												<!--<th>硬膜穿破</th>-->
+											<!--</tr>-->
+											<!--<tr style="background-color:white">-->
+												<!--<td><a href="javascript:void(0)" id="zk1">3</a></td>-->
+												<!--<td><a href="javascript:void(0)" id="zk2">0</a></td>-->
+												<!--<td><a href="javascript:void(0)" id="zk3">0</a></td>-->
+												<!--<td><a href="javascript:void(0)" id="zk4">2</a></td>-->
+												<!--<td><a href="javascript:void(0)" id="zk5">0</a></td>-->
+											<!--</tr>-->
+										<!--</table>-->
+										<!--<p class="table_titleL" id="zkTitle">术中心率失常——详情</p>-->
+										<!--<table class="table table-striped table-hover">-->
+											<!--<tbody id="SSZK_table"></tbody>-->
+										<!--</table>-->
+									<!--</div>-->
 									<!--ASA分级统计-->
 									<div role="tabpanel" class="tab-pane fade" id="ASA">
 										<div class="table_title">
@@ -309,13 +328,15 @@
 												<tbody id="HSGZL_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="nurseWorkloadPage">
-											<li><a href="javascript:void(0)" id="nurseWorkloadPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="nurseWorkloadPageNum" disabled/>页
-												</a><li/>
-											<li><a href="javascript:void(0)" id="nurseWorkloadPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="nurseWorkloadPage">
+												<li><a href="javascript:void(0)" id="nurseWorkloadPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="nurseWorkloadPageNum" disabled/>页
+													</a><li/>
+												<li><a href="javascript:void(0)" id="nurseWorkloadPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 麻醉医生工作量统计表 -->
 									<div role="tabpanel" class="tab-pane fade" id="MZYSGZL">
@@ -346,13 +367,15 @@
 												</tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="MZYSGZLPage">
-											<li><a href="javascript:void(0)" id="MZYSGZLPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="MZYSGZLPageNum" disabled/>页
-												</a><li/>
-											<li><a href="javascript:void(0)" id="MZYSGZLPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="MZYSGZLPage">
+												<li><a href="javascript:void(0)" id="MZYSGZLPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="MZYSGZLPageNum" disabled/>页
+													</a><li/>
+												<li><a href="javascript:void(0)" id="MZYSGZLPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 麻醉医生总工作量统计表 -->
 									<div role="tabpanel" class="tab-pane fade" id="MZYSZGZL">
@@ -382,13 +405,15 @@
 												<tbody id="MZYSZGZL_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="MZYSZGZLPage">
-											<li><a href="javascript:void(0)" id="MZYSZGZLPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="MZYSZGZLPageNum" disabled/>页
-												</a><li/>
-											<li><a href="javascript:void(0)" id="MZYSZGZLPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="MZYSZGZLPage">
+												<li><a href="javascript:void(0)" id="MZYSZGZLPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="MZYSZGZLPageNum" disabled/>页
+													</a><li/>
+												<li><a href="javascript:void(0)" id="MZYSZGZLPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!--手术护士工作量统计表-->
 									<div role="tabpanel" class="tab-pane fade" id="SSHSGZL">
@@ -418,13 +443,15 @@
 												<tbody id="SSHSGZL_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="SSHSGZLPage">
-											<li><a href="javascript:void(0)" id="SSHSGZLPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="SSHSGZLPageNum" disabled/>页
-												</a><li/>
-											<li><a href="javascript:void(0)" id="SSHSGZLPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="SSHSGZLPage">
+												<li><a href="javascript:void(0)" id="SSHSGZLPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="SSHSGZLPageNum" disabled/>页
+													</a><li/>
+												<li><a href="javascript:void(0)" id="SSHSGZLPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!--手术医生工作量统计表-->
 									<div role="tabpanel" class="tab-pane fade" id="SSYSGZL">
@@ -454,13 +481,15 @@
 												<tbody id="SSYSGZL_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="SSYSGZLPage">
-											<li><a href="javascript:void(0)" id="SSYSGZLPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="SSYSGZLPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="SSYSGZLPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="SSYSGZLPage">
+												<li><a href="javascript:void(0)" id="SSYSGZLPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="SSYSGZLPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="SSYSGZLPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!--科室工作量统计表-->
 									<div role="tabpanel" class="tab-pane fade" id="KSGZL">
@@ -490,13 +519,15 @@
 												<tbody id="KSGZL_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="KSPage">
-											<li><a href="javascript:void(0)" id="KSpageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="KSpageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="KSpageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="KSPage">
+												<li><a href="javascript:void(0)" id="KSpageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="KSpageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="KSpageNext">&raquo;</a></li>
+											</ul>
+										</div>
 										<div>
 											<div class="col-sm-12 KS_Echarts" id="KS_Echarts1">1</div>
 											<div class="col-sm-12 KS_Echarts" id="KS_Echarts2">2</div>
@@ -881,13 +912,15 @@
 												<tbody id="NLD_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="NLDPage">
-											<li><a href="javascript:void(0)" id="NLDPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="NLDPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="NLDPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="NLDPage">
+												<li><a href="javascript:void(0)" id="NLDPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="NLDPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="NLDPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 按手术体位统计 -->
 									<div role="tabpanel" class="tab-pane fade" id="SSTW">
@@ -917,13 +950,15 @@
 												<tbody id="TW_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="TWpage">
-											<li><a href="javascript:void(0)" id="TWPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="TWPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="TWPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="TWpage">
+												<li><a href="javascript:void(0)" id="TWPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="TWPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="TWPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 麻醉效果统计 -->
 									<div role="tabpanel" class="tab-pane fade" id="MZXG">
@@ -953,13 +988,15 @@
 												<tbody id="MZXG_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="MZXGpage">
-											<li><a href="javascript:void(0)" id="MZXGPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="MZXGPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="MZXGPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="MZXGpage">
+												<li><a href="javascript:void(0)" id="MZXGPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="MZXGPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="MZXGPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!-- 临床路径更改麻醉方式统计 -->
 									<div role="tabpanel" class="tab-pane fade" id="LCLJGGMZFS">
@@ -987,13 +1024,15 @@
 										<div class="table-div">
 											<div class="panel-group" id="accordion"></div>
 										</div>
-										<ul class="pagination pagination-middle" id="MZFSpage">
-											<li><a href="javascript:void(0)" id="MZFSPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="MZFSPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="MZFSPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="MZFSpage">
+												<li><a href="javascript:void(0)" id="MZFSPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="MZFSPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="MZFSPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!--按手术名称种类统计-->
 									<div role="tabpanel" class="tab-pane fade" id="ASSMCZLTJ">
@@ -1023,13 +1062,15 @@
 												<tbody id="ASSMCZLTJ_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="ASSMCZLTJPage">
-											<li><a href="javascript:void(0)" id="ASSMCZLTJPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="ASSMCZLTJPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="ASSMCZLTJPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="ASSMCZLTJPage">
+												<li><a href="javascript:void(0)" id="ASSMCZLTJPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="ASSMCZLTJPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="ASSMCZLTJPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									<!--按麻醉方法统计急诊择期手术例数-->
 									<div role="tabpanel" class="tab-pane fade" id="MZJZZQ">
@@ -1059,13 +1100,15 @@
 												<tbody id="MZJZZQ_table"></tbody>
 											</table>
 										</div>
-										<ul class="pagination pagination-middle" id="MZJZZQPage">
-											<li><a href="javascript:void(0)" id="MZJZZQPageBefore">&laquo;</a></li>
-											<li><a href="javascript:void(0)" style="cursor:default">
-												第<input type="text" class="pageInput" placeholder="1" id="MZJZZQPageNum" disabled/>页
-											</a><li/>
-											<li><a href="javascript:void(0)" id="MZJZZQPageNext">&raquo;</a></li>
-										</ul>
+										<div class='page-middle'>
+											<ul class="pagination" id="MZJZZQPage">
+												<li><a href="javascript:void(0)" id="MZJZZQPageBefore">&laquo;</a></li>
+												<li><a href="javascript:void(0)" style="cursor:default">
+													第<input type="text" class="pageInput" placeholder="1" id="MZJZZQPageNum" disabled/>页
+												</a><li/>
+												<li><a href="javascript:void(0)" id="MZJZZQPageNext">&raquo;</a></li>
+											</ul>
+										</div>
 									</div>
 									
 								</div>
@@ -1136,7 +1179,7 @@
 		<script src="js/shoushuhuadao.js"></script>
 		<script src="js/nurseWorkload.js"></script>
 		<script src="js/MzDocWorkload.js"></script>
-		<script src="js/shoushuzhikong.js"></script>
+		<!--<script src="js/shoushuzhikong.js"></script>-->
 		<script src="js/MzDocZongWorkload.js"></script>
 		<script src="js/operateNurseWorkload.js"></script>
 		<script src="js/ASA.js"></script>
