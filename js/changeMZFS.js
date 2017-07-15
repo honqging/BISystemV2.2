@@ -1,10 +1,17 @@
+var MZFFTotal = doc.getElementById("MZFFTotal"),
+    MZFFTotalPage = 0,
+    MZFFnumPerPage = doc.getElementById("MZFFnumPerPage"),
+    MZFFnumPer = 20,
+    MZFFassignPage = doc.getElementById("MZFFassignPage"),
+    MZFFconfirm = doc.getElementById("MZFFconfirm");
+
 var MZFSpage = 1,
     MZFSdataSource = [],
     MZFSdataTitle = [],
     doc = document,
 	MZFSurlStartTime = "2010-01-01",
     MZFSurlEndTime = currentDate,
-    MZFSurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+    MZFSurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
     MZFSstartDate = doc.getElementById("MZFSstartTime"),
     MZFSendDate = doc.getElementById("MZFSGendTime"),
     MZFSsubmitDate = doc.getElementById("MZFSsubmitTime");
@@ -18,6 +25,8 @@ $.ajax({
     success: function (data) {
         MZFSdataSource = data.data;
         MZFSdataTitle = data.header;
+        MZFFTotalPage = data.pageCount;
+
         insertMZXGTable();
 		//test();
         //addLinkClick();
@@ -105,7 +114,7 @@ function insertMZXGTable(){
             });
             $.ajax({
                 type: "get",
-                url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiDepartmentQuery?department="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiDepartmentQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
                 dataType: "json",
                 jsonp:"callback",
                 success: function (data) {
@@ -159,7 +168,7 @@ function insertMZXGTable(){
                 });
                 $.ajax({
                     type: "get",
-                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?department="+this.name+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.name+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
                     dataType: "json",
                     jsonp:"callback",
                     success: function (data) {
@@ -193,8 +202,8 @@ function insertMZXGTable(){
         divAccordion.appendChild(div1);
     }
 
-
-    }
+    MZFFTotal.innerHTML = MZFFTotalPage;
+}
 
 function insertLCLJGGSubTable(result,title,table){
     for(var t=0;t<title.length;t++) {
@@ -230,7 +239,7 @@ MZFSpageBefore.onclick = function(){
     if(MZFSpage==1){alert("已经是第一页");}
     else{
         MZFSpage --;
-        var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -239,6 +248,8 @@ MZFSpageBefore.onclick = function(){
             success: function (data) {
                 MZFSdataSource = data.data;
                 MZFSdataTitle = data.header;
+                MZFFTotalPage = data.pageCount;
+
                 MZFSpageNum.placeholder = MZFSpage;
                 insertMZXGTable();
 				//test();
@@ -251,16 +262,47 @@ MZFSpageBefore.onclick = function(){
 }
 MZFSpageNext.onclick = function(){
     MZFSpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
+    if(MZFSpage > MZFFTotalPage){
+        alert('已经是最后一页');
+    }else{
+        $.ajax({
+            type: "get",
+            url: url2,
+            dataType: "json",
+            jsonp:"callback",
+            success: function (data) {
+                MZFSdataSource = data.data;
+                MZFSdataTitle = data.header;
+                MZFFTotalPage = data.pageCount;
+
+                MZFSpageNum.placeholder = MZFSpage;
+                insertMZXGTable();
+                //test();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+}
+
+//�趨ʱ��
+MZFSsubmitDate.onclick = function () {
+    getDate(MZFSstartDate,MZFSendDate);
+    MZFSurlStartTime = getDate(MZFSstartDate,MZFSendDate)[0],
+    MZFSurlEndTime = getDate(MZFSstartDate,MZFSendDate)[1];
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
     $.ajax({
         type: "get",
-        url: url2,
+        url: urlTime,
         dataType: "json",
         jsonp:"callback",
         success: function (data) {
             MZFSdataSource = data.data;
             MZFSdataTitle = data.header;
-            MZFSpageNum.placeholder = MZFSpage;
+            MZFFTotalPage = data.pageCount;
+
             insertMZXGTable();
 			//test();
         },
@@ -270,22 +312,74 @@ MZFSpageNext.onclick = function(){
     });
 }
 
-//�趨ʱ��
-MZFSsubmitDate.onclick = function () {
-    getDate(MZFSstartDate,MZFSendDate);
-    MZFSurlStartTime = getDate(MZFSstartDate,MZFSendDate)[0],
-    MZFSurlEndTime = getDate(MZFSstartDate,MZFSendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+MZFFconfirm.onclick = function(){
+    tempPage = MZFSpage;
+    MZFSpage = parseFloat(MZFFassignPage.value);
+    if(isInteger(MZFSpage)){
+        console.log(MZFSpage);
+        if(MZFSpage <= MZFFTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    MZFSdataSource = data.data;
+                    MZFSdataTitle = data.header;
+                    MZFFTotalPage = data.pageCount;
+                    MZFSpageNum.placeholder = MZFSpage;
+                    insertMZXGTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            MZFSpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+MZFFnumPerPage.onchange = function(){
+    var tempPer = MZFFnumPer,
+        tempTotalPage = MZFFTotalPage,
+        tempSelected = MZFFnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    MZFFnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
     $.ajax({
         type: "get",
-        url: urlTime,
+        url: url2,
         dataType: "json",
         jsonp:"callback",
         success: function (data) {
             MZFSdataSource = data.data;
             MZFSdataTitle = data.header;
-            insertMZXGTable();
-			//test();
+            MZFFTotalPage = data.pageCount;
+
+            if(MZFFTotalPage < MZFSpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                MZFFnumPer = tempPer;
+                MZFFTotalPage = tempTotalPage;
+                for(var i = 0; i < MZFFnumPerPage.options.length; i++){
+                    if(MZFFnumPerPage.options[i].innerHTML == tempSelected){
+                        MZFFnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertMZXGTable();
+            }
+            console.log(url2);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
