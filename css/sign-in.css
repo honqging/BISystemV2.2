@@ -35,11 +35,13 @@ body{
 }
 
 .title1{
+	font-family: PingFangSC-Bold, sans-serif;
+	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
 	font-size: 40px;
 	letter-spacing: 5px;
-	color: #367B4F;
+	color: #497C4C;
 }
 
 
@@ -48,7 +50,7 @@ body{
 	text-align: center;
 	font-size: 30px;
 	letter-spacing: 5px;
-	color: #E8380C;
+	color: #DC4C0C;
 }
 
 .form-signin > .input-group{
@@ -58,15 +60,15 @@ body{
 .form-control{
 	height: 35px;
 	border-radius: 20px;
-	border: 1px #FA693A solid;
+	border: 1px #E37D4E solid;
 	background-color: transparent;
 }
 
 .input-before{
 	border-radius: 20px;
 	color: #FEF4EC;
-	border: 1px #FA693A solid;
-	background-color: #FA693A;
+	border: 1px #E37D4E solid;
+	background-color: #E37D4E;
 }
 
 .btn-sign-in{
@@ -75,7 +77,7 @@ body{
 	height: 35px;
 	color: white;
 	border-radius: 20px;
-	background-color: #FA693A;
+	background-color: #E37D4E;
 }
 
 /* sign up */
@@ -93,7 +95,7 @@ body{
 	height: 35px;
 	color: white;
 	border-radius: 20px;
-	background-color: #FA693A;
+	background-color: #E37D4E;
 }
 
 
