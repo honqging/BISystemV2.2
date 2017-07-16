@@ -99,7 +99,7 @@ function insertNLDKSTable(){
 				var a = doc.createElement("a");
 				td.title = NLDKSdataSource[i][j];
 				a.appendChild(data);
-				td.appendChild(a);
+				td.appendChild(data);
 				td.style.width = '11%';
 			}else{
 				td.title = NLDKSdataSource[i][j];
