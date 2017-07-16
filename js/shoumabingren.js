@@ -203,6 +203,7 @@ SMBRconfirm.onclick = function(){
 
 SMBRnumPerPage.onchange = function(){
     var tempPer = SMBRnumPer,
+        tempTotalPage = SMBRTotalPage,
         tempSelected = SMBRnumPer;
     var p1 = $(this).children('option:selected').val();//这就是selected的值
     SMBRnumPer = p1;
@@ -220,6 +221,7 @@ SMBRnumPerPage.onchange = function(){
             if(SMBRTotalPage < SMBRpage){
                 alert('超出数据量上限，请重新选择页数或者每页数据条数');
                 SMBRnumPer = tempPer;
+                SMBRTotalPage = tempTotalPage;
                 for(var i = 0; i < SMBRnumPerPage.options.length; i++){
                     if(SMBRnumPerPage.options[i].innerHTML == tempSelected){
                         SMBRnumPerPage.options[i].selected = true;
