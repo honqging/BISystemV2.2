@@ -72,7 +72,7 @@ function insertASATable(){
 					loadMes.innerHTML = 'loading...';
 					$.ajax({ 
 						  type: "get", 
-						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?rowCount="+ 20 +"&page="+ 1 +"&asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 						  dataType: "json",
 						  jsonp:"callback",
 						  success: function (data) { 
