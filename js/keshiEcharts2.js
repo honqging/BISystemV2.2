@@ -40,13 +40,14 @@ function KScharts2(){
 				var option = {
 					color: colors,
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
-						right: '20%'
+						right: '20%',
+						y2: 100
 					},
 					toolbox: {
 						feature: {
@@ -65,6 +66,23 @@ function KScharts2(){
 								alignWithLabel: true
 							},
 							data: dataSource.x,
+							axisLabel: {
+								//横轴信息全部显示
+								interval:0,
+
+								//横轴信息文字每行显示三个
+								formatter:function(val){
+									var newVal = '';
+									var vList = val.split("");
+									for(var j = 0; j<vList.length; j++){
+										if(j%3 == 0 && j!=0){
+											newVal += '\n';
+										}
+										newVal += vList[j];
+									}
+									return newVal;
+								}
+							}
 						}
 					],
 					yAxis: [

@@ -36,13 +36,14 @@ function KScharts1(){
 				var option = {
 					color: colors,
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
-						right: '20%'
+						right: '20%',
+						y2: 100
 					},
 					toolbox: {
 						feature: {
@@ -61,6 +62,23 @@ function KScharts1(){
 								alignWithLabel: true
 							}, */
 							data: dataSource.x,
+							axisLabel: {
+								//横轴信息全部显示
+								interval:0,
+
+								//横轴信息文字每行显示三个
+								formatter:function(val){
+									var newVal = '';
+									var vList = val.split("");
+									for(var j = 0; j<vList.length; j++){
+										if(j%3 == 0 && j!=0){
+											newVal += '\n';
+										}
+										newVal += vList[j];
+									}
+									return newVal;
+								}
+							}
 						}
 					],
 					yAxis: [
@@ -103,24 +121,24 @@ function KScharts1(){
 					],
 					series: [
 						{
-							name:'手术等级_特',
+							name:'一级手术',
 							type:'bar',
 							data:dataSource.y1,
 						},
 						{
-							name:'手术等级_大',
+							name:'二级手术',
 							type:'bar',
 							yAxisIndex: 1,
 							data:dataSource.y2,
 						},
 						{
-							name:'手术等级_中',
+							name:'三级手术',
 							type:'bar',
 							yAxisIndex: 1,
 							data:dataSource.y3,
 						},
 						{
-							name:'手术等级_小',
+							name:'四级手术',
 							type:'bar',
 							yAxisIndex: 1,
 							data:dataSource.y5,
