@@ -1,3 +1,8 @@
+var SSSJTotal = doc.getElementById("SSSJTotal"),
+	SSSJTotalPage = 0,
+	SSSJassignPage = doc.getElementById("SSSJassignPage"),
+	SSSJconfirm = doc.getElementById("SSSJconfirm");
+
 var SSSJpage = 1,
 	doc = document,
 	SSSJurlStartTime = "2010-01-01",
@@ -22,8 +27,11 @@ SSSJpageBefore.onclick = function(){
 SSSJpageNext.onclick = function(){
 	console.log("1"+SSSJpage);
 	SSSJpage ++;
-	console.log("2"+SSSJpage);
-	SSSJcharts();
+	if(SSSJpage > SSSJTotalPage){
+		alert('已经是最后一页');
+	}else{
+		SSSJcharts();
+	}
 }
 
 //设定时间
@@ -60,6 +68,7 @@ function SSSJcharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
+					SSSJTotalPage = data.pageCount;
 					SSSJpageNum.placeholder = SSSJpage;
 					//console.log(dataSource);
 					addData();
@@ -151,8 +160,31 @@ function SSSJcharts(){
 					]
 				};
 				myChart.setOption(option);
+
+				SSSJTotal.innerHTML = SSSJTotalPage;
 			}
 		}
 	);
 }
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+SSSJconfirm.onclick = function(){
+	tempPage = SSSJpage;
+	SSSJpage = parseFloat(SSSJassignPage.value);
+	if(isInteger(SSSJpage)){
+		console.log(SSSJpage);
+		if(SSSJpage <= SSSJTotalPage){
+			SSSJcharts();
+		}else{
+			SSSJpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
 addLoadEvent(SSSJcharts());
