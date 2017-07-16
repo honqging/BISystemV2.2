@@ -1,3 +1,8 @@
+var ATSCTotal = doc.getElementById("ATSCTotal"),
+	ATSCTotalPage = 0,
+	ATSCassignPage = doc.getElementById("ATSCassignPage"),
+	ATSCconfirm = doc.getElementById("ATSCconfirm");
+
 var ATSCpage = 1,
 	doc = document,
 	ATSCurlStartTime = "2010-01-01",
@@ -22,8 +27,11 @@ ATSCpageBefore.onclick = function(){
 ATSCpageNext.onclick = function(){
 	console.log("1"+ATSCpage);
 	ATSCpage ++;
-	console.log("2"+ATSCpage);
-	ATSCcharts();
+	if(ATSCpage > ATSCTotalPage){
+		alert('已经是最后一页');
+	}else{
+		ATSCcharts();
+	}
 }
 
 //设定时间
@@ -60,6 +68,7 @@ function ATSCcharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
+					ATSCTotalPage = data.pageCount;
 					ATSCpageNum.placeholder = ATSCpage;
 					//console.log(dataSource);
 					addData();
@@ -155,8 +164,31 @@ function ATSCcharts(){
 					]
 				};
 				myChart.setOption(option);
+
+				ATSCTotal.innerHTML = ATSCTotalPage;
 			}
 		}
 	);
 }
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+ATSCconfirm.onclick = function(){
+	tempPage = ATSCpage;
+	ATSCpage = parseFloat(ATSCassignPage.value);
+	if(isInteger(ATSCpage)){
+		console.log(ATSCpage);
+		if(ATSCpage <= ATSCTotalPage){
+			ATSCcharts();
+		}else{
+			ATSCpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
 addLoadEvent(ATSCcharts());
