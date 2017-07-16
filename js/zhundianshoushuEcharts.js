@@ -63,10 +63,10 @@ function ZDSScharts(){
 						y: 'bottom'
 					},
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
 						right: '20%',
@@ -106,6 +106,7 @@ function ZDSScharts(){
 						{
 							name:'开台例数',
 							type:'bar',
+							barCategoryGap: '70%',
 							itemStyle: {
 								normal: {
 									label : {
