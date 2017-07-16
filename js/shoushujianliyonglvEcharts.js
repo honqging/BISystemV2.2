@@ -82,7 +82,7 @@ function SSJLYLcharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('SSJLYL_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#7743DC'];
+				var colors = ['#8060DF'];
 				var option = {
 					color: colors,
 					title: {

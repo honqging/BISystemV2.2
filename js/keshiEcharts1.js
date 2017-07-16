@@ -32,7 +32,7 @@ function KScharts1(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('KS_Echarts1'));
 				var ecConfig = require('echarts/config');
-				var colors = ['red', 'green', 'yellow','blue'];
+				var colors = ['#D74644', '#84D57C', '#F3D643','#75C4F3'];
 				var option = {
 					color: colors,
 					tooltip: {

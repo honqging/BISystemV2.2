@@ -50,7 +50,7 @@ function ZDSScharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('ZDSS_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#2A92FF'];
+				var colors = ['#65A4FC'];
 				var option = {
 					color: colors,
 					title: {

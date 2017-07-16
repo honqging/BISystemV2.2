@@ -82,7 +82,7 @@ function JZSScharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('JZSS_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#FBCF3D'];
+				var colors = ['#D94C4B'];
 				var option = {
 					color: colors,
 					title: {

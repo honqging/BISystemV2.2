@@ -81,7 +81,7 @@ function ATJSCcharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('ATJSC_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#FC4779'];
+				var colors = ['#DE6389'];
 				var option = {
 					color: colors,
 					title: {

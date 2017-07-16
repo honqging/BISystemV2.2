@@ -82,7 +82,7 @@ function MZFFcharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('MZFFTJT_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#3C98DC'];
+				var colors = ['#6FA8E0'];
 				var option = {
 					color: colors,
 					title: {

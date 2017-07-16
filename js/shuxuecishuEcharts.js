@@ -81,7 +81,7 @@ function SXCScharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('SXCS_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#F8303A'];
+				var colors = ['#D94C4B'];
 				var option = {
 					color: colors,
 					title: {

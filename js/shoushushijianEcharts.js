@@ -81,7 +81,7 @@ function SSSJcharts(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('SSSJ_Echarts'));
 				var ecConfig = require('echarts/config');
-				var colors = ['#FD843C'];
+				var colors = ['#E69953'];
 				var option = {
 					color: colors,
 					title: {

@@ -36,7 +36,7 @@ function KScharts2(){
 			function addData(){
 				var myChart = ec.init(document.getElementById('KS_Echarts2'));
 				var ecConfig = require('echarts/config');
-				var colors = ['yellow','blue'];
+				var colors = ['#F3D643','#64A5FC'];
 				var option = {
 					color: colors,
 					tooltip: {
