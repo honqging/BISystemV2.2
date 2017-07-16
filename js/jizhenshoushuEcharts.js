@@ -1,3 +1,8 @@
+var JZSSTotal = doc.getElementById("JZSSTotal"),
+	JZSSTotalPage = 0,
+	JZSSassignPage = doc.getElementById("JZSSassignPage"),
+	JZSSconfirm = doc.getElementById("JZSSconfirm");
+
 var JZSSpage = 1,
 	doc = document,
 	JZSSurlStartTime = "2010-01-01",
@@ -22,8 +27,11 @@ JZSSpageBefore.onclick = function(){
 JZSSpageNext.onclick = function(){
 	console.log("1"+JZSSpage);
 	JZSSpage ++;
-	console.log("2"+JZSSpage);
-	JZSScharts();
+	if(JZSSpage > JZSSTotalPage){
+		alert('已经是最后一页');
+	}else{
+		JZSScharts();
+	}
 }
 
 //设定时间
@@ -60,6 +68,8 @@ function JZSScharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
+					JZSSTotalPage = data.pageCount;
+
 					JZSSpageNum.placeholder = JZSSpage;
 					//console.log(dataSource);
 					addData();
@@ -155,8 +165,31 @@ function JZSScharts(){
 					]
 				};
 				myChart.setOption(option);
+
+				JZSSTotal.innerHTML = JZSSTotalPage;
 			}
 		}
 	);
 }
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+JZSSconfirm.onclick = function(){
+	tempPage = JZSSpage;
+	JZSSpage = parseFloat(JZSSassignPage.value);
+	if(isInteger(JZSSpage)){
+		console.log(JZSSpage);
+		if(JZSSpage <= JZSSTotalPage){
+			JZSScharts();
+		}else{
+			JZSSpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
 addLoadEvent(JZSScharts());
