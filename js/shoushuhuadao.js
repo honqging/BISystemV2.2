@@ -170,7 +170,7 @@ SSHDconfirm.onclick = function(){
                 jsonp:"callback",
                 success: function (data) {
                     SSHDtableData = data.data;
-                    SSHDtableTitle = data.header;
+                    SSHDtableTiTle = data.header;
                     SSHDTotalPage = data.pageCount;
                     SSHDPageNum.placeholder = SSHDpage;
                     insertSSHDTable();
@@ -190,6 +190,7 @@ SSHDconfirm.onclick = function(){
 
 SSHDnumPerPage.onchange = function(){
     var tempPer = SSHDnumPer,
+        tempTotalPage = SSHDTotalPage,
         tempSelected = SSHDnumPer;
     var p1 = $(this).children('option:selected').val();//这就是selected的值
     SSHDnumPer = p1;
@@ -201,12 +202,13 @@ SSHDnumPerPage.onchange = function(){
         jsonp:"callback",
         success: function (data) {
             SSHDtableData = data.data;
-            SSHDtableTitle = data.header;
+            SSHDtableTiTle = data.header;
             SSHDTotalPage = data.pageCount;
 
             if(SSHDTotalPage < SSHDpage){
                 alert('超出数据量上限，请重新选择页数或者每页数据条数');
                 SSHDnumPer = tempPer;
+                SSHDTotalPage = tempTotalPage;
                 for(var i = 0; i < SSHDnumPerPage.options.length; i++){
                     if(SSHDnumPerPage.options[i].innerHTML == tempSelected){
                         SSHDnumPerPage.options[i].selected = true;
