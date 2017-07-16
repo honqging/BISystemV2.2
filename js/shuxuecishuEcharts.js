@@ -1,3 +1,8 @@
+var SXCSTotal = doc.getElementById("SXCSTotal"),
+	SXCSTotalPage = 0,
+	SXCSassignPage = doc.getElementById("SXCSassignPage"),
+	SXCSconfirm = doc.getElementById("SXCSconfirm");
+
 var SXCSpage = 1,
 	doc = document;
 	SXCSurlStartTime = "2010-01-01",
@@ -21,7 +26,11 @@ SXCSpageBefore.onclick = function(){
 
 SXCSpageNext.onclick = function(){
 	SXCSpage ++;
-	SXCScharts();
+	if(SXCSpage > SXCSTotalPage){
+		alert('已经是最后一页');
+	}else{
+		SXCScharts();
+	}
 }
 
 //设定时间
@@ -58,6 +67,8 @@ function SXCScharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
+					SXCSTotalPage = data.pageCount;
+
 					SXCSpageNum.placeholder = SXCSpage;
 					//console.log(dataSource);
 					addData();
@@ -149,8 +160,31 @@ function SXCScharts(){
 					]
 				};
 				myChart.setOption(option);
+
+				SXCSTotal.innerHTML = SXCSTotalPage;
 			}
 		}
 	);
 }
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+SXCSconfirm.onclick = function(){
+	tempPage = SXCSpage;
+	SXCSpage = parseFloat(SXCSassignPage.value);
+	if(isInteger(SXCSpage)){
+		console.log(SXCSpage);
+		if(SXCSpage <= SXCSTotalPage){
+			SXCScharts();
+		}else{
+			SXCSpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
 addLoadEvent(SXCScharts());
