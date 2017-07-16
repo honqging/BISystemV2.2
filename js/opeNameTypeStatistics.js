@@ -1,10 +1,17 @@
+var ASSMCZLTJTotal = doc.getElementById("ASSMCZLTJTotal"),
+	ASSMCZLTJTotalPage = 0,
+	ASSMCZLTJnumPerPage = doc.getElementById("ASSMCZLTJnumPerPage"),
+	ASSMCZLTJnumPer = 20,
+	ASSMCZLTJassignPage = doc.getElementById("ASSMCZLTJassignPage"),
+	ASSMCZLTJconfirm = doc.getElementById("ASSMCZLTJconfirm");
+
 var ASSMCZLTJloadpage = 1,
 	ASSMCZLTJdataSource = [],
 	ASSMCZLTJdataTitle = [],
 	doc = document,
 	ASSMCZLTJurlStartTime = "2010-01-01",
 	ASSMCZLTJurlEndTime = currentDate,
-	ASSMCZLTJurl = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime,
+	ASSMCZLTJurl = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime,
 	ASSMCZLTJstartDate = doc.getElementById("ASSMCZLTJstartTime"),
 	ASSMCZLTJendDate = doc.getElementById("ASSMCZLTJendTime"),
 	ASSMCZLTJsubmitDate = doc.getElementById("ASSMCZLTJsubmitTime");
@@ -18,6 +25,8 @@ $.ajax({
           success: function (data) {
 			  ASSMCZLTJdataSource = data.data;
 			  ASSMCZLTJdataTitle = data.header;
+			  ASSMCZLTJTotalPage = data.pageCount;
+
 			  insertASSMCZLTJTable();
 		  },
 		  error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -80,6 +89,8 @@ function insertASSMCZLTJTable(){
 		}
 		table.appendChild(tr);
 	}
+
+	ASSMCZLTJTotal.innerHTML = ASSMCZLTJTotalPage;
 }
 
 var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
@@ -91,7 +102,7 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 		else{
 			ASSMCZLTJloadpage --;
 			//console.log(ASSMCZLTJloadpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -100,6 +111,8 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 				  success: function (data) {
 					  ASSMCZLTJdataSource = data.data;
 					  ASSMCZLTJdataTitle = data.header;
+					  ASSMCZLTJTotalPage = data.pageCount;
+
 					  ASSMCZLTJPageNum.placeholder = ASSMCZLTJloadpage;
 					  insertASSMCZLTJTable();
 					   },
@@ -111,23 +124,29 @@ var ASSMCZLTJbeforePage = doc.getElementById("ASSMCZLTJPageBefore"),
 	}
 ASSMCZLTJnextPage.onclick = function(){
 	ASSMCZLTJloadpage ++;
-	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
-	$.ajax({
-		  type: "get",
-		  url: url2,
-		  dataType: "json",
-		  jsonp:"callback",
-		  success: function (data) {
-			  ASSMCZLTJdataSource = data.data;
-			  ASSMCZLTJdataTitle = data.header;
-			  ASSMCZLTJPageNum.placeholder = ASSMCZLTJloadpage;
-			  insertASSMCZLTJTable();
-			   },
-		  error: function (XMLHttpRequest, textStatus, errorThrown) {
-		  alert(errorThrown);
-		 }
-	 });
+	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+	if(ASSMCZLTJloadpage > ASSMCZLTJTotalPage){
+		alert('已经是最后一页');
+	}else{
+		$.ajax({
+			type: "get",
+			url: url2,
+			dataType: "json",
+			jsonp:"callback",
+			success: function (data) {
+				ASSMCZLTJdataSource = data.data;
+				ASSMCZLTJdataTitle = data.header;
+				ASSMCZLTJTotalPage = data.pageCount;
+
+				ASSMCZLTJPageNum.placeholder = ASSMCZLTJloadpage;
+				insertASSMCZLTJTable();
+			},
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
 	}
+}
 
 //�趨ʱ��
 ASSMCZLTJsubmitDate.onclick = function () {
@@ -135,7 +154,7 @@ ASSMCZLTJsubmitDate.onclick = function () {
     getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate);
 	ASSMCZLTJurlStartTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[0],
 	ASSMCZLTJurlEndTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[1];
-	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -144,13 +163,90 @@ ASSMCZLTJsubmitDate.onclick = function () {
         success: function (data) {
 			ASSMCZLTJdataSource = data.data;
 			ASSMCZLTJdataTitle = data.header;
-            //console.log(SMdataSource);
+			ASSMCZLTJTotalPage = data.pageCount;
+
+			//console.log(SMdataSource);
             insertASSMCZLTJTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
+}
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+ASSMCZLTJconfirm.onclick = function(){
+	tempPage = ASSMCZLTJloadpage;
+	ASSMCZLTJloadpage = parseFloat(ASSMCZLTJassignPage.value);
+	if(isInteger(ASSMCZLTJloadpage)){
+		console.log(ASSMCZLTJloadpage);
+		if(ASSMCZLTJloadpage <= ASSMCZLTJTotalPage){
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+			console.log(url2);
+			$.ajax({
+				type: "get",
+				url: url2,
+				dataType: "json",
+				jsonp:"callback",
+				success: function (data) {
+					ASSMCZLTJdataSource = data.data;
+					ASSMCZLTJdataTitle = data.header;
+					ASSMCZLTJTotalPage = data.pageCount;
+					ASSMCZLTJPageNum.placeholder = ASSMCZLTJloadpage;
+					insertASSMCZLTJTable();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}else{
+			ASSMCZLTJloadpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
+ASSMCZLTJnumPerPage.onchange = function(){
+	var tempPer = ASSMCZLTJnumPer,
+		tempTotalPage = ASSMCZLTJTotalPage,
+		tempSelected = ASSMCZLTJnumPer;
+	var p1 = $(this).children('option:selected').val();//这就是selected的值
+	ASSMCZLTJnumPer = p1;
+	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
+	$.ajax({
+		type: "get",
+		url: url2,
+		dataType: "json",
+		jsonp:"callback",
+		success: function (data) {
+			ASSMCZLTJdataSource = data.data;
+			ASSMCZLTJdataTitle = data.header;
+			ASSMCZLTJTotalPage = data.pageCount;
+
+			if(ASSMCZLTJTotalPage < ASSMCZLTJloadpage){
+				alert('超出数据量上限，请重新选择页数或者每页数据条数');
+				ASSMCZLTJnumPer = tempPer;
+				ASSMCZLTJTotalPage = tempTotalPage;
+				for(var i = 0; i < ASSMCZLTJnumPerPage.options.length; i++){
+					if(ASSMCZLTJnumPerPage.options[i].innerHTML == tempSelected){
+						ASSMCZLTJnumPerPage.options[i].selected = true;
+						break;
+					}
+				}
+			}else{
+				insertASSMCZLTJTable();
+			}
+			console.log(url2);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
 }
 
 ASSMCZLTJexport.onclick = function () {
