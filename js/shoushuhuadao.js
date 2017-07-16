@@ -48,8 +48,10 @@ function insertSSHDTable(){
 		th.appendChild(thData);
         if(t==1){
             th.style.width = '16%';
+        }else if(t==7||t==9){
+            th.style.width = '12%';
         }else{
-            th.style.width = '8%';
+            th.style.width = '7%';
         }
 		thead.appendChild(th);
 	}
@@ -62,8 +64,10 @@ function insertSSHDTable(){
 			td.appendChild(data);
             if(j==1){
                 td.style.width = '16%';
+            }else if(j==7||j==9){
+                td.style.width = '12%'
             }else{
-                td.style.width = '8%';
+                td.style.width = '7%';
             }
 			tr.appendChild(td);
 		}
