@@ -104,6 +104,7 @@ function insertHFSSCTable(){
 	}
 	table.appendChild(tr);
 
+	// ***************before detail a, now with td
 	// add data rows
 	for(var i=0;i<HFSSCdataSource.length;i++){
 		var tr = doc.createElement("tr");
@@ -114,7 +115,7 @@ function insertHFSSCTable(){
 				var a = doc.createElement("a");
 				td.title = HFSSCdataSource[i][j];
 				a.appendChild(data);
-				td.appendChild(a);
+				td.appendChild(data);
 				td.style.textAlign = "center";
 			}else{
 				td.title = HFSSCdataSource[i][j];
