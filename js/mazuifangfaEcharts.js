@@ -1,3 +1,8 @@
+var MZTotal = doc.getElementById("MZTotal"),
+	MZTotalPage = 0,
+	MZassignPage = doc.getElementById("MZassignPage"),
+	MZconfirm = doc.getElementById("MZconfirm");
+
 var MZpage = 1,
 	doc = document,
 	MZurlStartTime = "2010-01-01",
@@ -22,8 +27,11 @@ MZpageBefore.onclick = function(){
 MZpageNext.onclick = function(){
 	console.log("1"+MZpage);
 	MZpage ++;
-	console.log("2"+MZpage);
-	MZFFcharts();
+	if(MZpage > MZTotalPage){
+		alert('已经是最后一页');
+	}else{
+		MZFFcharts();
+	}
 }
 
 //设定时间
@@ -60,6 +68,8 @@ function MZFFcharts(){
 				jsonp:"callback",
 				success: function (data) {
 					dataSource = data;
+					MZTotalPage = data.pageCount;
+
 					MZpageNum.placeholder = MZpage;
 					//console.log(dataSource);
 					addData();
@@ -151,8 +161,31 @@ function MZFFcharts(){
 					]
 				};
 				myChart.setOption(option);
+
+				MZTotal.innerHTML = MZTotalPage;
 			}
 		}
 	);
 }
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+MZconfirm.onclick = function(){
+	tempPage = MZpage;
+	MZpage = parseFloat(MZassignPage.value);
+	if(isInteger(MZpage)){
+		console.log(MZpage);
+		if(MZpage <= MZTotalPage){
+			MZFFcharts();
+		}else{
+			MZpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
 addLoadEvent(MZFFcharts());
