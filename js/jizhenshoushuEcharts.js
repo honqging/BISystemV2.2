@@ -95,14 +95,14 @@ function JZSScharts(){
 						y: 'bottom'
 					},
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
 						right: '20%',
-						y2: 60
+						y2: 100
 					},
 					toolbox: {
 						feature: {
@@ -126,12 +126,15 @@ function JZSScharts(){
 								//横轴信息全部显示
 								interval:0,
 
+								//标签与坐标轴的间距
+								//margin: 50,
+
 								//横轴信息文字每行显示三个
 								formatter:function(val){
 									var newVal = '';
 									var vList = val.split("");
 									for(var j = 0; j<vList.length; j++){
-										if(j%12 == 0 && j!=0){
+										if(j%4 == 0 && j!=0){
 											newVal += '\n';
 										}
 										newVal += vList[j];
