@@ -94,10 +94,10 @@ function SXCScharts(){
 						y: 'bottom'
 					},
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
 						right: '20%',
@@ -147,7 +147,7 @@ function SXCScharts(){
 						{
 							name:'输血次数',
 							type:'bar',
-							barCategoryGap: '70%',
+							barCategoryGap: '80%',
 							itemStyle: {
 								normal: {
 									label : {

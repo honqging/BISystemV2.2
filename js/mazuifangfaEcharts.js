@@ -95,10 +95,10 @@ function MZFFcharts(){
 						y: 'bottom'
 					},
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
 						right: '20%',
@@ -148,7 +148,7 @@ function MZFFcharts(){
 						{
 							name:'麻醉方法数量',
 							type:'bar',
-							barCategoryGap: '70%',
+							barCategoryGap: '80%',
 							itemStyle: {
 								normal: {
 									label : {

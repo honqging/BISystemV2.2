@@ -94,14 +94,14 @@ function ATJSCcharts(){
 						y: 'bottom'
 					},
 					tooltip: {
-						trigger: 'axis',
-						axisPointer: {
-							type: 'cross'
-						}
+						//trigger: 'axis',
+						//axisPointer: {
+						//	type: 'cross'
+						//}
 					},
 					grid: {
 						right: '20%',
-						y2: 60
+						y2: 100
 					},
 					toolbox: {
 						feature: {
@@ -130,7 +130,7 @@ function ATJSCcharts(){
 									var newVal = '';
 									var vList = val.split("");
 									for(var j = 0; j<vList.length; j++){
-										if(j%12 == 0 && j!=0){
+										if(j%4 == 0 && j!=0){
 											newVal += '\n';
 										}
 										newVal += vList[j];

@@ -58,9 +58,9 @@
 							fontSize : '12'
 						}
 					},
-					tooltip : {
-						trigger: 'item'
-					},
+					//tooltip : {
+					//	trigger: 'item'
+					//},
 					toolbox: {
 						show : true
 					},
