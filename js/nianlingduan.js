@@ -1,10 +1,17 @@
+var NLDTotal = doc.getElementById("NLDTotal"),
+	NLDTotalPage = 0,
+	NLDnumPerPage = doc.getElementById("NLDnumPerPage"),
+	NLDnumPer = 20,
+	NLDassignPage = doc.getElementById("NLDassignPage"),
+	NLDconfirm = doc.getElementById("NLDconfirm");
+
 var NLDpage = 1,
 	NLDdataSource = [],
 	NLDdataTitle = [],
 	doc = document,
 	NLDurlStartTime = "2010-01-01",
     NLDurlEndTime = currentDate,
-    NLDurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
+    NLDurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
     NLDstartDate = doc.getElementById("NLDstartTime"),
     NLDendDate = doc.getElementById("NLDendTime"),
     NLDsubmitDate = doc.getElementById("NLDsubmitTime");
@@ -18,6 +25,7 @@ $.ajax({
           success: function (data) {
 						  NLDdataSource = data.data;
 						  NLDdataTitle = data.header;
+			  			  NLDTotalPage = data.pageCount;
 						 //console.log(NLDdataSource);
 						  insertNLDTable();
                            },
@@ -99,6 +107,8 @@ function insertNLDTable(){
 		}
 		table.appendChild(tr);
 	}
+
+	NLDTotal.innerHTML = NLDTotalPage;
 }
 
 function insertNLDSubTable(result,title,table){
@@ -132,7 +142,7 @@ var NLDPageBefore = doc.getElementById("NLDPageBefore"),
 		else{
             NLDpage --;
 			//console.log(NLDpage);
-			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
 			$.ajax({
 				  type: "get",
 				  url: url2,
@@ -141,6 +151,8 @@ var NLDPageBefore = doc.getElementById("NLDPageBefore"),
 				  success: function (data) {
 								  NLDdataSource = data.data;
 								  NLDdataTitle = data.header;
+								  NLDTotalPage = data.pageCount;
+
 								  NLDPageNum.placeholder = NLDpage;
 								  insertNLDTable();
 								   },
@@ -152,23 +164,29 @@ var NLDPageBefore = doc.getElementById("NLDPageBefore"),
 	}
 	NLDPageNext.onclick = function(){
         NLDpage ++;
-		var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+		var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
 		//console.log(NLDpage);
+		if(NLDpage > NLDTotalPage){
+			alert('已经是最后一页');
+		}else{
 			$.ajax({
-				  type: "get",
-				  url: url2,
-				  dataType: "json",
-				  jsonp:"callback",
-				  success: function (data) {
-								  NLDdataSource = data.data;
-								  NLDdataTitle = data.header;
-								  NLDPageNum.placeholder = NLDpage;
-								  insertNLDTable();
-								   },
-				  error: function (XMLHttpRequest, textStatus, errorThrown) {
-				  alert(errorThrown);
-				 }
-			 });
+				type: "get",
+				url: url2,
+				dataType: "json",
+				jsonp:"callback",
+				success: function (data) {
+					NLDdataSource = data.data;
+					NLDdataTitle = data.header;
+					NLDTotalPage = data.pageCount;
+
+					NLDPageNum.placeholder = NLDpage;
+					insertNLDTable();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}
 	}
 
 //�趨ʱ��
@@ -176,7 +194,7 @@ NLDsubmitDate.onclick = function () {
     getDate(NLDstartDate,NLDendDate);
     NLDurlStartTime = getDate(NLDstartDate,NLDendDate)[0],
     NLDurlEndTime = getDate(NLDstartDate,NLDendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -185,13 +203,92 @@ NLDsubmitDate.onclick = function () {
         success: function (data) {
             NLDdataSource = data.data;
             NLDdataTitle = data.header;
-            //console.log(SMdataSource);
+			NLDTotalPage = data.pageCount;
+
+			//console.log(NLDdataSource);
             insertNLDTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
         }
     });
+}
+
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+NLDconfirm.onclick = function(){
+	tempPage = NLDpage;
+	NLDpage = parseFloat(NLDassignPage.value);
+	if(isInteger(NLDpage)){
+		console.log(NLDpage);
+		if(NLDpage <= NLDTotalPage){
+			var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+			console.log(url2);
+			$.ajax({
+				type: "get",
+				url: url2,
+				dataType: "json",
+				jsonp:"callback",
+				success: function (data) {
+					NLDdataSource = data.data;
+					NLDdataTitle = data.header;
+					NLDTotalPage = data.pageCount;
+
+					NLDPageNum.placeholder = NLDpage;
+					insertNLDTable();
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}else{
+			NLDpage = tempPage;
+			alert('超出页数上限，请重新选择页数');
+		}
+	}else{
+		alert('请输入正整数！')
+	}
+}
+
+NLDnumPerPage.onchange = function(){
+	var tempPer = NLDnumPer,
+		tempTotalPage = NLDTotalPage,
+		tempSelected = NLDnumPer;
+	var p1 = $(this).children('option:selected').val();//这就是selected的值
+	NLDnumPer = p1;
+	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
+	$.ajax({
+		type: "get",
+		url: url2,
+		dataType: "json",
+		jsonp:"callback",
+		success: function (data) {
+			NLDdataSource = data.data;
+			NLDdataTitle = data.header;
+			NLDTotalPage = data.pageCount;
+
+			if(NLDTotalPage < NLDpage){
+				alert('超出数据量上限，请重新选择页数或者每页数据条数');
+				NLDnumPer = tempPer;
+				NLDTotalPage = tempTotalPage;
+				for(var i = 0; i < NLDnumPerPage.options.length; i++){
+					if(NLDnumPerPage.options[i].innerHTML == tempSelected){
+						NLDnumPerPage.options[i].selected = true;
+						break;
+					}
+				}
+			}else{
+				insertNLDTable();
+			}
+			console.log(url2);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
 }
 
 NLDexport.onclick = function () {
