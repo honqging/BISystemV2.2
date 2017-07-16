@@ -170,7 +170,7 @@ function indexCheck(userName, modulesJson){
 		];
 
 	var subListId2 = [[],
-		['SMBR2', 'SSHD2', 'SSZK2', 'ASA2'],
+		['SMBR2', 'SSHD2', 'ASA2'],
 		['HSGZL2', 'MZYSGZL2', 'MZYSZGZL2', 'SSHSGZL2', 'SSYSGZL2', 'KSGZL2'],
 		['ZDSS2', 'JZSS2', 'SSSJ2', 'MZFFTJT2', 'SSJLYL2', 'ATSC2', 'ATJSC2', 'SXCS2', 'NLDKS2'],
 		['NLD2', 'SSTW2', 'MZXG2', 'LCLJGGMZFS2', 'MZJLDCG2', 'ASSMCZLTJ2', 'MZJZZQ2'],
