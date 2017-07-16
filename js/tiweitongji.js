@@ -1,10 +1,17 @@
+var TWTotal = doc.getElementById("TWTotal"),
+    TWTotalPage = 0,
+    TWnumPerPage = doc.getElementById("TWnumPerPage"),
+    TWnumPer = 20,
+    TWassignPage = doc.getElementById("TWassignPage"),
+    TWconfirm = doc.getElementById("TWconfirm");
+
 var TWpage = 1,
     TWdataSource = [],
     TWdataTitle = [],
     doc = document,
 	TWurlStartTime = "2010-01-01",
     TWurlEndTime = currentDate,
-    TWurl = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+    TWurl = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
     TWstartDate = doc.getElementById("SSTWstartTime"),
     TWendDate = doc.getElementById("SSTWendTime"),
     TWsubmitDate = doc.getElementById("SSTWsubmitTime");
@@ -18,6 +25,7 @@ $.ajax({
     success: function (data) {
         TWdataSource = data.data;
         TWdataTitle = data.header;
+        TWTotalPage = data.pageCount;
         //console.log(TWdataSource);
         insertTWTable();
     },
@@ -66,7 +74,7 @@ function insertTWTable(){
                     });
                     $.ajax({
                         type: "get",
-                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?rowCount="+ TWnumPer +"&department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
                         dataType: "json",
                         jsonp:"callback",
                         success: function (data) {
@@ -99,6 +107,8 @@ function insertTWTable(){
         }
         table.appendChild(tr);
     }
+
+    TWTotal.innerHTML = TWTotalPage;
 }
 
 function insertTWSubTable(result,title,table){
@@ -132,7 +142,7 @@ TWPageBefore.onclick = function(){
     else{
         TWpage --;
         //console.log(TWpage);
-        var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+        var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
         $.ajax({
             type: "get",
             url: url2,
@@ -141,6 +151,8 @@ TWPageBefore.onclick = function(){
             success: function (data) {
                 TWdataSource = data.data;
                 TWdataTitle = data.header;
+                TWTotalPage = data.pageCount;
+
                 TWPageNum.placeholder = TWpage;
                 insertTWTable();
             },
@@ -152,23 +164,29 @@ TWPageBefore.onclick = function(){
 }
 TWPageNext.onclick = function(){
     TWpage ++;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     //console.log(TWpage);
-    $.ajax({
-        type: "get",
-        url: url2,
-        dataType: "json",
-        jsonp:"callback",
-        success: function (data) {
-            TWdataSource = data.data;
-            TWdataTitle = data.header;
-            TWPageNum.placeholder = TWpage;
-            insertTWTable();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+    if(TWpage > TWTotalPage){
+        alert('已经是最后一页');
+    }else{
+        $.ajax({
+            type: "get",
+            url: url2,
+            dataType: "json",
+            jsonp:"callback",
+            success: function (data) {
+                TWdataSource = data.data;
+                TWdataTitle = data.header;
+                TWTotalPage = data.pageCount;
+
+                TWPageNum.placeholder = TWpage;
+                insertTWTable();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
 }
 
 //设定时间
@@ -176,7 +194,7 @@ TWsubmitDate.onclick = function () {
     getDate(TWstartDate,TWendDate);
     TWurlStartTime = getDate(TWstartDate,TWendDate)[0],
     TWurlEndTime = getDate(TWstartDate,TWendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     $.ajax({
         type: "get",
         url: urlTime,
@@ -185,8 +203,85 @@ TWsubmitDate.onclick = function () {
         success: function (data) {
             TWdataSource = data.data;
             TWdataTitle = data.header;
-            //console.log(SMdataSource);
+            TWTotalPage = data.pageCount;
+
+            //console.log(TWdataSource);
             insertTWTable();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(errorThrown);
+        }
+    });
+}
+
+function isInteger(obj) {
+    return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
+TWconfirm.onclick = function(){
+    tempPage = TWpage;
+    TWpage = parseFloat(TWassignPage.value);
+    if(isInteger(TWpage)){
+        console.log(TWpage);
+        if(TWpage <= TWTotalPage){
+            var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+            console.log(url2);
+            $.ajax({
+                type: "get",
+                url: url2,
+                dataType: "json",
+                jsonp:"callback",
+                success: function (data) {
+                    TWdataSource = data.data;
+                    TWdataTitle = data.header;
+                    TWTotalPage = data.pageCount;
+                    TWPageNum.placeholder = TWpage;
+                    insertTWTable();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }else{
+            TWpage = tempPage;
+            alert('超出页数上限，请重新选择页数');
+        }
+    }else{
+        alert('请输入正整数！')
+    }
+}
+
+TWnumPerPage.onchange = function(){
+    var tempPer = TWnumPer,
+        tempTotalPage = TWTotalPage,
+        tempSelected = TWnumPer;
+    var p1 = $(this).children('option:selected').val();//这就是selected的值
+    TWnumPer = p1;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
+    $.ajax({
+        type: "get",
+        url: url2,
+        dataType: "json",
+        jsonp:"callback",
+        success: function (data) {
+            TWdataSource = data.data;
+            TWdataTitle = data.header;
+            TWTotalPage = data.pageCount;
+
+            if(TWTotalPage < TWpage){
+                alert('超出数据量上限，请重新选择页数或者每页数据条数');
+                TWnumPer = tempPer;
+                TWTotalPage = tempTotalPage;
+                for(var i = 0; i < TWnumPerPage.options.length; i++){
+                    if(TWnumPerPage.options[i].innerHTML == tempSelected){
+                        TWnumPerPage.options[i].selected = true;
+                        break;
+                    }
+                }
+            }else{
+                insertTWTable();
+            }
+            console.log(url2);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);
