@@ -74,7 +74,7 @@ function insertTWTable(){
                     });
                     $.ajax({
                         type: "get",
-                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?rowCount="+ TWnumPer +"&department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
                         dataType: "json",
                         jsonp:"callback",
                         success: function (data) {
