@@ -165,7 +165,7 @@ SSHDconfirm.onclick = function(){
     if(isInteger(SSHDpage)){
         console.log(SSHDpage);
         if(SSHDpage <= SSHDTotalPage){
-            var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SSHDnumPer + "&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+            var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?rowCount=" + SSHDnumPer + "&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
             console.log(url2);
             $.ajax({
                 type: "get",
@@ -198,7 +198,7 @@ SSHDnumPerPage.onchange = function(){
         tempSelected = SSHDnumPer;
     var p1 = $(this).children('option:selected').val();//这就是selected的值
     SSHDnumPer = p1;
-    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SSHDnumPer + "&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
+    var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?rowCount=" + SSHDnumPer + "&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
     $.ajax({
         type: "get",
         url: url2,
