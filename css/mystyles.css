@@ -421,7 +421,7 @@ a{
 }
 
 .subMenu > li > a{
-	display: none;
+	/*display: none;*/
 }
 
 table{
@@ -431,6 +431,12 @@ table{
 table th{
 	text-align: center;
 	font-weight: normal;
+}
+
+.inWidth2{
+	width: 8g0px;
+	display: inline;
+	margin-left: 50px;
 }
 
 .inWidth{
