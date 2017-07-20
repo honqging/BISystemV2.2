@@ -141,7 +141,7 @@ function KScharts1(){
 							name:'四级手术',
 							type:'bar',
 							yAxisIndex: 1,
-							data:dataSource.y5,
+							data:dataSource.y4,
 						}
 					]
 				};
