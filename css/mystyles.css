@@ -315,7 +315,7 @@ a{
 	overflow:auto;
 }
 .detail-scroll{
-	height: 600px;
+	height: 500px;
 	/*width:60%;*/
 	float:left;
 	overflow:auto;
