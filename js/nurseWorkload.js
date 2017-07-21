@@ -6,7 +6,8 @@
     HSGZLconfirm = doc.getElementById("HSGZLconfirm");
 
 var nurseWorkloadpage = 1,
-	HSGZLurlStartTime = "2010-01-01",
+	//HSGZLurlStartTime = "2010-01-01",
+    HSGZLurlStartTime = month1stDate,
     HSGZLurlEndTime = currentDate,
     HSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime,
 	HSGZLtableData = [],
@@ -16,6 +17,10 @@ var nurseWorkloadpage = 1,
     HSGZLendDate = doc.getElementById("HSGZLendTime"),
     HSGZLsubmitDate = doc.getElementById("HSGZLsubmitTime");
     HSGZLexport = doc.getElementById("HSGZLexport");
+
+HSGZLstartDate.value = month1stDate;
+HSGZLendDate.value = currentDate;
+
 //获取手麻病人数据
 $.ajax({
           type: "get",

@@ -5,7 +5,8 @@ var JZSSTotal = doc.getElementById("JZSSTotal"),
 
 var JZSSpage = 1,
 	doc = document,
-	JZSSurlStartTime = "2010-01-01",
+	//JZSSurlStartTime = "2010-01-01",
+	JZSSurlStartTime = month1stDate,
 	JZSSurlEndTime = currentDate,
 	// JZSSEchartsUrl = "",
 	JZSSstartDate = doc.getElementById("JZSSstartTime"),
@@ -15,6 +16,9 @@ var JZSSpage = 1,
 var JZSSpageBefore = doc.getElementById("JZSSPageBefore"),
 	JZSSpageNext = doc.getElementById("JZSSPageNext"),
 	JZSSpageNum = doc.getElementById("JZSSPageNum");
+
+JZSSstartDate.value = month1stDate;
+JZSSendDate.value = currentDate;
 
 JZSSpageBefore.onclick = function(){
 	if(JZSSpage==1){alert("已经是第一页");}

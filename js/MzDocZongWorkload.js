@@ -9,13 +9,17 @@ var MzDocZongWorkloadpage = 1,
 	MZYSZGZLdataSource = [],
 	MZYSZGZLdataTitle = [],
 	doc = document,
-	MZYSZGZLurlStartTime = "2010-01-01",
+	//MZYSZGZLurlStartTime = "2010-01-01",
+	MZYSZGZLurlStartTime = month1stDate,
     MZYSZGZLurlEndTime = currentDate,
     MZYSZGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?rowCount="+ MZYSZGZLnumPer +"&page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
     MZYSZGZLstartDate = doc.getElementById("MZYSZGZLstartTime"),
     MZYSZGZLendDate = doc.getElementById("MZYSZGZLendTime"),
     MZYSZGZLsubmitDate = doc.getElementById("MZYSZGZLsubmitTime");
 	MZYSZGZLexport = doc.getElementById("MZYSZGZLexport");
+
+MZYSZGZLstartDate.value = month1stDate;
+MZYSZGZLendDate.value = currentDate;
 
 $.ajax({
           type: "get",

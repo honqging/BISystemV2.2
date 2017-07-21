@@ -6,7 +6,8 @@ var SSHDTotal = doc.getElementById("SSHDTotal"),
     SSHDconfirm = doc.getElementById("SSHDconfirm");
 
 var SSHDpage = 1,
-	SSHDurlStartTime = "2010-01-01",
+	//SSHDurlStartTime = "2010-01-01",
+    SSHDurlStartTime = month1stDate,
     SSHDurlEndTime = currentDate,
 	SSHDurl = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?rowCount="+ SSHDnumPer +"&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime,
 	SSHDtableData = [],
@@ -16,6 +17,9 @@ var SSHDpage = 1,
     SSHDendDate = doc.getElementById("SSHDendTime"),
     SSHDsubmitDate = doc.getElementById("SSHDsubmitTime");
     SSHDexport = doc.getElementById("SSHDexport");
+
+SSHDstartDate.value = month1stDate;
+SSHDendDate.value = currentDate;
 
 $.ajax({
           type: "get",

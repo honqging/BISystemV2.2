@@ -9,13 +9,17 @@ var NLDKSloadpage = 1,
 	NLDKSdataSource = [],
 	NLDKSdataTitle = [],
 	doc = document,
-	NLDKSurlStartTime = "2010-01-01",
+	//NLDKSurlStartTime = "2010-01-01",
+	NLDKSurlStartTime = month1stDate,
 	NLDKSurlEndTime = currentDate,
 	NLDKSurl = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?rowCount="+ NLDKSnumPer +"&page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime,
 	NLDKSstartDate = doc.getElementById("NLDKSstartTime"),
 	NLDKSendDate = doc.getElementById("NLDKSendTime"),
 	NLDKSsubmitDate = doc.getElementById("NLDKSsubmitTime");
 	NLDKSexport = doc.getElementById("NLDKSexport");
+
+NLDKSstartDate.value = month1stDate;
+NLDKSendDate.value = currentDate;
 
 var allData = new Array(8);
 

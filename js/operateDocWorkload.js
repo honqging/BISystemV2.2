@@ -9,13 +9,17 @@ var operateDocWorkLoadpage = 1,
 	SSYSGZLtableData = [],
 	SSYSGZLtableTitle = [],
 	doc = document,
-	SSYSGZLurlStartTime = "2010-01-01",
+	//SSYSGZLurlStartTime = "2010-01-01",
+    SSYSGZLurlStartTime = month1stDate,
     SSYSGZLurlEndTime = currentDate,
     SSYSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime,
     SSYSGZLstartDate = doc.getElementById("SSYSGZLstartTime"),
     SSYSGZLendDate = doc.getElementById("SSYSGZLendTime"),
     SSYSGZLsubmitDate = doc.getElementById("SSYSGZLsubmitTime");
     SSYSGZLexport = doc.getElementById("SSYSGZLexport");
+
+SSYSGZLstartDate.value = month1stDate;
+SSYSGZLendDate.value = currentDate;
 
 //获取手术医生工作量
 $.ajax({

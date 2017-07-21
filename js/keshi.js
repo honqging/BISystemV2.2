@@ -9,7 +9,8 @@ var KSpage = 1,
 	KSdataSource = [],
 	KSdataTitle = [],
 	doc = document,
-	KSurlStartTime = "2010-01-01",
+	//KSurlStartTime = "2010-01-01",
+	KSurlStartTime = month1stDate,
     KSurlEndTime = currentDate,
     KSurl = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
 	KSCharts1url = "http://123.206.134.34:8080/Medicals_war/statistic/keshiChart?rowCount="+ 20 +"&page="+KSpage+"&type=0"+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
@@ -19,6 +20,8 @@ var KSpage = 1,
     KSsubmitDate = doc.getElementById("KSsubmitTime");
     KSexport = doc.getElementById("KSGZLexport");
 
+KSstartDate.value = month1stDate;
+KSendDate.value = currentDate;
 
 $.ajax({
           type: "get",

@@ -9,13 +9,17 @@ var NLDpage = 1,
 	NLDdataSource = [],
 	NLDdataTitle = [],
 	doc = document,
-	NLDurlStartTime = "2010-01-01",
+	//NLDurlStartTime = "2010-01-01",
+	NLDurlStartTime = month1stDate,
     NLDurlEndTime = currentDate,
     NLDurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime,
     NLDstartDate = doc.getElementById("NLDstartTime"),
     NLDendDate = doc.getElementById("NLDendTime"),
     NLDsubmitDate = doc.getElementById("NLDsubmitTime");
 	NLDexport = doc.getElementById("NLDexport");
+
+NLDstartDate.value = month1stDate;
+NLDendDate.value = currentDate;
 
 $.ajax({
           type: "get",

@@ -9,13 +9,17 @@ var SSHSGZLdataSource = [],
 	SSHSdataTitle = [],
 	doc = document,
     SSHSGZLpage = 1,
-	SSHSGZLurlStartTime = "2010-01-01",
+	//SSHSGZLurlStartTime = "2010-01-01",
+	SSHSGZLurlStartTime = month1stDate,
     SSHSGZLurlEndTime = currentDate,
     SSHSGZLurl = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?rowCount="+ SSHSGZLnumPer +"&page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime,
     SSHSGZLstartDate = doc.getElementById("SSHSGZLstartTime"),
     SSHSGZLendDate = doc.getElementById("SSHSGZLendTime"),
     SSHSGZLsubmitDate = doc.getElementById("SSHSGZLsubmitTime");
 	SSHSGZLexport = doc.getElementById("SSHSGZLexport");
+
+SSHSGZLstartDate.value = month1stDate;
+SSHSGZLendDate.value = currentDate;
 
 $.ajax({
           type: "get",

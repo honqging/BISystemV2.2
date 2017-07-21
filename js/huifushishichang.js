@@ -9,13 +9,17 @@ var HFSSCloadpage = 1,
 	HFSSCdataSource = [],
 	HFSSCdataTitle = [],
 	doc = document,
-	HFSSCurlStartTime = "2010-01-01",
+	//HFSSCurlStartTime = "2010-01-01",
+	HFSSCurlStartTime = month1stDate,
 	HFSSCurlEndTime = currentDate,
 	HFSSCurl = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?rowCount="+ HFSSCnumPer +"&page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime,
 	HFSSCstartDate = doc.getElementById("HFSSCstartTime"),
 	HFSSCendDate = doc.getElementById("HFSSCendTime"),
 	HFSSCsubmitDate = doc.getElementById("HFSSCsubmitTime");
 	HFSSCexport = doc.getElementById("HFSSCexport");
+
+HFSSCstartDate.value = month1stDate;
+HFSSCendDate.value = currentDate;
 
 $.ajax({
           type: "get",

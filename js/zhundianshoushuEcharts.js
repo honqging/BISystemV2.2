@@ -1,9 +1,13 @@
 var doc = document,
-	ZDSSurlStartTime = "2010-01-01",
+	//ZDSSurlStartTime = "2010-01-01",
+	ZDSSurlStartTime = month1stDate,
 	ZDSSurlEndTime = currentDate,
 	ZDSSstartDate = doc.getElementById("ZDSSstartTime"),
 	ZDSSendDate = doc.getElementById("ZDSSendTime"),
 	ZDSSsubmitDate = doc.getElementById("ZDSSsubmitTime");
+
+ZDSSstartDate.value = month1stDate;
+ZDSSendDate.value = currentDate;
 
 //设定时间
 ZDSSsubmitDate.onclick = function () {

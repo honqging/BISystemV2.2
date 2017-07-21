@@ -4,8 +4,9 @@ var SXCSTotal = doc.getElementById("SXCSTotal"),
 	SXCSconfirm = doc.getElementById("SXCSconfirm");
 
 var SXCSpage = 1,
-	doc = document;
-	SXCSurlStartTime = "2010-01-01",
+	doc = document,
+	//SXCSurlStartTime = "2010-01-01",
+	SXCSurlStartTime = month1stDate,
 	SXCSurlEndTime = currentDate;
     SXCSEchartsUrl = "",
 	SXCSstartDate = doc.getElementById("SXCSstartTime"),
@@ -15,6 +16,9 @@ var SXCSpage = 1,
 var SXCSpageBefore = doc.getElementById("SXCSPageBefore"),
 	SXCSpageNext = doc.getElementById("SXCSPageNext"),
 	SXCSpageNum = doc.getElementById("SXCSPageNum");
+
+SXCSstartDate.value = month1stDate;
+SXCSendDate.value = currentDate;
 
 SXCSpageBefore.onclick = function(){
 	if(SXCSpage==1){alert("已经是第一页");}

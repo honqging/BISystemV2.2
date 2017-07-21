@@ -1,4 +1,5 @@
-var ASAurlStartTime = "2010-01-01",
+//var ASAurlStartTime = "2010-01-01",
+var ASAurlStartTime = month1stDate,
     ASAurlEndTime = currentDate,
     ASAurl = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_war/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
@@ -11,6 +12,9 @@ var ASAurlStartTime = "2010-01-01",
     ASAendDate = doc.getElementById("ASAendTime"),
     ASAsubmitDate = doc.getElementById("ASAsubmitTime");
     ASAexport = doc.getElementById("ASAexport");
+
+ASAstartDate.value = month1stDate;
+ASAendDate.value = currentDate;
 
 //获取手麻病人数据
 $.ajax({ 

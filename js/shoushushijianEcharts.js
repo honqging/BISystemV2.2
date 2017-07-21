@@ -5,7 +5,8 @@ var SSSJTotal = doc.getElementById("SSSJTotal"),
 
 var SSSJpage = 1,
 	doc = document,
-	SSSJurlStartTime = "2010-01-01",
+	//SSSJurlStartTime = "2010-01-01",
+	SSSJurlStartTime = month1stDate,
 	SSSJurlEndTime = currentDate,
 	// SSSJEchartsUrl = "",
 	SSSJstartDate = doc.getElementById("SSSJstartTime"),
@@ -15,6 +16,9 @@ var SSSJpage = 1,
 var SSSJpageBefore = doc.getElementById("SSSJPageBefore"),
 	SSSJpageNext = doc.getElementById("SSSJPageNext"),
 	SSSJpageNum = doc.getElementById("SSSJPageNum");
+
+SSSJstartDate.value = month1stDate;
+SSSJendDate.value = currentDate;
 
 SSSJpageBefore.onclick = function(){
 	if(SSSJpage==1){alert("已经是第一页");}

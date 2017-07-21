@@ -5,7 +5,8 @@ var ATSCTotal = doc.getElementById("ATSCTotal"),
 
 var ATSCpage = 1,
 	doc = document,
-	ATSCurlStartTime = "2010-01-01",
+	//ATSCurlStartTime = "2010-01-01",
+	ATSCurlStartTime = month1stDate,
 	ATSCurlEndTime = currentDate,
 	// ATSCEchartsUrl = "",
 	ATSCstartDate = doc.getElementById("ATSCstartTime"),
@@ -15,6 +16,9 @@ var ATSCpage = 1,
 var ATSCpageBefore = doc.getElementById("ATSCPageBefore"),
 	ATSCpageNext = doc.getElementById("ATSCPageNext"),
 	ATSCpageNum = doc.getElementById("ATSCPageNum");
+
+ATSCstartDate.value = month1stDate;
+ATSCendDate.value = currentDate;
 
 ATSCpageBefore.onclick = function(){
 	if(ATSCpage==1){alert("已经是第一页");}

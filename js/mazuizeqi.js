@@ -9,13 +9,17 @@ var MZJZZQloadpage = 1,
 	MZJZZQdataSource = [],
 	MZJZZQdataTitle = [],
 	doc = document,
-	MZJZZQurlStartTime = "2010-01-01",
+	//MZJZZQurlStartTime = "2010-01-01",
+	MZJZZQurlStartTime = month1stDate,
 	MZJZZQurlEndTime = currentDate,
 	MZJZZQurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?rowCount="+ MZJZZQnumPer +"&page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime,
 	MZJZZQstartDate = doc.getElementById("MZJZZQstartTime"),
 	MZJZZQendDate = doc.getElementById("MZJZZQendTime"),
 	MZJZZQsubmitDate = doc.getElementById("MZJZZQsubmitTime");
 	MZJZZQexport = doc.getElementById("MZJZZQexport");
+
+MZJZZQstartDate.value = month1stDate;
+MZJZZQendDate.value = currentDate;
 
 $.ajax({
           type: "get",

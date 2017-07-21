@@ -9,13 +9,17 @@ var ASSMCZLTJloadpage = 1,
 	ASSMCZLTJdataSource = [],
 	ASSMCZLTJdataTitle = [],
 	doc = document,
-	ASSMCZLTJurlStartTime = "2010-01-01",
+	//ASSMCZLTJurlStartTime = "2010-01-01",
+	ASSMCZLTJurlStartTime = month1stDate,
 	ASSMCZLTJurlEndTime = currentDate,
 	ASSMCZLTJurl = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime,
 	ASSMCZLTJstartDate = doc.getElementById("ASSMCZLTJstartTime"),
 	ASSMCZLTJendDate = doc.getElementById("ASSMCZLTJendTime"),
 	ASSMCZLTJsubmitDate = doc.getElementById("ASSMCZLTJsubmitTime");
 	ASSMCZLTJexport = doc.getElementById("ASSMCZLTJexport");
+
+ASSMCZLTJstartDate.value = month1stDate;
+ASSMCZLTJendDate.value = currentDate;
 
 $.ajax({
           type: "get",

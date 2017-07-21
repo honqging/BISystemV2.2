@@ -38,6 +38,24 @@ function getNowFormatDate() {
     return currentdate;
 }
 
+function getMonth1stFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    //if (strDate >= 0 && strDate <= 9) {
+    //    strDate = "0" + strDate;
+    //}
+    strDate = "01";
+    var month1stDate = year + seperator1 + month + seperator1 + strDate;
+    return month1stDate;
+}
+
 //window.onload加载多个函数
 function addLoadEvent(func) {
   var oldonload = window.onload;//得到上一个onload事件的函数

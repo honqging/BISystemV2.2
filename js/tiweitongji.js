@@ -9,13 +9,17 @@ var TWpage = 1,
     TWdataSource = [],
     TWdataTitle = [],
     doc = document,
-	TWurlStartTime = "2010-01-01",
+	//TWurlStartTime = "2010-01-01",
+    TWurlStartTime = month1stDate,
     TWurlEndTime = currentDate,
     TWurl = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
     TWstartDate = doc.getElementById("SSTWstartTime"),
     TWendDate = doc.getElementById("SSTWendTime"),
     TWsubmitDate = doc.getElementById("SSTWsubmitTime");
     TWexport = doc.getElementById("SSTWexport");
+
+TWstartDate.value = month1stDate;
+TWendDate.value = currentDate;
 
 $.ajax({
     type: "get",

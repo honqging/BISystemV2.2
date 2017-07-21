@@ -5,7 +5,8 @@ var MZTotal = doc.getElementById("MZTotal"),
 
 var MZpage = 1,
 	doc = document,
-	MZurlStartTime = "2010-01-01",
+	//MZurlStartTime = "2010-01-01",
+	MZurlStartTime = month1stDate,
 	MZurlEndTime = currentDate,
 	//MZEchartsUrl = "http://123.206.134.34:8080/Medicals_war/charts/mazuifangfa?page="+MZpage+"&startTime="+MZurlStartTime+"&endTime="+MZurlEndTime,
 	MZstartDate = doc.getElementById("MZstartTime"),
@@ -15,6 +16,9 @@ var MZpage = 1,
 var MZpageBefore = doc.getElementById("MZPageBefore"),
 	MZpageNext = doc.getElementById("MZPageNext"),
 	MZpageNum = doc.getElementById("MZPageNum");
+
+MZstartDate.value = month1stDate;
+MZendDate.value = currentDate;
 
 MZpageBefore.onclick = function(){
 	if(MZpage==1){alert("已经是第一页");}

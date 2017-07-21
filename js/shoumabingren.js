@@ -7,16 +7,21 @@ var SMBRTotal = doc.getElementById("SMBRTotal"),
 
 var SMBRpage = 1,
     currentDate = getNowFormatDate(),
+    month1stDate = getMonth1stFormatDate(),
 	SMdataSource = [],
 	SMdataTitle = [],
 	doc = document,
-	SMBRurlStartTime = "2010-01-01",
+	//SMBRurlStartTime = "2010-01-01",
+    SMBRurlStartTime = month1stDate,
     SMBRurlEndTime = currentDate,
     url = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
     SMstartDate = doc.getElementById("SMstartTime"),
     SMendDate = doc.getElementById("SMendTime"),
     SMsubmitDate = doc.getElementById("SMsubmitTime"),
     SMexport = doc.getElementById("SMexport");
+
+SMstartDate.value = month1stDate;
+SMendDate.value = currentDate;
 
 //��ȡ���鲡������
 $.ajax({

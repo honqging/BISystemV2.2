@@ -9,13 +9,17 @@ var MZFSpage = 1,
     MZFSdataSource = [],
     MZFSdataTitle = [],
     doc = document,
-	MZFSurlStartTime = "2010-01-01",
+	//MZFSurlStartTime = "2010-01-01",
+    MZFSurlStartTime = month1stDate
     MZFSurlEndTime = currentDate,
     MZFSurl = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
     MZFSstartDate = doc.getElementById("MZFSstartTime"),
     MZFSendDate = doc.getElementById("MZFSGendTime"),
     MZFSsubmitDate = doc.getElementById("MZFSsubmitTime");
     MZFSexport = doc.getElementById("MZFSexport");
+
+MZFSstartDate.value = month1stDate;
+MZFSendDate.value = currentDate;
 
 $.ajax({
     type: "get",
