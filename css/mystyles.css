@@ -326,8 +326,8 @@ a{
 	height: 350px;
 }
 .KS_Echarts{
-	width: 1000px;
-	height: 400px;
+	width: 1450px;
+	height: 600px;
 }
 .page-middle{
 	text-align: center;
@@ -411,6 +411,10 @@ a{
 }
 .table-div300{
 	height: 300px;
+	overflow-y: scroll;
+}
+.table-div600{
+	height: 600px;
 	overflow-y: scroll;
 }
 .table-head{
