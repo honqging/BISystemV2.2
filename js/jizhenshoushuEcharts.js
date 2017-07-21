@@ -75,6 +75,12 @@ function JZSScharts(){
 					JZSSTotalPage = data.pageCount;
 
 					JZSSpageNum.placeholder = JZSSpage;
+					for(var ii in dataSource.y){
+						if(dataSource.y[ii] == null){
+							dataSource.y[ii] = 0;
+							//console.log('hhah', dataSource.y[ii]);
+						}
+					}
 					//console.log(dataSource);
 					addData();
 				},
