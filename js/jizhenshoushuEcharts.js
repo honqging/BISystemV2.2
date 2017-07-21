@@ -32,6 +32,7 @@ JZSSpageNext.onclick = function(){
 	console.log("1"+JZSSpage);
 	JZSSpage ++;
 	if(JZSSpage > JZSSTotalPage){
+		JZSSpage --;
 		alert('已经是最后一页');
 	}else{
 		JZSScharts();

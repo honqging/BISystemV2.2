@@ -152,6 +152,7 @@ NLDKSnextPage.onclick = function(){
 	NLDKSloadpage ++;
 	var url2 = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?rowCount="+ NLDKSnumPer +"&page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
 	if(NLDKSloadpage > NLDKSTotalPage){
+		NLDKSloadpage --;
 		alert('已经是最后一页');
 	}else{
 		$.ajax({

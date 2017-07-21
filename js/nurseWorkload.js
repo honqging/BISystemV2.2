@@ -143,6 +143,7 @@ nurseWorkloadnextPage.onclick = function(){
     var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     //console.log(nurseWorkloadpage);
     if(nurseWorkloadpage > HSGZLTotalPage){
+        nurseWorkloadpage --;
         alert('已经是最后一页');
     }else {
         $.ajax({

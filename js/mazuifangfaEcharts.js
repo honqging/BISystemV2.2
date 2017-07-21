@@ -32,6 +32,7 @@ MZpageNext.onclick = function(){
 	console.log("1"+MZpage);
 	MZpage ++;
 	if(MZpage > MZTotalPage){
+		MZpage --;
 		alert('已经是最后一页');
 	}else{
 		MZFFcharts();

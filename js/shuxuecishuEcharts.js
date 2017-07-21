@@ -31,6 +31,7 @@ SXCSpageBefore.onclick = function(){
 SXCSpageNext.onclick = function(){
 	SXCSpage ++;
 	if(SXCSpage > SXCSTotalPage){
+		SXCSpage --;
 		alert('已经是最后一页');
 	}else{
 		SXCScharts();

@@ -172,6 +172,7 @@ HFSSCnextPage.onclick = function(){
 	HFSSCloadpage ++;
 	var url2 = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?rowCount="+ HFSSCnumPer +"&page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
 	if(HFSSCloadpage > HFSSCTotalPage){
+		HFSSCloadpage --;
 		alert('已经是最后一页');
 	}else {
 		$.ajax({

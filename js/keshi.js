@@ -174,6 +174,7 @@ var KSpageBefore = doc.getElementById("KSpageBefore"),
 		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
 		//console.log(KSpage);
 		if(KSpage > KSTotalPage){
+			KSpage --;
 			alert('已经是最后一页');
 		}else {
 			$.ajax({

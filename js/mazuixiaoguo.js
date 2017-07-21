@@ -171,6 +171,7 @@ MZXGPageNext.onclick = function(){
     var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguo?rowCount="+ MZXGnumPer +"&page="+MZXGpage+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime;
     //console.log(MZXGpage);
     if(MZXGpage > MZXGTotalPage){
+        MZXGpage --;
         alert('已经是最后一页');
     }else {
         $.ajax({

@@ -32,6 +32,7 @@ SSSJpageNext.onclick = function(){
 	console.log("1"+SSSJpage);
 	SSSJpage ++;
 	if(SSSJpage > SSSJTotalPage){
+		SSSJpage --;
 		alert('已经是最后一页');
 	}else{
 		SSSJcharts();

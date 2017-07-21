@@ -32,6 +32,7 @@ ATSCpageNext.onclick = function(){
 	console.log("1"+ATSCpage);
 	ATSCpage ++;
 	if(ATSCpage > ATSCTotalPage){
+		ATSCpage --;
 		alert('已经是最后一页');
 	}else{
 		ATSCcharts();

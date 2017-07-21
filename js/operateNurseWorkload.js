@@ -103,6 +103,7 @@ var SSHSGZLbeforePage = doc.getElementById("SSHSGZLPageBefore"),
 		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?rowCount="+ SSHSGZLnumPer +"&page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
 		//console.log(SSHSGZLpage);
 		if(SSHSGZLpage > SSHSGZLTotalPage){
+			SSHSGZLpage --;
 			alert('已经是最后一页');
 		}else {
 			$.ajax({

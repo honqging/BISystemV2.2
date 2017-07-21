@@ -32,6 +32,7 @@ ATJSCpageNext.onclick = function(){
 	console.log("1"+ATJSCpage);
 	ATJSCpage ++;
 	if(ATJSCpage > ATJSCTotalPage){
+		ATJSCpage --;
 		alert('已经是最后一页');
 	}else{
 		ATJSCcharts();

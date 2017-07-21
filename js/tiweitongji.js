@@ -171,6 +171,7 @@ TWPageNext.onclick = function(){
     var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     //console.log(TWpage);
     if(TWpage > TWTotalPage){
+        TWpage --;
         alert('已经是最后一页');
     }else{
         $.ajax({

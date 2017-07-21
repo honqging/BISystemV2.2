@@ -130,6 +130,7 @@ ASSMCZLTJnextPage.onclick = function(){
 	ASSMCZLTJloadpage ++;
 	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
 	if(ASSMCZLTJloadpage > ASSMCZLTJTotalPage){
+		ASSMCZLTJloadpage --;
 		alert('已经是最后一页');
 	}else{
 		$.ajax({

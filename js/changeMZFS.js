@@ -268,6 +268,7 @@ MZFSpageNext.onclick = function(){
     MZFSpage ++;
     var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
     if(MZFSpage > MZFFTotalPage){
+        MZFSpage --;
         alert('已经是最后一页');
     }else{
         $.ajax({

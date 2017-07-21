@@ -121,6 +121,7 @@ SMBRnextPage.onclick = function(){
     console.log(SMBRurlStartTime,SMBRurlStartTime);
     SMBRpage ++;
     if(SMBRpage > SMBRTotalPage){
+        SMBRpage --;
         alert('已经是最后一页');
     }else{
         var url2 = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;

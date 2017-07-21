@@ -188,6 +188,7 @@ var MZYSGZLbeforePage = doc.getElementById("MZYSGZLPageBefore"),
 		//console.log(MzDocWorkloadpage);
         if(MzDocWorkloadpage > MZYSGZLTotalPage){
             console.log(MzDocWorkloadpage, MZYSGZLTotalPage);
+            MzDocWorkloadpage --;
             alert('已经是最后一页');
         }else {
             $.ajax({

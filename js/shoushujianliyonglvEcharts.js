@@ -32,6 +32,7 @@ SSJLYLpageNext.onclick = function(){
 	console.log("1"+SSJLYLpage);
 	SSJLYLpage ++;
 	if(SSJLYLpage > SSJLYLTotalPage){
+		SSJLYLpage --;
 		alert('已经是最后一页');
 	}else{
 		SSJLYLcharts();

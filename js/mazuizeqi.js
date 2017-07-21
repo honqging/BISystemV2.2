@@ -162,6 +162,7 @@ MZJZZQnextPage.onclick = function(){
 	MZJZZQloadpage ++;
 	var url2 = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?rowCount="+ MZJZZQnumPer +"&page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
 	if(MZJZZQloadpage > MZJZZQTotalPage){
+		MZJZZQloadpage --;
 		alert('已经是最后一页');
 	}else{
 		$.ajax({

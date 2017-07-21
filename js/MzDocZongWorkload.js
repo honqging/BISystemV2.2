@@ -151,6 +151,7 @@ var MZYSZGZLbeforePage = doc.getElementById("MZYSZGZLPageBefore"),
 		var url2 = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?rowCount="+ MZYSZGZLnumPer +"&page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
 		//console.log(MzDocZongWorkloadpage);
 		if(MzDocZongWorkloadpage > MZYSZGZLTotalPage){
+			MzDocZongWorkloadpage --;
 			alert('已经是最后一页');
 		}else {
 			$.ajax({
