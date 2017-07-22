@@ -315,7 +315,7 @@ a{
 	overflow:auto;
 }
 .detail-scroll{
-	height: 500px;
+	height: 450px;
 	/*width:60%;*/
 	float:left;
 	overflow:auto;
@@ -469,4 +469,8 @@ table th{
 
 .none-display{
 	display: none;
+}
+
+.modal-dialog{
+	width: 1000px;
 }

@@ -13,6 +13,9 @@ var ASAurlStartTime = month1stDate,
     ASAsubmitDate = doc.getElementById("ASAsubmitTime");
     ASAexport = doc.getElementById("ASAexport");
 
+var pageD = 1,
+	totalPageD = 0;
+
 ASAstartDate.value = month1stDate;
 ASAendDate.value = currentDate;
 
@@ -32,6 +35,11 @@ $.ajax({
 		  alert(errorThrown); 
 		 } 
 	 });
+
+function isInteger(obj) {
+	return typeof obj === 'number' && obj%1 === 0 && obj > 0
+}
+
 function insertASATable(){
 	//创建表格
 	var table = doc.getElementById("ASA_table");
@@ -72,25 +80,70 @@ function insertASATable(){
 					//});
 					var loadMes = doc.getElementById('loadMes');
 					var table2 = doc.getElementById("ASAdetail_table");
+					var idd = this.id;
 					table2.innerHTML = '';
 					loadMes.innerHTML = 'loading...';
-					$.ajax({ 
-						  type: "get", 
-						  url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?rowCount="+ 20 +"&page="+ 1 +"&asaName="+this.id+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
-						  dataType: "json",
-						  jsonp:"callback",
-						  success: function (data) { 
-							  ASAdetail = data.data;
-							  ASAdetailTitle = data.header;
-							  loadMes.innerHTML = '';
-							  console.log(ASAdetail);
-							  insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2);
-							  //$('#ASAdetail_table').html(table2);
-						  },
-						  error: function (XMLHttpRequest, textStatus, errorThrown) { 
-						  alert(errorThrown); 
-						 } 
-					 });
+
+					displayDetail(pageD, idd);
+
+					$('#ASApageBeforeD').click(function(){
+						if(pageD == 1){
+							alert('已经是第一页');
+						}else{
+							doc.getElementById('ASApageNumD').placeholder = --pageD;
+							displayDetail(pageD, idd);
+						}
+					});
+
+					$('#ASApageNextD').click(function(){
+						console.log('pageD', pageD, totalPageD);
+						if(pageD >= totalPageD){
+							alert('已经是最后一页');
+						}else{
+							doc.getElementById('ASApageNumD').placeholder = ++pageD;
+							displayDetail(pageD, idd);
+						}
+					});
+
+					$('#ASAconfirmD').click(function(){
+						var tempPage = pageD;
+						pageD = parseFloat(doc.getElementById('ASAassignPageD').value);
+						if(isInteger(pageD)){
+							if(pageD <= totalPageD){
+								doc.getElementById('ASApageNumD').placeholder = pageD;
+								displayDetail(pageD, idd);
+							}else{
+								pageD = tempPage;
+								alert('超出页数上限，请重新选择页数');
+							}
+						}else{
+							alert('请输入正整数！')
+						}
+					});
+
+					function displayDetail(pageD, idd){
+						$.ajax({
+							type: "get",
+							url: "http://123.206.134.34:8080/Medicals_war/operation/asaQuery?rowCount="+ 20 +"&page="+ pageD +"&asaName="+idd+"&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+							dataType: "json",
+							jsonp:"callback",
+							success: function (data) {
+								table2.innerHTML = '';
+								ASAdetail = data.data;
+								ASAdetailTitle = data.header;
+								loadMes.innerHTML = '';
+								console.log(ASAdetail);
+								insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2);
+								//$('#ASAdetail_table').html(table2);
+								$('#ASABtnSet').css('display', 'block');
+								totalPageD = data.pageCount;
+								doc.getElementById('ASATotalD').innerHTML = totalPageD;
+							},
+							error: function (XMLHttpRequest, textStatus, errorThrown) {
+								alert(errorThrown);
+							}
+						});
+					}
 				}
 				//a.onclick = getDetailData("http://123.206.134.34:8080/Medicals_war/operation/asaQuery?asaName=1");
 				td.appendChild(a);
