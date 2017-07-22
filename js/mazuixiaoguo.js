@@ -70,6 +70,10 @@ function createMZXGtable(){
                 //a.setAttribute("data-content",MZXGdataSource[i][j]);
                 a.department = MZXGdataSource[i][0];
                 a.effect = MZXGdataTitle[j];
+                $("[data-toggle='popover']").popover({
+                    html:true,
+                    content:'<div id="content">loading...</div>'
+                });
                 a.onclick = function(){
                     var result;
                     $("[data-toggle='popover']").popover({

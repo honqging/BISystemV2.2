@@ -109,7 +109,10 @@ function insertMZXGTable(){
         a.setAttribute("data-placement","left");
         //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
         a.id = MZFSdataSource[i].groupName;
-
+        $("[data-toggle='popover']").popover({
+            html:true,
+            content:'<div id="content">loading...</div>'
+        });
         a.onclick = function(){
             var result;
             $("[data-toggle='popover']").popover({

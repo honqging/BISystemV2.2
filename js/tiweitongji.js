@@ -70,6 +70,10 @@ function insertTWTable(){
                 //a.setAttribute("data-content",TWdataSource[i][j]);
                 a.department = TWdataSource[i][0];
                 a.position = TWdataTitle[j];
+                $("[data-toggle='popover']").popover({
+                    html:true,
+                    content:'<div id="content">loading...</div>'
+                });
                 a.onclick = function(){
                     var result;
                     $("[data-toggle='popover']").popover({

@@ -70,6 +70,10 @@ function insertNLDTable(){
 				//a.setAttribute("data-content",NLDdataSource[i][j]);
                 a.method = NLDdataSource[i][0];
                 a.age = NLDdataTitle[j];
+				$("[data-toggle='popover']").popover({
+					html:true,
+					content:'<div id="content">loading...</div>'
+				});
 				a.onclick = function(){
 					var result;
 					$("[data-toggle='popover']").popover({

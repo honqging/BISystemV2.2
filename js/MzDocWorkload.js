@@ -90,6 +90,10 @@ function insertMZYSGZLTable(){
 						//a.setAttribute("data-content",MZYSGZLtableData[x].groupRows[i][j]);
 						a.department = MZYSGZLtableData[x].groupName;
 						a.name = MZYSGZLtableData[x].groupRows[i][0];
+                        $("[data-toggle='popover']").popover({
+                            html:true,
+                            content:'<div id="content">loading...</div>'
+                        });
 						a.onclick = function(){
                             var result;
                             $("[data-toggle='popover']").popover({

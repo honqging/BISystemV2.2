@@ -71,6 +71,10 @@ function insertMZYSZGZLTable(){
 				a.setAttribute("data-placement","top");
 				//a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
 				a.id = MZYSZGZLdataSource[i][1];
+				$("[data-toggle='popover']").popover({
+					html:true,
+					content:'<div id="content">loading...</div>'
+				});
 				a.onclick = function(){
                     var result;
                     $("[data-toggle='popover']").popover({
