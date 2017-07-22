@@ -20,6 +20,9 @@ var KSpage = 1,
     KSsubmitDate = doc.getElementById("KSsubmitTime");
     KSexport = doc.getElementById("KSGZLexport");
 
+var pageD = 1,
+	totalPageD = 0;
+
 KSstartDate.value = month1stDate;
 KSendDate.value = currentDate;
 
@@ -65,36 +68,85 @@ function insertKSTable(){
 				var data = doc.createTextNode(KSdataSource[i][j]),
 					a = doc.createElement("a"),
 					td = doc.createElement("td");
-				a.setAttribute("tabindex","0");
 				a.setAttribute("role","button");
-				a.setAttribute("data-toggle","popover");
-				a.setAttribute("data-trigger","focus");
-				a.setAttribute("data-placement","left");
-				//a.setAttribute("data-content",KSdataSource[i][j]);
+				a.setAttribute("data-toggle","modal");
+				a.setAttribute("data-target","#keshiD");
 				a.office = KSdataSource[i][0];
 				a.level = KSdataTitle[j];
 				a.onclick = function(){
-					var result;
-					$("[data-toggle='popover']").popover({
-						html:true,
-						content:'<div id="content">loading...</div>'
-					});
-					$.ajax({
-						  type: "get",
-						  url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.office+"&feature="+this.level+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
-						  dataType: "json",
-						  jsonp:"callback",
-						  success: function (data) {
-                              var result = data.data;
-                              var title = data.header;
-                              var table2 = doc.createElement("table");
-							  insertkeshiSubTable(result,title,table2);
-							  $('#content').html(table2);
-						  },
-						  error: function (XMLHttpRequest, textStatus, errorThrown) {
-						  alert(errorThrown);
-						 }
-					 });
+					var department = this.office,
+						feature = this.level;
+
+					pageD = 1;
+					totalPageD = 0;
+					console.log(pageD, 'pageDDDD');
+					doc.getElementById('KSTotalD').innerHTML = '';
+					doc.getElementById('KSassignPageD').placeholder = '';
+					doc.getElementById('KSpageNumD').placeholder = 1;
+
+					$('#keshiDTable').html('loading...');
+					$('#KSassignPageD').html('');
+					displayDetail(department, feature);
+
+					doc.getElementById('KSpageBeforeD').onclick = function(){
+						if(pageD == 1){
+							alert('已经是第一页');
+						}else{
+							doc.getElementById('KSpageNumD').placeholder = --pageD;
+							displayDetail(department, feature);
+						}
+					};
+
+					doc.getElementById('KSpageNextD').onclick = function(){
+						if(pageD >= totalPageD){
+							alert('已经是最后一页');
+						}else{
+							console.log('pageD', pageD, totalPageD);
+							pageD++;
+							doc.getElementById('KSpageNumD').placeholder = pageD;
+							displayDetail(department, feature);
+							console.log('pageD2', pageD, totalPageD);
+
+						}
+					};
+
+					doc.getElementById('KSconfirmD').onclick = function(){
+						var tempPage = pageD;
+						pageD = parseFloat(doc.getElementById('KSassignPageD').value);
+						if(isInteger(pageD)){
+							if(pageD <= totalPageD){
+								doc.getElementById('KSpageNumD').placeholder = pageD;
+								displayDetail(department, feature);
+							}else{
+								pageD = tempPage;
+								alert('超出页数上限，请重新选择页数');
+								doc.getElementById('KSassignPageD').placeholder = '';
+							}
+						}else{
+							alert('请输入正整数！')
+						}
+					};
+
+					function displayDetail(department, feature){
+						$.ajax({
+							type: "get",
+							url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?rowCount="+ 4 +"&page="+ pageD +"&department="+department+"&feature="+feature+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+							dataType: "json",
+							jsonp:"callback",
+							success: function (data) {
+								var result = data.data;
+								var title = data.header;
+								totalPageD = data.pageCount;
+								var table2 = doc.getElementById("keshiDTable");
+								table2.innerHTML = '';
+								doc.getElementById('KSTotalD').innerHTML = totalPageD;
+								insertkeshiSubTable(result,title,table2);
+							},
+							error: function (XMLHttpRequest, textStatus, errorThrown) {
+								alert(errorThrown);
+							}
+						});
+					}
 				}
 				a.appendChild(data);
 				td.appendChild(a);
