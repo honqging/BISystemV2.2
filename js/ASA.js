@@ -81,7 +81,7 @@ function insertASATable(){
 					pageD = 1;
 					totalPageD = 0;
 					doc.getElementById('ASApageNumD').placeholder = 1;
-					doc.getElementById('ASAassignPageD').placeholder = '';
+					doc.getElementById('ASAassignPageD').value = '';
 					doc.getElementById('ASATotalD').innerHTML = '';
 
 					var loadMes = doc.getElementById('loadMes');
@@ -123,6 +123,7 @@ function insertASATable(){
 							}else{
 								pageD = tempPage;
 								alert('超出页数上限，请重新选择页数');
+								doc.getElementById('ASAassignPageD').value = '';
 							}
 						}else{
 							alert('请输入正整数！')

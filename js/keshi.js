@@ -79,9 +79,9 @@ function insertKSTable(){
 
 					pageD = 1;
 					totalPageD = 0;
-					console.log(pageD, 'pageDDDD');
+					//console.log(pageD, 'pageDDDD');
 					doc.getElementById('KSTotalD').innerHTML = '';
-					doc.getElementById('KSassignPageD').placeholder = '';
+					doc.getElementById('KSassignPageD').value = '';
 					doc.getElementById('KSpageNumD').placeholder = 1;
 
 					$('#keshiDTable').html('loading...');
@@ -120,7 +120,7 @@ function insertKSTable(){
 							}else{
 								pageD = tempPage;
 								alert('超出页数上限，请重新选择页数');
-								doc.getElementById('KSassignPageD').placeholder = '';
+								doc.getElementById('KSassignPageD').value = '';
 							}
 						}else{
 							alert('请输入正整数！')
