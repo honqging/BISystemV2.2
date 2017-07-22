@@ -101,11 +101,11 @@ function insertKSTable(){
 						if(pageD >= totalPageD){
 							alert('已经是最后一页');
 						}else{
-							console.log('pageD', pageD, totalPageD);
+							//console.log('pageD', pageD, totalPageD);
 							pageD++;
 							doc.getElementById('KSpageNumD').placeholder = pageD;
 							displayDetail(department, feature);
-							console.log('pageD2', pageD, totalPageD);
+							//console.log('pageD2', pageD, totalPageD);
 
 						}
 					};
@@ -130,7 +130,7 @@ function insertKSTable(){
 					function displayDetail(department, feature){
 						$.ajax({
 							type: "get",
-							url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?rowCount="+ 4 +"&page="+ pageD +"&department="+department+"&feature="+feature+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
+							url: "http://123.206.134.34:8080/Medicals_war/statistic/keshiQuery?rowCount="+ 20 +"&page="+ pageD +"&department="+department+"&feature="+feature+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime,
 							dataType: "json",
 							jsonp:"callback",
 							success: function (data) {
