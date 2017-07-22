@@ -18,6 +18,9 @@ var TWpage = 1,
     TWsubmitDate = doc.getElementById("SSTWsubmitTime");
     TWexport = doc.getElementById("SSTWexport");
 
+var pageD = 1,
+    totalPageD = 0;
+
 TWstartDate.value = month1stDate;
 TWendDate.value = currentDate;
 
@@ -62,40 +65,86 @@ function insertTWTable(){
                 var data = doc.createTextNode(TWdataSource[i][j]),
                     a = doc.createElement("a"),
                     td = doc.createElement("td");
-                a.setAttribute("tabindex","0");
                 a.setAttribute("role","button");
-                a.setAttribute("data-toggle","popover");
-                a.setAttribute("data-trigger","focus");
-                a.setAttribute("data-placement","left");
+                a.setAttribute("data-toggle","modal");
+                a.setAttribute("data-target","#TWD");
                 //a.setAttribute("data-content",TWdataSource[i][j]);
                 a.department = TWdataSource[i][0];
                 a.position = TWdataTitle[j];
-                $("[data-toggle='popover']").popover({
-                    html:true,
-                    content:'<div id="content">loading...</div>'
-                });
                 a.onclick = function(){
-                    var result;
-                    $("[data-toggle='popover']").popover({
-                        html:true,
-                        content:'<div id="content">loading...</div>'
-                    });
-                    $.ajax({
-                        type: "get",
-                        url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.department+"&position="+this.position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
-                        dataType: "json",
-                        jsonp:"callback",
-                        success: function (data) {
-                            var result = data.data;
-                            var title = data.header;
-                            var table2 = doc.createElement("table");
-                            insertTWSubTable(result,title,table2);
-                            $('#content').html(table2);
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert(errorThrown);
+                    var department = this.department,
+                        position = this.position;
+
+                    pageD = 1;
+                    totalPageD = 0;
+                    //console.log(pageD, 'pageDDDD');
+                    doc.getElementById('TWTotalD').innerHTML = '';
+                    doc.getElementById('TWassignPageD').value = '';
+                    doc.getElementById('TWpageNumD').placeholder = 1;
+
+                    $('#TWDTable').html('loading...');
+                    $('#TWassignPageD').html('');
+                    displayDetail(department, position)
+
+                    doc.getElementById('TWpageBeforeD').onclick = function(){
+                        if(pageD == 1){
+                            alert('已经是第一页');
+                        }else{
+                            doc.getElementById('TWpageNumD').placeholder = --pageD;
+                            displayDetail(department, position)
                         }
-                    });
+                    };
+
+                    doc.getElementById('TWpageNextD').onclick = function(){
+                        if(pageD >= totalPageD){
+                            alert('已经是最后一页');
+                        }else{
+                            //console.log('pageD', pageD, totalPageD);
+                            pageD++;
+                            doc.getElementById('TWpageNumD').placeholder = pageD;
+                            displayDetail(department, position)
+                            //console.log('pageD2', pageD, totalPageD);
+
+                        }
+                    };
+
+                    doc.getElementById('TWconfirmD').onclick = function(){
+                        var tempPage = pageD;
+                        pageD = parseFloat(doc.getElementById('TWassignPageD').value);
+                        if(isInteger(pageD)){
+                            if(pageD <= totalPageD){
+                                doc.getElementById('TWpageNumD').placeholder = pageD;
+                                displayDetail(department, position)
+                            }else{
+                                pageD = tempPage;
+                                alert('超出页数上限，请重新选择页数');
+                                doc.getElementById('TWassignPageD').value = '';
+                            }
+                        }else{
+                            alert('请输入正整数！')
+                        }
+                    };
+
+                    function displayDetail(department, position){
+                        $.ajax({
+                            type: "get",
+                            url: "http://123.206.134.34:8080/Medicals_war/reportform/tiweiQuery?rowCount="+ 20 +"&page="+ pageD +"&department="+department+"&position="+position+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime,
+                            dataType: "json",
+                            jsonp:"callback",
+                            success: function (data) {
+                                var result = data.data;
+                                var title = data.header;
+                                totalPageD = data.pageCount;
+                                var table2 = doc.getElementById("TWDTable");
+                                table2.innerHTML = '';
+                                doc.getElementById('TWTotalD').innerHTML = totalPageD;
+                                insertTWSubTable(result,title,table2);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(errorThrown);
+                            }
+                        });
+                    }
                 }
                 a.appendChild(data);
                 td.appendChild(a);
