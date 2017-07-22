@@ -18,6 +18,9 @@ var MZXGpage = 1,
     MZXGsubmitDate = doc.getElementById("MZXGsubmitTime");
     MZXGexport = doc.getElementById("MZXGexport");
 
+var pageD = 1,
+    totalPageD = 0;
+
 MZXGstartDate.value = month1stDate;
 MZXGendDate.value = currentDate;
 
@@ -62,40 +65,86 @@ function createMZXGtable(){
                 var data = doc.createTextNode(MZXGdataSource[i][j]),
                     a = doc.createElement("a"),
                     td = doc.createElement("td");
-                a.setAttribute("tabindex","0");
                 a.setAttribute("role","button");
-                a.setAttribute("data-toggle","popover");
-                a.setAttribute("data-trigger","focus");
-                a.setAttribute("data-placement","left");
+                a.setAttribute("data-toggle","modal");
+                a.setAttribute("data-target","#MZXGD");
                 //a.setAttribute("data-content",MZXGdataSource[i][j]);
                 a.department = MZXGdataSource[i][0];
                 a.effect = MZXGdataTitle[j];
-                $("[data-toggle='popover']").popover({
-                    html:true,
-                    content:'<div id="content">loading...</div>'
-                });
+
                 a.onclick = function(){
-                    var result;
-                    $("[data-toggle='popover']").popover({
-                        html:true,
-                        content:'<div id="content">loading...</div>'
-                    });
-                    $.ajax({
-                        type: "get",
-                        url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguoQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.department+"&effect="+this.effect+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime,
-                        dataType: "json",
-                        jsonp:"callback",
-                        success: function (data) {
-                            var result = data.data;
-                            var title = data.header;
-                            var table2 = doc.createElement("table");
-                            createMZXGSubTable(result,title,table2);
-                            $('#content').html(table2);
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert(errorThrown);
+                    var department = this.department,
+                        effect = this.effect;
+
+                    pageD = 1;
+                    totalPageD = 0;
+                    //console.log(pageD, 'pageDDDD');
+                    doc.getElementById('MZXGTotalD').innerHTML = '';
+                    doc.getElementById('MZXGassignPageD').value = '';
+                    doc.getElementById('MZXGpageNumD').placeholder = 1;
+
+                    $('#MZXGDTable').html('loading...');
+                    displayDetail(department, effect);
+
+                    doc.getElementById('MZXGpageBeforeD').onclick = function(){
+                        if(pageD == 1){
+                            alert('已经是第一页');
+                        }else{
+                            doc.getElementById('MZXGpageNumD').placeholder = --pageD;
+                            displayDetail(department, effect);
                         }
-                    });
+                    };
+
+                    doc.getElementById('MZXGpageNextD').onclick = function(){
+                        if(pageD >= totalPageD){
+                            alert('已经是最后一页');
+                        }else{
+                            //console.log('pageD', pageD, totalPageD);
+                            pageD++;
+                            doc.getElementById('MZXGpageNumD').placeholder = pageD;
+                            displayDetail(department, effect);
+                            //console.log('pageD2', pageD, totalPageD);
+
+                        }
+                    };
+
+                    doc.getElementById('MZXGconfirmD').onclick = function(){
+                        var tempPage = pageD;
+                        pageD = parseFloat(doc.getElementById('MZXGassignPageD').value);
+                        if(isInteger(pageD)){
+                            if(pageD <= totalPageD){
+                                doc.getElementById('MZXGpageNumD').placeholder = pageD;
+                                displayDetail(department, effect);
+                            }else{
+                                pageD = tempPage;
+                                alert('超出页数上限，请重新选择页数');
+                                doc.getElementById('MZXGassignPageD').value = '';
+                            }
+                        }else{
+                            alert('请输入正整数！')
+                        }
+                    };
+
+                    function displayDetail(department, effect){
+                        $.ajax({
+                            type: "get",
+                            url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguoQuery?rowCount="+ 2 +"&page="+ pageD +"&department="+department+"&effect="+effect+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime,
+                            dataType: "json",
+                            jsonp:"callback",
+                            success: function (data) {
+                                var result = data.data;
+                                var title = data.header;
+                                totalPageD = data.pageCount;
+                                var table2 = doc.getElementById("MZXGDTable");
+                                table2.innerHTML = '';
+                                doc.getElementById('MZXGTotalD').innerHTML = totalPageD;
+                                createMZXGSubTable(result,title,table2);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(errorThrown);
+                            }
+                        });
+                    }
                 }
                 a.appendChild(data);
                 td.appendChild(a);

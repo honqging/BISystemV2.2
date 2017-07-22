@@ -85,7 +85,6 @@ function insertKSTable(){
 					doc.getElementById('KSpageNumD').placeholder = 1;
 
 					$('#keshiDTable').html('loading...');
-					$('#KSassignPageD').html('');
 					displayDetail(department, feature);
 
 					doc.getElementById('KSpageBeforeD').onclick = function(){
