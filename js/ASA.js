@@ -78,24 +78,32 @@ function insertASATable(){
 					//	html:true,
 					//	content:'<div id="content">loading...</div>'
 					//});
+					pageD = 1;
+					totalPageD = 0;
+					doc.getElementById('ASApageNumD').placeholder = 1;
+					doc.getElementById('ASAassignPageD').placeholder = '';
+					doc.getElementById('ASATotalD').innerHTML = '';
+
 					var loadMes = doc.getElementById('loadMes');
 					var table2 = doc.getElementById("ASAdetail_table");
+
 					var idd = this.id;
 					table2.innerHTML = '';
 					loadMes.innerHTML = 'loading...';
+					doc.getElementById('ASABtnSet').style.display='none';
 
 					displayDetail(pageD, idd);
 
-					$('#ASApageBeforeD').click(function(){
+					doc.getElementById('ASApageBeforeD').onclick = function(){
 						if(pageD == 1){
 							alert('已经是第一页');
 						}else{
 							doc.getElementById('ASApageNumD').placeholder = --pageD;
 							displayDetail(pageD, idd);
 						}
-					});
+					};
 
-					$('#ASApageNextD').click(function(){
+					doc.getElementById('ASApageNextD').onclick = function(){
 						console.log('pageD', pageD, totalPageD);
 						if(pageD >= totalPageD){
 							alert('已经是最后一页');
@@ -103,9 +111,9 @@ function insertASATable(){
 							doc.getElementById('ASApageNumD').placeholder = ++pageD;
 							displayDetail(pageD, idd);
 						}
-					});
+					};
 
-					$('#ASAconfirmD').click(function(){
+					doc.getElementById('ASAconfirmD').onclick = function(){
 						var tempPage = pageD;
 						pageD = parseFloat(doc.getElementById('ASAassignPageD').value);
 						if(isInteger(pageD)){
@@ -119,7 +127,7 @@ function insertASATable(){
 						}else{
 							alert('请输入正整数！')
 						}
-					});
+					};
 
 					function displayDetail(pageD, idd){
 						$.ajax({
