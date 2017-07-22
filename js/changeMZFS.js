@@ -102,39 +102,83 @@ function insertMZXGTable(){
         var data2 = doc.createTextNode(MZFSdataSource[i].sum),
             a = doc.createElement("a"),
             td2 = doc.createElement("td");
-        a.setAttribute("tabindex","0");
         a.setAttribute("role","button");
-        a.setAttribute("data-toggle","popover");
-        a.setAttribute("data-trigger","focus");
-        a.setAttribute("data-placement","left");
-        //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
+        a.setAttribute("data-toggle","modal");
+        a.setAttribute("data-target","#MZFFD");
         a.id = MZFSdataSource[i].groupName;
-        $("[data-toggle='popover']").popover({
-            html:true,
-            content:'<div id="content">loading...</div>'
-        });
         a.onclick = function(){
-            var result;
-            $("[data-toggle='popover']").popover({
-                html:true,
-                content:'<div id="content">loading...</div>'
-            });
-            $.ajax({
-                type: "get",
-                url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiDepartmentQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
-                dataType: "json",
-                jsonp:"callback",
-                success: function (data) {
-                    var result = data.data;
-                    var title = data.header;
-                    var table2 = doc.createElement("table");
-                    insertLCLJGGSubTable(result,title,table2);
-                    $('#content').html(table2);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(errorThrown);
+            var idd = this.id;
+
+            pageD = 1;
+            totalPageD = 0;
+            //console.log(pageD, 'pageDDDD');
+            doc.getElementById('MZFFTotalD').innerHTML = '';
+            doc.getElementById('MZFFassignPageD').value = '';
+            doc.getElementById('MZFFpageNumD').placeholder = 1;
+
+            $('#MZFFDTable').html('loading...');
+            displayDetail(idd);
+
+            doc.getElementById('MZFFpageBeforeD').onclick = function(){
+                if(pageD == 1){
+                    alert('已经是第一页');
+                }else{
+                    doc.getElementById('MZFFpageNumD').placeholder = --pageD;
+                    displayDetail(idd);
                 }
-            });
+            };
+
+            doc.getElementById('MZFFpageNextD').onclick = function(){
+                if(pageD >= totalPageD){
+                    alert('已经是最后一页');
+                }else{
+                    //console.log('pageD', pageD, totalPageD);
+                    pageD++;
+                    doc.getElementById('MZFFpageNumD').placeholder = pageD;
+                    displayDetail(idd);
+                    //console.log('pageD2', pageD, totalPageD);
+
+                }
+            };
+
+            doc.getElementById('MZFFconfirmD').onclick = function(){
+                var tempPage = pageD;
+                pageD = parseFloat(doc.getElementById('MZFFassignPageD').value);
+                if(isInteger(pageD)){
+                    if(pageD <= totalPageD){
+                        doc.getElementById('MZFFpageNumD').placeholder = pageD;
+                        displayDetail(idd);
+                    }else{
+                        pageD = tempPage;
+                        alert('超出页数上限，请重新选择页数');
+                        doc.getElementById('MZFFassignPageD').value = '';
+                    }
+                }else{
+                    alert('请输入正整数！')
+                }
+            };
+
+            function displayDetail(idd){
+                $.ajax({
+                    type: "get",
+                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiDepartmentQuery?rowCount="+ 20 +"&page="+ pageD +"&department="+idd+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                    dataType: "json",
+                    jsonp:"callback",
+                    success: function (data) {
+                        var result = data.data;
+                        var title = data.header;
+                        totalPageD = data.pageCount;
+                        var table2 = doc.getElementById("MZFFDTable");
+                        table2.innerHTML = '';
+                        doc.getElementById('MZFFTotalD').innerHTML = totalPageD;
+                        insertLCLJGGSubTable(result,title,table2);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+
         }
 
 
@@ -156,11 +200,9 @@ function insertMZXGTable(){
                 a2 = doc.createElement("a"),
                 td4 = doc.createElement("td");
 
-            a2.setAttribute("tabindex","0");
             a2.setAttribute("role","button");
-            a2.setAttribute("data-toggle","popover");
-            a2.setAttribute("data-trigger","focus");
-            a2.setAttribute("data-placement","left");
+            a2.setAttribute("data-toggle","modal");
+            a2.setAttribute("data-target","#MZFFD");
             //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
             a2.id = MZFSdataSource[i].groupRows[k][0];
             a2.setAttribute("name", MZFSdataSource[i].groupName);
@@ -168,27 +210,79 @@ function insertMZXGTable(){
             //console.log(departmentName);
 
             a2.onclick = function(){
-                var result;
-                $("[data-toggle='popover']").popover({
-                    html:true,
-                    content:'<div id="content">loading...</div>'
-                });
-                $.ajax({
-                    type: "get",
-                    url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?rowCount="+ 20 +"&page="+ 1 +"&department="+this.name+"&anesthetist="+this.id+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
-                    dataType: "json",
-                    jsonp:"callback",
-                    success: function (data) {
-                        var result = data.data;
-                        var title = data.header;
-                        var table2 = doc.createElement("table");
-                        insertLCLJGGSubTable(result,title,table2);
-                        $('#content').html(table2);
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(errorThrown);
+                var idd = this.id,
+                    name = this.name;
+
+                pageD = 1;
+                totalPageD = 0;
+                //console.log(pageD, 'pageDDDD');
+                doc.getElementById('MZFFTotalD').innerHTML = '';
+                doc.getElementById('MZFFassignPageD').value = '';
+                doc.getElementById('MZFFpageNumD').placeholder = 1;
+
+                $('#MZFFDTable').html('loading...');
+                displayDetail(name, idd);
+
+                doc.getElementById('MZFFpageBeforeD').onclick = function(){
+                    if(pageD == 1){
+                        alert('已经是第一页');
+                    }else{
+                        doc.getElementById('MZFFpageNumD').placeholder = --pageD;
+                        displayDetail(name, idd);
                     }
-                });
+                };
+
+                doc.getElementById('MZFFpageNextD').onclick = function(){
+                    if(pageD >= totalPageD){
+                        alert('已经是最后一页');
+                    }else{
+                        //console.log('pageD', pageD, totalPageD);
+                        pageD++;
+                        doc.getElementById('MZFFpageNumD').placeholder = pageD;
+                        displayDetail(name, idd);
+                        //console.log('pageD2', pageD, totalPageD);
+
+                    }
+                };
+
+                doc.getElementById('MZFFconfirmD').onclick = function(){
+                    var tempPage = pageD;
+                    pageD = parseFloat(doc.getElementById('MZFFassignPageD').value);
+                    if(isInteger(pageD)){
+                        if(pageD <= totalPageD){
+                            doc.getElementById('MZFFpageNumD').placeholder = pageD;
+                            displayDetail(name, idd);
+                        }else{
+                            pageD = tempPage;
+                            alert('超出页数上限，请重新选择页数');
+                            doc.getElementById('MZFFassignPageD').value = '';
+                        }
+                    }else{
+                        alert('请输入正整数！')
+                    }
+                };
+
+                function displayDetail(name, idd){
+                    $.ajax({
+                        type: "get",
+                        url: "http://123.206.134.34:8080/Medicals_war/reportform/genggaiAnesthetistQuery?rowCount="+ 20 +"&page="+ pageD +"&department="+name+"&anesthetist="+idd+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime,
+                        dataType: "json",
+                        jsonp:"callback",
+                        success: function (data) {
+                            var result = data.data;
+                            var title = data.header;
+                            totalPageD = data.pageCount;
+                            var table2 = doc.getElementById("MZFFDTable");
+                            table2.innerHTML = '';
+                            doc.getElementById('MZFFTotalD').innerHTML = totalPageD;
+                            insertLCLJGGSubTable(result,title,table2);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(errorThrown);
+                        }
+                    });
+                }
+
             }
 
             a2.appendChild(data4);
@@ -225,11 +319,12 @@ function insertLCLJGGSubTable(result,title,table){
             var td = doc.createElement("td");
             var insertData = doc.createTextNode(result[i][j]);
             td.appendChild(insertData);
-            if(i==7 || i==8){
-                td.style.width = "60px";
-            }else{
-                td.style.width = "30px";
+            if(j==8){
+                td.style.width = "20%";
             }
+            //}else{
+            //    td.style.width = "30px";
+            //}
             tr.appendChild(td);
         }
         table.appendChild(tr);
