@@ -1,4 +1,8 @@
+html{
+	height: 100%;
+}
 body{
+	height: 100%;
 	font-family: PingFangSC-Regular, sans-serif;
 	background-color:#f5f5f5;
 }
@@ -75,7 +79,7 @@ h4{
 .jumbotron {
     padding: 20px 0px 20px 20px;
 	margin-bottom: 0px;
-	height:100%;
+	/*height:20%;*/
     /*background: #50C878;*/
 	background-image:url(../img/top_bg.png);
     /* color:#7986CB; */
@@ -148,13 +152,13 @@ address{
 }
 .sideBar{
 	min-height:900px;
-	height:100%;
+	height:calc(100% - 80px);
 	background-color:#E5F5EC;
 	margin-left:-40px;
 }
 .sideBarL{
 	min-height:900px;
-	height:100%;
+	height:calc(100% - 100px);
 	background-color:#DCF2E6;
 	margin-left:-30px;
 	margin-right:10px;
@@ -417,6 +421,9 @@ a{
 	height: 600px;
 	overflow-y: scroll;
 }
+.table-div table, .table-div300 table, .table-div600 table{
+	margin-bottom: 0;
+}
 .table-head{
 	margin-bottom: 0;
 	border-bottom: none;
@@ -473,4 +480,8 @@ table th{
 
 .modal-dialog{
 	width: 1300px;
+}
+table span{
+	visibility: hidden;
+	background-color: transparent;
 }
