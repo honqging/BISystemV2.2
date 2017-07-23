@@ -49,12 +49,27 @@ function insertKSTable(){
 
 	table.innerHTML = '';
 	thead.innerHTML = '';
+
+	//单独添加表头
+	var top = doc.getElementById('KSGZL_table_top');
+	if(KSpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<KSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(KSdataTitle[t]);
 		th.appendChild(thData);
 		if(t==0){
-			th.style.width = '20%';
+			th.style.width = '18%';
 		}else{
 			th.style.width = '10%';
 		}
@@ -62,6 +77,28 @@ function insertKSTable(){
 	}
 	for(var i=0;i<KSdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#KSGZL_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<KSdataSource[i].length;j++){
 			if(j !== 0 && j!==6){
 				//console.log(KSdataSource[i][j]);
@@ -73,9 +110,10 @@ function insertKSTable(){
 				a.setAttribute("data-target","#keshiD");
 				a.office = KSdataSource[i][0];
 				a.level = KSdataTitle[j];
-				a.onclick = function(){
-					var department = this.office,
-						feature = this.level;
+				var param = { department: a.office, feature: a.level };
+				$(a).click(param, function(event){
+					var department = event.data.department,
+						feature = event.data.feature;
 
 					pageD = 1;
 					totalPageD = 0;
@@ -146,7 +184,7 @@ function insertKSTable(){
 							}
 						});
 					}
-				}
+				});
 				a.appendChild(data);
 				td.appendChild(a);
 			}
@@ -157,7 +195,7 @@ function insertKSTable(){
 				td.appendChild(data);
 			}
 			if(j==0){
-				td.style.width = '20%';
+				td.style.width = '18%';
 			}else{
 				td.style.width = '10%';
 			}
