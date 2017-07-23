@@ -49,16 +49,51 @@ function insertMZYSZGZLTable(){
 	//divAll.style.height = '200px';
 	//divAll.style.overflowY = 'scroll';
 	//单独添加表头
+	var top = doc.getElementById('MZYSZGZL_table_top');
+	if(MzDocZongWorkloadpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<MZYSZGZLdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(MZYSZGZLdataTitle[t]);
-		th.style.width = "20%";
+		th.style.width = "19%";
 		th.appendChild(thData);
 		thead.appendChild(th);
 	}
 
 	for(var i=0;i<MZYSZGZLdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#MZYSZGZL_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<MZYSZGZLdataSource[i].length;j++){
 			if(j == MZYSZGZLdataSource[i].length-1){
 				var data = doc.createTextNode(MZYSZGZLdataSource[i][j]),
@@ -75,15 +110,17 @@ function insertMZYSZGZLTable(){
 					html:true,
 					content:'<div id="content">loading...</div>'
 				});
-				a.onclick = function(){
-                    var result;
+				var param = { idd: a.id };
+				$(a).click(param, function(event){
+					var idd = event.data.idd;
+					var result;
                     $("[data-toggle='popover']").popover({
                         html:true,
                         content:'<div id="content">loading...</div>'
                     });
                     $.ajax({
                           type: "get",
-                          url: "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzongQuery?name="+this.id+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
+                          url: "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzongQuery?name="+idd+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
                           dataType: "json",
                           jsonp:"callback",
                           success: function (data) {
@@ -101,7 +138,7 @@ function insertMZYSZGZLTable(){
                           alert(errorThrown);
                          }
                      });
-                }
+                });
 				a.appendChild(data);
 				td.appendChild(a);
 			}
@@ -111,7 +148,7 @@ function insertMZYSZGZLTable(){
 				td.title = MZYSZGZLdataSource[i][j];
 				td.appendChild(data);
 			}
-			td.style.width = "20%";
+			td.style.width = "19%";
 			tr.appendChild(td);
 		}
 		table.appendChild(tr);
