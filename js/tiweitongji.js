@@ -47,12 +47,25 @@ function insertTWTable(){
     table.innerHTML = '';
     thead.innerHTML = '';
     //单独添加表头
+    var top = doc.getElementById('TW_table_top');
+    if(TWpage != 1){
+        top.style.display = 'none';
+    }else{
+        top.style.display = 'block';
+    }
+    var td = doc.createElement('td'),
+        span = doc.createElement('span');
+    span.innerHTML = '🔝';
+    td.appendChild(span);
+    td.style.width = '2%';
+    thead.appendChild(td);
+
     for(var t=0;t<TWdataTitle.length;t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(TWdataTitle[t]);
         th.appendChild(thData);
         if(t==0){
-            th.style.width = '40%';
+            th.style.width = '38%';
         }else{
             th.style.width = '10%';
         }
@@ -60,6 +73,28 @@ function insertTWTable(){
     }
     for(var i=0;i<TWdataSource.length;i++){
         var tr = doc.createElement("tr");
+
+        var td = doc.createElement('td'),
+            span = doc.createElement('span');
+        span.innerHTML = '🔝';
+        td.appendChild(span);
+        td.style.width = '2%';
+        tr.appendChild(td);
+        tr.onclick = function(){
+            $(this).find('span').css('visibility', 'visible');
+        };
+        td.onclick = function(){
+            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+                $('#TW_table_top').prepend($(this).parent().clone(true));
+                $(this).find('span').css('background-color', 'yellow');
+                $(this).find('span').css('visibility', 'hidden');
+
+                alert('成功置顶');
+            }else{
+                alert('该项已置顶');
+            }
+        };
+
         for(var j=0;j<TWdataSource[i].length;j++){
             if(j !== 0){
                 var data = doc.createTextNode(TWdataSource[i][j]),
@@ -71,9 +106,11 @@ function insertTWTable(){
                 //a.setAttribute("data-content",TWdataSource[i][j]);
                 a.department = TWdataSource[i][0];
                 a.position = TWdataTitle[j];
-                a.onclick = function(){
-                    var department = this.department,
-                        position = this.position;
+
+                var param = { department: a.department, position: a.position };
+                $(a).click(param, function(event){
+                    var department = event.data.department,
+                        position = event.data.position;
 
                     pageD = 1;
                     totalPageD = 0;
@@ -145,7 +182,7 @@ function insertTWTable(){
                             }
                         });
                     }
-                }
+                });
                 a.appendChild(data);
                 td.appendChild(a);
             }
@@ -156,7 +193,7 @@ function insertTWTable(){
                 td.appendChild(data);
             }
             if(j==0){
-                td.style.width = '40%';
+                td.style.width = '38%';
             }else{
                 td.style.width = '10%';
             }
