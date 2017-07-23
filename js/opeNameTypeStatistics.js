@@ -45,6 +45,19 @@ function insertASSMCZLTJTable(){
 	table.innerHTML = '';
 	thead.innerHTML = '';
 	//单独添加表头
+	var top = doc.getElementById('ASSMCZLTJ_table_top');
+	if(ASSMCZLTJloadpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<ASSMCZLTJdataTitle.length+1;t++){
 		var th = doc.createElement("th");
 		if(t<ASSMCZLTJdataTitle.length){
@@ -56,7 +69,7 @@ function insertASSMCZLTJTable(){
 		if(t==0){
 			th.style.width = '30%';
 		}else if(t==ASSMCZLTJdataTitle.length){
-			th.style.width = '50%';
+			th.style.width = '48%';
 		}else{
 			th.style.width = '10%';
 		}
@@ -65,13 +78,26 @@ function insertASSMCZLTJTable(){
 	for(var i=0;i<ASSMCZLTJdataSource.length;i++){
 		var tr = doc.createElement("tr");
 
-		//var b = doc.createElement("a"),
-		//	datab = doc.createTextNode('nihao');
-		//b.onclick = function(){
-		//	console.log("对的么？");
-		//}
-		//b.appendChild(datab);
-		//tr.appendChild(b);
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#ASSMCZLTJ_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
 
 		for(var j=0;j<ASSMCZLTJdataSource[i].length+1;j++){
 			if(j<ASSMCZLTJdataSource[i].length){
@@ -85,7 +111,7 @@ function insertASSMCZLTJTable(){
 			if(j==0){
 				td.style.width = '30%';
 			}else if(j==ASSMCZLTJdataSource[i].length){
-				td.style.width = '50%';
+				td.style.width = '48%';
 			}else{
 				td.style.width = '10%';
 			}
