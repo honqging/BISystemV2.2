@@ -47,12 +47,25 @@ function insertNLDTable(){
 	thead.innerHTML = '';
 	table.innerHTML = '';
 	//������ӱ�ͷ
+	var top = doc.getElementById('NLD_table_top');
+	if(NLDpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<NLDdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(NLDdataTitle[t]);
 		th.appendChild(thData);
 		if(t==0){
-			th.style.width = '44%';
+			th.style.width = '42%';
 		}else{
 			th.style.width = '8%';
 		}
@@ -60,6 +73,28 @@ function insertNLDTable(){
 	}
 	for(var i=0;i<NLDdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#NLD_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<NLDdataSource[i].length;j++){
 			if(j !== 0){
 				var data = doc.createTextNode(NLDdataSource[i][j]),
@@ -70,10 +105,11 @@ function insertNLDTable(){
 				a.setAttribute("data-target","#NLDD");
                 a.method = NLDdataSource[i][0];
                 a.age = NLDdataTitle[j];
-				a.onclick = function(){
+				var param = { method: a.method, age: a.age };
+				$(a).click(param, function(event){
 					var result;
-					var method = this.method,
-						age = this.age;
+					var method = event.data.method,
+						age = event.data.age;
 
 					pageD = 1;
 					totalPageD = 0;
@@ -144,7 +180,7 @@ function insertNLDTable(){
 							}
 						});
 					}
-				};
+				});
 				a.appendChild(data);
 				td.appendChild(a);
 			}
@@ -155,7 +191,7 @@ function insertNLDTable(){
 				td.appendChild(data);
 			}
 			if(j==0){
-				td.style.width = '44%';
+				td.style.width = '42%';
 			}else{
 				td.style.width = '8%';
 			}
