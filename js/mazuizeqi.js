@@ -43,6 +43,19 @@ function insertMZJZZQTable(){
 	table.innerHTML = '';
 	thead.innerHTML = '';
 	//add table head
+	var top = doc.getElementById('MZJZZQ_table_top');
+	if(MZJZZQloadpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<MZJZZQdataTitle.length+1;t++){
 		var th = doc.createElement("th");
 		if(t<MZJZZQdataTitle.length){
@@ -54,7 +67,7 @@ function insertMZJZZQTable(){
 		if(t==0){
 			th.style.width = '20%';
 		}else if(t==MZJZZQdataTitle.length){
-			th.style.width = '50%';
+			th.style.width = '48%';
 		}else{
 			th.style.width = '10%';
 		}
@@ -97,6 +110,28 @@ function insertMZJZZQTable(){
 	// add data rows
 	for(var i=0;i<MZJZZQdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#MZJZZQ_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<MZJZZQdataSource[i].length+1;j++){
 			if(j<MZJZZQdataSource[i].length){
 				var data = doc.createTextNode(MZJZZQdataSource[i][j]);
@@ -116,7 +151,7 @@ function insertMZJZZQTable(){
 			if(j==0){
 				td.style.width = '20%';
 			}else if(j==MZJZZQdataSource[i].length){
-				td.style.width = '50%';
+				td.style.width = '48%';
 			}else{
 				td.style.width = '10%';
 			}
