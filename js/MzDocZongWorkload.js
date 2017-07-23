@@ -183,6 +183,7 @@ MZYSZGZLsubmitDate.onclick = function () {
     getDate(MZYSZGZLstartDate,MZYSZGZLendDate);
     MZYSZGZLurlStartTime = getDate(MZYSZGZLstartDate,MZYSZGZLendDate)[0],
     MZYSZGZLurlEndTime = getDate(MZYSZGZLstartDate,MZYSZGZLendDate)[1];
+	MzDocZongWorkloadpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzong?rowCount="+ MZYSZGZLnumPer +"&page="+MzDocZongWorkloadpage+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime;
     $.ajax({
         type: "get",

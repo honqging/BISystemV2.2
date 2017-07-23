@@ -44,6 +44,7 @@ SSSJsubmitDate.onclick = function () {
 	getDate(SSSJstartDate,SSSJendDate);
 	SSSJurlStartTime = getDate(SSSJstartDate,SSSJendDate)[0],
 		SSSJurlEndTime = getDate(SSSJstartDate,SSSJendDate)[1];
+	SSSJpage = 1;
 	SSSJcharts();
 }
 

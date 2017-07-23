@@ -190,6 +190,7 @@ MZJZZQsubmitDate.onclick = function () {
     getDate(MZJZZQstartDate,MZJZZQendDate);
 	MZJZZQurlStartTime = getDate(MZJZZQstartDate,MZJZZQendDate)[0],
 	MZJZZQurlEndTime = getDate(MZJZZQstartDate,MZJZZQendDate)[1];
+	MZJZZQloadpage = 1;
 	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuijizhenzeqi?rowCount="+ MZJZZQnumPer +"&page="+MZJZZQloadpage+"&startTime="+MZJZZQurlStartTime+"&endTime="+MZJZZQurlEndTime;
     $.ajax({
         type: "get",

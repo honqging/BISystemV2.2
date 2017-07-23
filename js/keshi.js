@@ -256,6 +256,7 @@ KSsubmitDate.onclick = function () {
     getDate(KSstartDate,KSendDate);
     KSurlStartTime = getDate(KSstartDate,KSendDate)[0],
     KSurlEndTime = getDate(KSstartDate,KSendDate)[1];
+	KSpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/keshi?rowCount="+ KSnumPer +"&page="+KSpage+"&startTime="+KSurlStartTime+"&endTime="+KSurlEndTime;
     $.ajax({
         type: "get",

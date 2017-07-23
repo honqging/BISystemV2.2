@@ -44,6 +44,7 @@ ATJSCsubmitDate.onclick = function () {
 	getDate(ATJSCstartDate,ATJSCendDate);
 	ATJSCurlStartTime = getDate(ATJSCstartDate,ATJSCendDate)[0],
 		ATJSCurlEndTime = getDate(ATJSCstartDate,ATJSCendDate)[1];
+	ATJSCpage = 1;
 	ATJSCcharts();
 }
 

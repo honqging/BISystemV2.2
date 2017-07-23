@@ -159,6 +159,7 @@ ASSMCZLTJsubmitDate.onclick = function () {
     getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate);
 	ASSMCZLTJurlStartTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[0],
 	ASSMCZLTJurlEndTime = getDate(ASSMCZLTJstartDate,ASSMCZLTJendDate)[1];
+	ASSMCZLTJloadpage = 1;
 	var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/shoushumingcheng?rowCount="+ ASSMCZLTJnumPer +"&page="+ASSMCZLTJloadpage+"&startTime="+ASSMCZLTJurlStartTime+"&endTime="+ASSMCZLTJurlEndTime;
     $.ajax({
         type: "get",

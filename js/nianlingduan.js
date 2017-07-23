@@ -251,6 +251,7 @@ NLDsubmitDate.onclick = function () {
     getDate(NLDstartDate,NLDendDate);
     NLDurlStartTime = getDate(NLDstartDate,NLDendDate)[0],
     NLDurlEndTime = getDate(NLDstartDate,NLDendDate)[1];
+	NLDpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuifangfa?rowCount="+ NLDnumPer +"&page="+NLDpage+"&startTime="+NLDurlStartTime+"&endTime="+NLDurlEndTime;
     $.ajax({
         type: "get",

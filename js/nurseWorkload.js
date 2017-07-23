@@ -172,6 +172,7 @@ HSGZLsubmitDate.onclick = function () {
     getDate(HSGZLstartDate,HSGZLendDate);
     HSGZLurlStartTime = getDate(HSGZLstartDate,HSGZLendDate)[0],
     HSGZLurlEndTime = getDate(HSGZLstartDate,HSGZLendDate)[1];
+    nurseWorkloadpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/hushi?rowCount="+ HSGZLnumPer +"&page="+nurseWorkloadpage+"&startTime="+HSGZLurlStartTime+"&endTime="+HSGZLurlEndTime;
     $.ajax({
         type: "get",

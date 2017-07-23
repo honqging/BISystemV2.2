@@ -181,6 +181,7 @@ NLDKSsubmitDate.onclick = function () {
     getDate(NLDKSstartDate,NLDKSendDate);
 	NLDKSurlStartTime = getDate(NLDKSstartDate,NLDKSendDate)[0],
 	NLDKSurlEndTime = getDate(NLDKSstartDate,NLDKSendDate)[1];
+	NLDKSloadpage = 1;
 	var urlTime = "http://123.206.134.34:8080/Medicals_war/charts/keshinianlingduan?rowCount="+ NLDKSnumPer +"&page="+NLDKSloadpage+"&startTime="+NLDKSurlStartTime+"&endTime="+NLDKSurlEndTime;
     $.ajax({
         type: "get",

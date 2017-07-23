@@ -131,6 +131,7 @@ SSHSGZLsubmitDate.onclick = function () {
     getDate(SSHSGZLstartDate,SSHSGZLendDate);
     SSHSGZLurlStartTime = getDate(SSHSGZLstartDate,SSHSGZLendDate)[0],
     SSHSGZLurlEndTime = getDate(SSHSGZLstartDate,SSHSGZLendDate)[1];
+	SSHSGZLpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuhushi?rowCount="+ SSHSGZLnumPer +"&page="+SSHSGZLpage+"&startTime="+SSHSGZLurlStartTime+"&endTime="+SSHSGZLurlEndTime;
     $.ajax({
         type: "get",

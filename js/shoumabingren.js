@@ -150,6 +150,7 @@ SMsubmitDate.onclick = function () {
     getDate(SMstartDate,SMendDate);
     SMBRurlStartTime = getDate(SMstartDate,SMendDate)[0],
     SMBRurlEndTime = getDate(SMstartDate,SMendDate)[1];
+    SMBRpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime;
     $.ajax({
         type: "get",

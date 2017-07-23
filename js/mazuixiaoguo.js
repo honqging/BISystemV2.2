@@ -252,6 +252,7 @@ MZXGsubmitDate.onclick = function () {
     getDate(MZXGstartDate,MZXGendDate);
     MZXGurlStartTime = getDate(MZXGstartDate,MZXGendDate)[0],
     MZXGurlEndTime = getDate(MZXGstartDate,MZXGendDate)[1];
+    MZXGpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguo?rowCount="+ MZXGnumPer +"&page="+MZXGpage+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime;
     $.ajax({
         type: "get",

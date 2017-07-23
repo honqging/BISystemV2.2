@@ -172,6 +172,7 @@ SSYSGZLsubmitDate.onclick = function () {
     getDate(SSYSGZLstartDate,SSYSGZLendDate);
     SSYSGZLurlStartTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[0],
     SSYSGZLurlEndTime = getDate(SSYSGZLstartDate,SSYSGZLendDate)[1];
+    operateDocWorkLoadpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/statistic/shoushuyisheng?rowCount="+ SSYSGZLnumPer +"&page="+operateDocWorkLoadpage+"&startTime="+SSYSGZLurlStartTime+"&endTime="+SSYSGZLurlEndTime;
     $.ajax({
         type: "get",

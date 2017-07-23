@@ -141,6 +141,7 @@ SSHDsubmitDate.onclick = function () {
     SSHDurlStartTime = getDate(SSHDstartDate,SSHDendDate)[0],
     SSHDurlEndTime = getDate(SSHDstartDate,SSHDendDate)[1];
 	console.log(SSHDpage,SSHDurlStartTime,SSHDurlEndTime);
+    SSHDpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/shoushuhuadao?rowCount="+ SSHDnumPer +"&page="+SSHDpage+"&startTime="+SSHDurlStartTime+"&endTime="+SSHDurlEndTime;
     $.ajax({
         type: "get",

@@ -200,6 +200,7 @@ HFSSCsubmitDate.onclick = function () {
     getDate(HFSSCstartDate,HFSSCendDate);
 	HFSSCurlStartTime = getDate(HFSSCstartDate,HFSSCendDate)[0],
 	HFSSCurlEndTime = getDate(HFSSCstartDate,HFSSCendDate)[1];
+	HFSSCloadpage = 1;
 	var urlTime = "http://123.206.134.34:8080/Medicals_war/recovery/morethan1hour?rowCount="+ HFSSCnumPer +"&page="+HFSSCloadpage+"&startTime="+HFSSCurlStartTime+"&endTime="+HFSSCurlEndTime;
     $.ajax({
         type: "get",

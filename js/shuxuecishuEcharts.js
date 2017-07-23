@@ -43,6 +43,7 @@ SXCSsubmitDate.onclick = function () {
 	getDate(SXCSstartDate,SXCSendDate);
 	SXCSurlStartTime = getDate(SXCSstartDate,SXCSendDate)[0],
 		SXCSurlEndTime = getDate(SXCSstartDate,SXCSendDate)[1];
+	SXCSpage = 1;
 	SXCScharts();
 }
 

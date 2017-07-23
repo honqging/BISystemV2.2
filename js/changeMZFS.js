@@ -395,6 +395,7 @@ MZFSsubmitDate.onclick = function () {
     getDate(MZFSstartDate,MZFSendDate);
     MZFSurlStartTime = getDate(MZFSstartDate,MZFSendDate)[0],
     MZFSurlEndTime = getDate(MZFSstartDate,MZFSendDate)[1];
+    MZFSpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/mazuigenggai?rowCount="+ MZFFnumPer +"&page="+MZFSpage+"&startTime="+MZFSurlStartTime+"&endTime="+MZFSurlEndTime;
     $.ajax({
         type: "get",

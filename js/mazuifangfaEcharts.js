@@ -44,6 +44,7 @@ MZsubmitDate.onclick = function () {
 	getDate(MZstartDate,MZendDate);
 	MZurlStartTime = getDate(MZstartDate,MZendDate)[0],
 		MZurlEndTime = getDate(MZstartDate,MZendDate)[1];
+	MZpage = 1;
 	MZFFcharts();
 }
 

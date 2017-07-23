@@ -252,6 +252,7 @@ TWsubmitDate.onclick = function () {
     getDate(TWstartDate,TWendDate);
     TWurlStartTime = getDate(TWstartDate,TWendDate)[0],
     TWurlEndTime = getDate(TWstartDate,TWendDate)[1];
+    TWpage = 1;
     var urlTime = "http://123.206.134.34:8080/Medicals_war/reportform/tiwei?rowCount="+ TWnumPer +"&page="+TWpage+"&startTime="+TWurlStartTime+"&endTime="+TWurlEndTime;
     $.ajax({
         type: "get",
