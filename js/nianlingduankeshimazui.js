@@ -46,6 +46,19 @@ function insertNLDKSTable(){
 	table.innerHTML = '';
 	thead.innerHTML = '';
 	//add table head
+	var top = doc.getElementById('NLDKS_table_top');
+	if(NLDKSloadpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+	var td = doc.createElement('td'),
+		span = doc.createElement('span');
+	span.innerHTML = '🔝';
+	td.appendChild(span);
+	td.style.width = '2%';
+	thead.appendChild(td);
+
 	for(var t=0;t<NLDKSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(NLDKSdataTitle[t]);
@@ -53,7 +66,7 @@ function insertNLDKSTable(){
 		if(t==0){
 			th.style.width = '23%';
 		}else{
-			th.style.width = '11%';
+			th.style.width = '10%';
 		}
 
 		thead.appendChild(th);
@@ -91,6 +104,28 @@ function insertNLDKSTable(){
 	// add data rows
 	for(var i=0;i<NLDKSdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#NLDKS_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<NLDKSdataSource[i].length;j++){
 			var data;
 			if(NLDKSdataSource[i][j] == 0){
@@ -104,7 +139,7 @@ function insertNLDKSTable(){
 				td.title = NLDKSdataSource[i][j];
 				a.appendChild(data);
 				td.appendChild(data);
-				td.style.width = '11%';
+				td.style.width = '10%';
 			}else{
 				td.title = NLDKSdataSource[i][j];
 				td.appendChild(data);
