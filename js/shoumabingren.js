@@ -54,14 +54,14 @@ function insertSMTable(){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SMdataTitle[t]);
 		th.appendChild(thData);
-        if(t==5|t==6){
+        if(t=1|t==5|t==6){
             th.style.width = '12%';
         }else if(t==7|t==8){
             th.style.width = '10%';
         }else if(t==9){
             th.style.width = '20%';
         }else{
-            th.style.width = '6%';
+            th.style.width = '5%';
         }
 		thead.appendChild(th);
 	}
