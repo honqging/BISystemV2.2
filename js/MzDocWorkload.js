@@ -120,11 +120,56 @@ function insertMZYSGZLTable(){
             //console.log('trLen', trLen);
             td.trlen = trLen + 1;
             var param = { trLen: td.trlen };
+
             $(td).click(param, function(event){
                 var trLen = event.data.trLen;
                 if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
-                    var trr = $(this).parent().clone(true);
+                    var trr = $(this).parent().clone();
                     //console.log('start', trr.children('td').length, trLen, 'end');
+
+                    // start to toggle detailed info
+                    var a = trr.find('a').first()[0];
+                    a.setAttribute("tabindex","0");
+                    a.setAttribute("role","button");
+                    a.setAttribute("data-toggle","popover");
+                    a.setAttribute("data-trigger","focus");
+                    a.setAttribute("data-placement","top");
+                    //a.setAttribute("data-content",MZYSGZLtableData[x].groupRows[i][j]);
+                    a.department = a.getAttribute('department');
+                    a.name = a.getAttribute('name');
+
+                    var param = { department: a.department, name: a.name };
+                    $(a).click(param, function(event){
+                        var department = event.data.department,
+                            name = event.data.name;
+                        var result;
+                        $("[data-toggle='popover']").popover({
+                            html:true,
+                            content:'<div id="content2">loading...</div>'
+                        });
+                        $.ajax({
+                            type: "get",
+                            url: "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengQuery?name="+name+"&department="+department+"&startTime="+MZYSGZLurlStartTime+"&endTime="+MZYSGZLurlEndTime,
+                            dataType: "json",
+                            jsonp:"callback",
+                            success: function (data) {
+                                result = data;
+                                var wholeDiv = doc.createElement("div");
+                                for(var i=0;i<result.length;i++){
+                                    var eachData = doc.createTextNode(result[i]);
+                                    var p = doc.createElement("p");
+                                    p.appendChild(eachData);
+                                    wholeDiv.appendChild(p);
+                                }
+                                $('#content2').html(wholeDiv);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(errorThrown);
+                            }
+                        });
+                    });
+                    // end of toggle detailed info
+
 
                     trr.children().first().css('border-top', '1px #D6D6D6 solid');
                     //trr.children().first().next('border-right', '0px');
@@ -133,6 +178,7 @@ function insertMZYSGZLTable(){
                         var addTd = doc.createElement('td');
                         addTd.appendChild(addData);
                         addTd.style.borderRight = '0px';
+                        addTd.style.width = '19%';
                         trr.children().first().after(addTd);
                     }else{
                         trr.children().first().next().attr('rowspan', 1);
@@ -141,6 +187,10 @@ function insertMZYSGZLTable(){
                     }
                     //console.log(trr.children('td').length);
                     $('#MZYSGZL_table_top').prepend(trr);
+                    $("[data-toggle='popover']").popover({
+                        html:true,
+                        content:'<div id="content2">loading...</div>'
+                    });
                     $(this).find('span').css('background-color', 'yellow');
                     $(this).find('span').css('visibility', 'hidden');
 
@@ -169,6 +219,7 @@ function insertMZYSGZLTable(){
 						a.setAttribute("data-toggle","popover");
 						a.setAttribute("data-trigger","focus");
 						a.setAttribute("data-placement","top");
+                        a.setAttribute('department',MZYSGZLtableData[x].groupName);
 						//a.setAttribute("data-content",MZYSGZLtableData[x].groupRows[i][j]);
 						a.department = MZYSGZLtableData[x].groupName;
 						a.name = MZYSGZLtableData[x].groupRows[i][0];
