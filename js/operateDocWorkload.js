@@ -133,6 +133,7 @@ function insertSSYSGZLTable(){
                         var addTd = doc.createElement('td');
                         addTd.appendChild(addData);
                         addTd.style.borderRight = '0px';
+                        addTd.style.width = '16%';
                         trr.children().first().after(addTd);
                     }else{
                         trr.children().first().next().attr('rowspan', 1);

@@ -485,7 +485,12 @@ table th{
 .modal-dialog{
 	width: 1300px;
 }
+
 table span{
 	visibility: hidden;
 	background-color: transparent;
+}
+
+.modal-content{
+	text-align: center;
 }

@@ -135,6 +135,7 @@ function insertHSGZLTable(){
                         var addTd = doc.createElement('td');
                         addTd.appendChild(addData);
                         addTd.style.borderRight = '0px';
+                        addTd.style.width = '19%';
                         trr.children().first().after(addTd);
                     }else{
                         trr.children().first().next().attr('rowspan', 1);
