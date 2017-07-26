@@ -56,13 +56,14 @@ function insertSSHSGZLTable(){
 	span.innerHTML = '🔝';
 	td.appendChild(span);
 	td.style.width = '2%';
+	td.style.padding = '8px';
 	thead.appendChild(td);
 
 	for(var t=0;t<SSHSdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(SSHSdataTitle[t]);
 		th.appendChild(thData);
-		th.style.width = '24%'
+		th.style.width = '24%';
 		thead.appendChild(th);
 	}
 

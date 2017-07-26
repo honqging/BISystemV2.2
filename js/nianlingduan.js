@@ -58,6 +58,7 @@ function insertNLDTable(){
 	span.innerHTML = '🔝';
 	td.appendChild(span);
 	td.style.width = '2%';
+	td.style.padding = '8px';
 	thead.appendChild(td);
 
 	for(var t=0;t<NLDdataTitle.length;t++){
