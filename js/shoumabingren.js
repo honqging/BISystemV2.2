@@ -8,10 +8,10 @@ var SMBRTotal = doc.getElementById("SMBRTotal"),
 var SMBRpage = 1,
     currentDate = getNowFormatDate(),
     month1stDate = getMonth1stFormatDate(),
-	SMdataSource = [],
-	SMdataTitle = [],
-	doc = document,
-	//SMBRurlStartTime = "2010-01-01",
+    SMdataSource = [],
+    SMdataTitle = [],
+    doc = document,
+    //SMBRurlStartTime = "2010-01-01",
     SMBRurlStartTime = month1stDate,
     SMBRurlEndTime = currentDate,
     url = "http://123.206.134.34:8080/Medicals_war/operation/shoumabingren?rowCount=" + SMBRnumPer + "&page="+SMBRpage+"&startTime="+SMBRurlStartTime+"&endTime="+SMBRurlEndTime,
@@ -23,68 +23,101 @@ var SMBRpage = 1,
 SMstartDate.value = month1stDate;
 SMendDate.value = currentDate;
 
-//��ȡ���鲡������
 $.ajax({
-          type: "get",
-          url: url,
-          dataType: "json",
-		  jsonp:"callback",
-          success: function (data) {
-						  SMdataSource = data.data;
-						  SMdataTitle = data.header;
-                          SMBRTotalPage = data.pageCount;
+    type: "get",
+    url: url,
+    dataType: "json",
+    jsonp:"callback",
+    success: function (data) {
+        SMdataSource = data.data;
+        SMdataTitle = data.header;
+        SMBRTotalPage = data.pageCount;
 
-              //console.log(SMdataSource);
-						  insertSMTable();
-                           },
-		  error: function (XMLHttpRequest, textStatus, errorThrown) {
-		  alert(errorThrown);
-		 }
-	 });
+        //console.log(SMdataSource);
+        insertSMTable();
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert(errorThrown);
+    }
+});
 function insertSMTable(){
-	//�������
-	var table = doc.getElementById("SMBR_table");
+    //插入表格
+    var table = doc.getElementById("SMBR_table");
     var thead = doc.getElementById("SMBR_table_head");
 
     table.innerHTML = '';
     thead.innerHTML = '';
 
-    //������ӱ�ͷ
-	for(var t=0;t<SMdataTitle.length;t++){
-		var th = doc.createElement("th"),
-			thData = doc.createTextNode(SMdataTitle[t]);
-		th.appendChild(thData);
-        if(t=1|t==5|t==6){
+    var top = doc.getElementById('SMBR_table_top');
+    if(SMBRpage != 1){
+        top.style.display = 'none';
+    }else{
+        top.style.display = 'block';
+    }
+    var td = doc.createElement('td'),
+        span = doc.createElement('span');
+    span.innerHTML = '🔝';
+    td.appendChild(span);
+    td.style.width = '2%';
+    thead.appendChild(td);
+
+    for(var t=0;t<SMdataTitle.length;t++){
+        var th = doc.createElement("th"),
+            thData = doc.createTextNode(SMdataTitle[t]);
+        th.appendChild(thData);
+        if(t==1|t==5|t==6){
             th.style.width = '12%';
         }else if(t==7|t==8){
             th.style.width = '10%';
         }else if(t==9){
-            th.style.width = '20%';
+            th.style.width = '17%';
         }else{
             th.style.width = '5%';
         }
-		thead.appendChild(th);
-	}
-	for(var i=0;i<SMdataSource.length;i++){
-		var tr = doc.createElement("tr");
-		for(var j=0;j<SMdataSource[i].length;j++){
-			var data = doc.createTextNode(SMdataSource[i][j]),
-				td = doc.createElement("td");
-			td.title = SMdataSource[i][j];
-			td.appendChild(data);
-            if(j==5|j==6){
+        thead.appendChild(th);
+    }
+    for(var i=0;i<SMdataSource.length;i++){
+        var tr = doc.createElement("tr");
+
+        var td = doc.createElement('td'),
+            span = doc.createElement('span');
+        span.innerHTML = '🔝';
+        td.appendChild(span);
+        td.style.width = '2%';
+        tr.appendChild(td);
+        tr.onclick = function(){
+            $(this).find('span').css('visibility', 'visible');
+        };
+        td.onclick = function(){
+            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+                $('#SMBR_table_top').prepend($(this).parent().clone(true));
+                $(this).find('span').css('background-color', 'yellow');
+                $(this).find('span').css('visibility', 'hidden');
+
+                alert('成功置顶');
+            }else{
+                alert('该项已置顶');
+            }
+        };
+
+        for(var j=0;j<SMdataSource[i].length;j++){
+            var data = doc.createTextNode(SMdataSource[i][j]),
+                td = doc.createElement("td");
+            td.title = SMdataSource[i][j];
+            td.appendChild(data);
+            if(j==1|j==5|j==6){
                 td.style.width = '12%';
             }else if(j==7|j==8){
                 td.style.width = '10%';
             }else if(j==9){
-                td.style.width = "20%";
+                td.style.width = "17%";
             }else{
-                td.style.width = '6%';
+                td.style.width = '5%';
             }
             tr.appendChild(td);
-		}
-		table.appendChild(tr);
-	}
+        }
+        table.appendChild(tr);
+    }
 
     SMBRTotal.innerHTML = SMBRTotalPage;
 }
