@@ -421,6 +421,10 @@ a{
 	height: 600px;
 	overflow-y: scroll;
 }
+.table-div580{
+	height: 560px;
+	overflow-y: scroll;
+}
 .table-div table, .table-div300 table, .table-div600 table{
 	margin-bottom: 0;
 }

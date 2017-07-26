@@ -43,18 +43,36 @@ function insertHFSSCTable(){
 	var thead = doc.getElementById("HFSSC_table_head");
 	table.innerHTML = '';
 	thead.innerHTML = '';
+
 	//add table head
+	var top = doc.getElementById('HFSSC_table_top');
+	if(HFSSCloadpage != 1){
+		top.style.display = 'none';
+	}else{
+		top.style.display = 'block';
+	}
+
 	for(var rows=0; rows<2; rows++) {
 		var trHead = doc.createElement("tr");
 		for (var t = 0; t < HFSSCdataTitle.length-1; t++) {
+
+
 			var th = doc.createElement("th");
 			var	thData;
 			if(rows == 0){
 				if(t == 0){
+					var pp = doc.createElement('div');
+					//span.innerHTML = '🔝';
+					th.appendChild(pp);
+					pp.style.width = '10%';
+					pp.style.float = 'left';
+					pp.style.padding = '8px';
+					//trHead.appendChild(th);
+
 					thData = doc.createTextNode(HFSSCdataTitle[t]);
 					th.appendChild(thData);
 					th.rowSpan = '2';
-					th.style.width = '20%';
+					th.style.width = '22%';
 					th.style.verticalAlign = "middle";
 					th.style.borderRight = '1px #D6D6D6 solid';
 					th.id = "tdd";
@@ -92,15 +110,19 @@ function insertHFSSCTable(){
 		allEmergentOpe += HFSSCdataSource[i][2];
 		allChangeOpe += HFSSCdataSource[i][3];
 	}
-	var data = new Array(3);
-	data[0] = doc.createTextNode("合计"),
-	data[1] = doc.createTextNode(allOpe),
-	data[2] = doc.createTextNode(allEmergentOpe);
+	var data = new Array(4);
+	data[0] = doc.createTextNode(''),
+	data[1] = doc.createTextNode("合计"),
+	data[2] = doc.createTextNode(allOpe),
+	data[3] = doc.createTextNode(allEmergentOpe);
 
 	for(var t=0; t<data.length; t++){
 		var td = doc.createElement("td");
 		td.title = data[t];
 		td.appendChild(data[t]);
+		if(t==0){
+			td.style.padding = '8px';
+		}
 		if(t>0){
 			td.style.textAlign = "center";
 		}
@@ -112,6 +134,28 @@ function insertHFSSCTable(){
 	// add data rows
 	for(var i=0;i<HFSSCdataSource.length;i++){
 		var tr = doc.createElement("tr");
+
+		var td = doc.createElement('td'),
+			span = doc.createElement('span');
+		span.innerHTML = '🔝';
+		td.appendChild(span);
+		td.style.width = '2%';
+		tr.appendChild(td);
+		tr.onclick = function(){
+			$(this).find('span').css('visibility', 'visible');
+		};
+		td.onclick = function(){
+			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+				$('#HFSSC_table_top').prepend($(this).parent().clone(true));
+				$(this).find('span').css('background-color', 'yellow');
+				$(this).find('span').css('visibility', 'hidden');
+
+				alert('成功置顶');
+			}else{
+				alert('该项已置顶');
+			}
+		};
+
 		for(var j=0;j<HFSSCdataSource[i].length;j++){
 			var data = doc.createTextNode(HFSSCdataSource[i][j]);
 			var td = doc.createElement("td");
