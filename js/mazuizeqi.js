@@ -102,6 +102,9 @@ function insertMZJZZQTable(){
 	for(var t=0; t<data.length; t++){
 		var td = doc.createElement("td");
 		td.title = data[t];
+		if(t==0){
+			td.style.padding = '8px';
+		}
 		td.appendChild(data[t]);
 		tr.appendChild(td);
 	}
