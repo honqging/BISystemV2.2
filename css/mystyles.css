@@ -151,20 +151,20 @@ address{
 	overflow-x:auto;
 }
 .sideBar{
-	min-height:900px;
+	min-height:808px;
 	height:calc(100% - 80px);
 	background-color:#E5F5EC;
 	margin-left:-40px;
 }
 .sideBarL{
-	min-height:900px;
+	min-height:808px;
 	height:calc(100% - 100px);
 	background-color:#DCF2E6;
 	margin-left:-30px;
 	margin-right:10px;
 }
 .contentR{
-	min-height:900px;
+	min-height:808px;
 	/*height:900px;*/
 	overflow: auto;
 	margin-left:-15px;
@@ -403,18 +403,18 @@ a{
 .Echarts400{
 	text-align: center;
 	width: 1450px;
-	height: 400px;
+	height: 350px;
 }
 .Echarts600{
 	width: 1000px;
 	height: 600px;
 }
 .table-div{
-	height: 500px;
+	height: 600px;
 	overflow-y: scroll;
 }
 .table-div300{
-	height: 300px;
+	height: 280px;
 	overflow-y: scroll;
 }
 .table-div600{
@@ -442,7 +442,7 @@ a{
 }
 
 .subMenu > li > a{
-	display: none;
+	/*display: none;*/
 }
 
 table{
