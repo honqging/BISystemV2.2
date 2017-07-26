@@ -85,7 +85,54 @@ function insertMZYSZGZLTable(){
 		};
 		td.onclick = function(){
 			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
-				$('#MZYSZGZL_table_top').prepend($(this).parent().clone(true));
+				var trr = $(this).parent().clone();
+
+				// start to toggle detailed info
+				var a = trr.find('a').first()[0];
+				a.setAttribute("tabindex","0");
+				a.setAttribute("role","button");
+				a.setAttribute("data-toggle","popover");
+				a.setAttribute("data-trigger","focus");
+				a.setAttribute("data-placement","top");
+				//a.setAttribute("data-content",MZYSGZLtableData[x].groupRows[i][j]);
+				a.idd = a.getAttribute('idd');
+
+				var param = { idd: a.idd };
+				$(a).click(param, function(event){
+					var idd = event.data.idd;
+					var result;
+					$("[data-toggle='popover']").popover({
+						html:true,
+						content:'<div id="content2">loading...</div>'
+					});
+					$.ajax({
+						type: "get",
+						url: "http://123.206.134.34:8080/Medicals_war/statistic/mazuiyishengzongQuery?name="+idd+"&startTime="+MZYSZGZLurlStartTime+"&endTime="+MZYSZGZLurlEndTime,
+						dataType: "json",
+						jsonp:"callback",
+						success: function (data) {
+							result = data;
+							var wholeDiv = doc.createElement("div");
+							for(var i=0;i<result.length;i++){
+								var eachData = doc.createTextNode(result[i]);
+								var p = doc.createElement("p");
+								p.appendChild(eachData);
+								wholeDiv.appendChild(p);
+							}
+							$('#content2').html(wholeDiv);
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown) {
+							alert(errorThrown);
+						}
+					});
+				});
+				// end of toggle detailed info
+
+				$('#MZYSZGZL_table_top').prepend(trr);
+				$("[data-toggle='popover']").popover({
+					html:true,
+					content:'<div id="content2">loading...</div>'
+				});
 				$(this).find('span').css('background-color', 'yellow');
 				$(this).find('span').css('visibility', 'hidden');
 
@@ -105,6 +152,7 @@ function insertMZYSZGZLTable(){
 				a.setAttribute("data-toggle","popover");
 				a.setAttribute("data-trigger","focus");
 				a.setAttribute("data-placement","top");
+				a.setAttribute('idd', MZYSZGZLdataSource[i][1]);
 				//a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
 				a.id = MZYSZGZLdataSource[i][1];
 				$("[data-toggle='popover']").popover({
