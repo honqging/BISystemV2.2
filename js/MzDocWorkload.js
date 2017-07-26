@@ -91,7 +91,7 @@ function insertMZYSGZLTable(){
             td.appendChild(span);
             td.style.width = '2%';
             if(x == 0){
-                console.log('x i: ', x, i);
+                //console.log('x i: ', x, i);
                 colorLen[x] = '#F9F9F9';
                 colorLenD[x] = '#F5F5F5';
             }else{
@@ -107,7 +107,7 @@ function insertMZYSGZLTable(){
 
             if(i==0){
                 td.style.borderTop = '1px #D6D6D6 solid';
-                console.log('bColor: ', td.style.backgroundColor);
+                //console.log('bColor: ', td.style.backgroundColor);
             }else{
                 td.style.border = '0px';
             }
@@ -117,14 +117,14 @@ function insertMZYSGZLTable(){
                 $(this).find('span').css('visibility', 'visible');
             };
             var trLen = MZYSGZLtableData[x].groupRows[0].length;
-            console.log('trLen', trLen);
+            //console.log('trLen', trLen);
             td.trlen = trLen + 1;
             var param = { trLen: td.trlen };
             $(td).click(param, function(event){
                 var trLen = event.data.trLen;
                 if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
                     var trr = $(this).parent().clone(true);
-                    console.log('start', trr.children('td').length, trLen, 'end');
+                    //console.log('start', trr.children('td').length, trLen, 'end');
 
                     trr.children().first().css('border-top', '1px #D6D6D6 solid');
                     //trr.children().first().next('border-right', '0px');
@@ -139,7 +139,7 @@ function insertMZYSGZLTable(){
                         trr.children().first().next().css('border-right', '0px');
 
                     }
-                    console.log(trr.children('td').length);
+                    //console.log(trr.children('td').length);
                     $('#MZYSGZL_table_top').prepend(trr);
                     $(this).find('span').css('background-color', 'yellow');
                     $(this).find('span').css('visibility', 'hidden');
