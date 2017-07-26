@@ -54,25 +54,26 @@ function insertSMTable(){
     }else{
         top.style.display = 'block';
     }
-    var td = doc.createElement('td'),
+    var th = doc.createElement('th'),
         span = doc.createElement('span');
     span.innerHTML = '🔝';
-    td.appendChild(span);
-    td.style.width = '2%';
-    thead.appendChild(td);
+    th.appendChild(span);
+    th.style.width = '2%';
+    th.style.padding = '8px';
+    thead.appendChild(th);
 
     for(var t=0;t<SMdataTitle.length;t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(SMdataTitle[t]);
         th.appendChild(thData);
-        if(t==1|t==5|t==6){
+        if(t==5|t==6){
             th.style.width = '12%';
-        }else if(t==7|t==8){
+        }else if(t==1|t==7|t==8|t==10){
             th.style.width = '10%';
         }else if(t==9){
-            th.style.width = '17%';
+            th.style.width = '12%';
         }else{
-            th.style.width = '5%';
+            th.style.width = '6%';
         }
         thead.appendChild(th);
     }
@@ -105,14 +106,14 @@ function insertSMTable(){
                 td = doc.createElement("td");
             td.title = SMdataSource[i][j];
             td.appendChild(data);
-            if(j==1|j==5|j==6){
+            if(j==5|j==6){
                 td.style.width = '12%';
-            }else if(j==7|j==8){
+            }else if(j==1|j==7|j==8|j==10){
                 td.style.width = '10%';
             }else if(j==9){
-                td.style.width = "17%";
+                td.style.width = "12%";
             }else{
-                td.style.width = '5%';
+                td.style.width = '6%';
             }
             tr.appendChild(td);
         }
