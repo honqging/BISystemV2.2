@@ -6,6 +6,8 @@ var SSHDTotal = doc.getElementById("SSHDTotal"),
     SSHDconfirm = doc.getElementById("SSHDconfirm");
 
 var SSHDpage = 1,
+    currentDate = getNowFormatDate(),
+    month1stDate = getMonth1stFormatDate(),
 	//SSHDurlStartTime = "2010-01-01",
     SSHDurlStartTime = month1stDate,
     SSHDurlEndTime = currentDate,
@@ -38,14 +40,14 @@ $.ajax({
 		 }
 	 });
 function insertSSHDTable(){
-	//�������
+	//创建表头
 	var table = doc.getElementById("SSHD_table");
     var thead = doc.getElementById("SSHD_table_head");
 
     table.innerHTML = '';
     thead.innerHTML = '';
 
-    //������ӱ�ͷ
+    //单独添加标头
     var top = doc.getElementById('SSHD_table_top');
     if(SSHDpage != 1){
         top.style.display = 'none';

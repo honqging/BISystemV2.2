@@ -91,12 +91,13 @@ function insertMZJZZQTable(){
 		allEmergentOpe += MZJZZQdataSource[i][2];
 		allChangeOpe += MZJZZQdataSource[i][3];
 	}
-	var data = new Array(5);
-	data[0] = doc.createTextNode("合计"),
-	data[1] = doc.createTextNode(allOpe),
-	data[2] = doc.createTextNode(allEmergentOpe),
-	data[3] = doc.createTextNode(allChangeOpe);
-	data[4] = doc.createTextNode('');
+	var data = new Array(6);
+	data[0] = doc.createTextNode(''),
+	data[1] = doc.createTextNode("合计"),
+	data[2] = doc.createTextNode(allOpe),
+	data[3] = doc.createTextNode(allEmergentOpe),
+	data[4] = doc.createTextNode(allChangeOpe);
+	data[5] = doc.createTextNode('');
 
 	for(var t=0; t<data.length; t++){
 		var td = doc.createElement("td");

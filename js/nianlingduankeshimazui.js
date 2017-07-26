@@ -21,7 +21,7 @@ var NLDKSloadpage = 1,
 NLDKSstartDate.value = month1stDate;
 NLDKSendDate.value = currentDate;
 
-var allData = new Array(8);
+var allData = new Array(9);
 
 $.ajax({
           type: "get",
@@ -77,18 +77,19 @@ function insertNLDKSTable(){
 
 	// display summation: statistic data
 	//var allData = new Array(8);
-	allData[0] = "合计";
-	for(var i=1; i<allData.length; i++){
+	allData[0] = '';
+	allData[1] = "合计";
+	for(var i=2; i<allData.length; i++){
 		allData[i] = 0;
 	}
 
 	//console.log("NLDKSdataSource.length" + NLDKSdataSource[0].length);
-	for(var i=1;i<allData.length;i++){
+	for(var i=2;i<allData.length;i++){
 		for(var j=0; j<NLDKSdataSource.length; j++){
-			allData[i] += NLDKSdataSource[j][i];
+			allData[i] += NLDKSdataSource[j][i-1];
 		}
 	}
-	var data = new Array(8);
+	var data = new Array(9);
 	for(var q=0; q<data.length; q++){
 		data[q] = doc.createTextNode(allData[q]);
 	}
