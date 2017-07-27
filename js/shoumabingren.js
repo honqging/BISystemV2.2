@@ -56,7 +56,7 @@ function insertSMTable(){
     }
     var th = doc.createElement('th'),
         span = doc.createElement('span');
-    span.innerHTML = '🔝';
+    span.innerHTML = '';
     th.appendChild(span);
     th.style.width = '2%';
     th.style.padding = '8px';

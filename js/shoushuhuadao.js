@@ -67,11 +67,11 @@ function insertSSHDTable(){
 			thData = doc.createTextNode(SSHDtableTiTle[t]);
 		th.appendChild(thData);
         if(t==1){
-            th.style.width = '14%';
+            th.style.width = '10%';
         }else if(t==7||t==9){
             th.style.width = '12%';
         }else{
-            th.style.width = '7%';
+            th.style.width = '8%';
         }
 		thead.appendChild(th);
 	}
@@ -105,11 +105,11 @@ function insertSSHDTable(){
 			td.title = SSHDtableData[i][j];
 			td.appendChild(data);
             if(j==1){
-                td.style.width = '14%';
+                td.style.width = '10%';
             }else if(j==7||j==9){
                 td.style.width = '12%'
             }else{
-                td.style.width = '7%';
+                td.style.width = '8%';
             }
 			tr.appendChild(td);
 		}
