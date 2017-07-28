@@ -21,6 +21,8 @@ var MZFSpage = 1,
 MZFSstartDate.value = month1stDate;
 MZFSendDate.value = currentDate;
 
+var topNum = 0;
+
 $.ajax({
     type: "get",
     url: MZFSurl,
@@ -52,6 +54,15 @@ function insertMZXGTable(){
     var tdWidth = new Array('2%', '2%', '20%', '20%', '56%');
 
     // 插入表头
+    // 置顶table显示
+    var top = doc.getElementById('MZFS_table_top');
+    if(MZFSpage != 1){
+        top.style.display = 'none';
+    }else{
+        top.style.display = 'block';
+    }
+
+    // 表头td显示
     var th1 = doc.createElement('th'),
         th2 = doc.createElement('th'),
         th3 = doc.createElement('th'),
@@ -122,8 +133,9 @@ function insertMZXGTable(){
         a.setAttribute("data-toggle","modal");
         a.setAttribute("data-target","#MZFFD");
         a.id = MZFSdataSource[i].groupName;
-        a.onclick = function(){
-            var idd = this.id;
+        var param = { idd: a.id };
+        $(a).click(param, function(event){
+            var idd = event.data.idd;
 
             pageD = 1;
             totalPageD = 0;
@@ -195,7 +207,7 @@ function insertMZXGTable(){
                 });
             }
 
-        };
+        });
 
         td[4].innerHTML = '';
 
@@ -207,6 +219,40 @@ function insertMZXGTable(){
         tbody1.appendChild(tr);
         table1.appendChild(tbody1);
 
+        // 添加置顶事件
+        tr.onclick = function(){
+            $(this).find('span').css('visibility', 'visible');
+        };
+        td[0].onclick = function(){
+            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+                var topTable = $(this).parent().parent().parent().clone(true),
+                    detailDiv = $(this).parent().parent().parent().next().clone(true);
+
+                var detailPlus = topTable.find('td').first().next().find('span').first();
+
+                //console.log('div id:' + detailDiv.attr('id'));
+
+
+                detailPlus.attr('data-target', '#top'+topNum);
+                detailDiv.attr('id', 'top'+topNum);
+
+                topNum += 1;
+
+                //console.log('div id:' + detailDiv.attr('id'));
+                console.log('div id:' + detailDiv.prop("tagName"));
+
+
+
+                $('#MZFS_table_top').prepend(detailDiv);
+                $('#MZFS_table_top').prepend(topTable);
+                $(this).find('span').css('background-color', 'yellow');
+                $(this).find('span').css('visibility', 'hidden');
+
+                alert('成功置顶');
+            }else{
+                alert('该项已置顶');
+            }
+        };
 
 
         // 添加麻醉单例数
@@ -251,10 +297,10 @@ function insertMZXGTable(){
             a2.setAttribute("name", MZFSdataSource[i].groupName);
 
             //console.log(departmentName);
-
-            a2.onclick = function(){
-                var idd = this.id,
-                    name = this.name;
+            var param = { idd: MZFSdataSource[i].groupRows[j][0], name: MZFSdataSource[i].groupName };
+            $(a2).click(param, function(event){
+                var idd = event.data.idd;
+                var name = event.data.name;
 
                 pageD = 1;
                 totalPageD = 0;
@@ -326,7 +372,7 @@ function insertMZXGTable(){
                     });
                 }
 
-            };
+            });
 
             td2[4].innerHTML = '';
 
@@ -452,6 +498,8 @@ MZFSsubmitDate.onclick = function () {
             MZFSdataTitle = data.header;
             MZFFTotalPage = data.pageCount;
 
+            topNum = 0;
+            doc.getElementById('MZFS_table_top').innerHTML = '';
             insertMZXGTable();
 			//test();
         },
