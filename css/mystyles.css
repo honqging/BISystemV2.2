@@ -486,7 +486,12 @@ table th{
 	width: 1300px;
 }
 
-.table span{
+.table td > span{
+	visibility: hidden;
+	background-color: transparent;
+}
+
+.table th > span{
 	visibility: hidden;
 	background-color: transparent;
 }

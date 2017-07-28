@@ -49,59 +49,75 @@ function insertMZXGTable(){
     //table.innerHTML = "";
     thead.innerHTML = "";
     divAccordion.innerHTML = "";
+    var tdWidth = new Array('2%', '2%', '20%', '20%', '56%');
 
     // 插入表头
+    var th1 = doc.createElement('th'),
+        th2 = doc.createElement('th'),
+        th3 = doc.createElement('th'),
+        s1 = doc.createElement('span'),
+        s2 = doc.createElement('span');
+    s1.innerHTML = '🔝';
+    s2.innerHTML = '+';
+    th1.appendChild(s1);
+    th2.appendChild(s2);
+    th3.innerHTML = '';
+
+    th1.style.width = tdWidth[0];
+    th2.style.width = tdWidth[1];
+    th3.style.width = tdWidth[4];
+
+    th1.style.padding = '8px';
+    th2.style.padding = '8px';
+
+    thead.appendChild(th1);
+    thead.appendChild(th2);
+
     for(var t=0;t<MZFSdataTitle.length;t++){
         var th = doc.createElement("th"),
             thData = doc.createTextNode(MZFSdataTitle[t]);
         th.appendChild(thData);
-        th.style.width = '50%';
+        th.style.width = tdWidth[t+2];
         thead.appendChild(th);
     }
+
+    thead.appendChild(th3);
 
     // 插入数据
     for(var i=1;i<MZFSdataSource.length;i++){
         // Bootstrap collapse plugin
-        var div1 = doc.createElement("div"),
-            div21 = doc.createElement("div"),
-            div22 = doc.createElement("div"),
-            div3 = doc.createElement("div"),
-            divh4 = doc.createElement("h4"),
-            table21 = doc.createElement("table"),
-            table22 = doc.createElement("table");
 
-        // bootstrap div adds class
-        divh4.setAttribute("class", "panel-title");
-        div21.setAttribute("class", "panel-heading");
-        div1.setAttribute("class", "panel panel-default");
-        div3.setAttribute("class", "panel-body");
-        div22.setAttribute("class", "panel-collapse collapse");
+        // 添加麻醉总例数
+        var tdNum = 5;
+        var table1 = document.createElement('table'),
+            tbody1 = doc.createElement('tbody'),
+            tr = document.createElement('tr'),
+            span11 = document.createElement('span'),
+            span12 = document.createElement('span'),
+            a = document.createElement('a');
+        var td = new Array(tdNum);
+        for(var k = 0; k < tdNum; k++){
+            td[k] = document.createElement('td');
+        }
 
-        div22.id = "collapse" + i;
-        table21.id = "table21";
-        table22.id = "table22";
+        table1.setAttribute('class', 'table table-striped table-hover');
 
 
+        span11.innerHTML = '🔝';
+        td[0].appendChild(span11);
 
-        //var tr1 = doc.createElement("tr");
-        var data1 = doc.createTextNode(MZFSdataSource[i].groupName),
-            a0 = doc.createElement("a"),
-            td1 = doc.createElement("td");
-        a0.setAttribute("data-toggle", "collapse");
-        a0.setAttribute("data-parent", "#accordion");
-        var a0Href = "#collapse" + i;
-        a0.setAttribute("href", a0Href);
-        a0.appendChild(data1);
-        a0.style.fontWeight = 'normal';
-        a0.id = "a0";
-        td1.appendChild(a0);
+        span12.innerHTML = '+';
+        span12.setAttribute('data-toggle', 'collapse');
+        span12.setAttribute('data-target', '#'+i);
+        var dd = doc.createElement('div');
+        dd.appendChild(span12);
+        td[1].appendChild(dd);
 
-        //var xx = doc.getElementById(a0Href);
-        //$(a0Href).collapse("hide");
+        td[2].innerHTML = MZFSdataSource[i].groupName;
 
-        var data2 = doc.createTextNode(MZFSdataSource[i].sum),
-            a = doc.createElement("a"),
-            td2 = doc.createElement("td");
+        a.innerHTML = MZFSdataSource[i].sum;
+        td[3].appendChild(a);
+
         a.setAttribute("role","button");
         a.setAttribute("data-toggle","modal");
         a.setAttribute("data-target","#MZFFD");
@@ -179,32 +195,59 @@ function insertMZXGTable(){
                 });
             }
 
+        };
+
+        td[4].innerHTML = '';
+
+        for(var m = 0; m < tdNum; m++){
+            td[m].style.width = tdWidth[m];
+            tr.appendChild(td[m]);
         }
 
+        tbody1.appendChild(tr);
+        table1.appendChild(tbody1);
 
-        a.appendChild(data2);
-        td2.appendChild(a);
-        table21.appendChild(td1);
-        table21.appendChild(td2);
-        //table21.appendChild(tr1);
-        divh4.appendChild(table21);
-        div21.appendChild(divh4);
 
-        // 插入子表table22
-        for(var k=0; k<MZFSdataSource[i].groupRows.length; k++){
-            var tr2 = doc.createElement("tr");
-            var data3 = doc.createTextNode(MZFSdataSource[i].groupRows[k][0]),
-                td3 = doc.createElement("td");
-            td3.appendChild(data3);
-            var data4 = doc.createTextNode(MZFSdataSource[i].groupRows[k][1]),
-                a2 = doc.createElement("a"),
-                td4 = doc.createElement("td");
+
+        // 添加麻醉单例数
+        var div = document.createElement('div'),
+            table2 = document.createElement('table'),
+            tbody2 = doc.createElement('tbody');
+
+            table2.setAttribute('class', 'table table-striped table-hover');
+
+        for(var j=0; j<MZFSdataSource[i].groupRows.length; j++){
+            var tr2 = document.createElement('tr'),
+                span21 = document.createElement('span'),
+                span22 = document.createElement('span'),
+                a2 = document.createElement('a');
+            var td2 = new Array(tdNum);
+            for(var k = 0; k < tdNum; k++){
+                td2[k] = document.createElement('td');
+            }
+
+            div.id = i;
+            div.className = 'collapse';
+
+            span21.innerHTML = '🔝';
+//                span2.style.padding = '8px';
+            td2[0].appendChild(span21);
+
+
+            span22.innerHTML = '+';
+            td2[1].appendChild(span22);
+
+//                span2.innerHTML = MZFSdataSource[i].groupRows[j][0];
+            td2[2].innerHTML = MZFSdataSource[i].groupRows[j][0];
+
+            a2.innerHTML = MZFSdataSource[i].groupRows[j][1];
+            td2[3].appendChild(a2);
 
             a2.setAttribute("role","button");
             a2.setAttribute("data-toggle","modal");
             a2.setAttribute("data-target","#MZFFD");
             //a.setAttribute("data-content",MZYSZGZLdataSource[i][j]);
-            a2.id = MZFSdataSource[i].groupRows[k][0];
+            a2.id = MZFSdataSource[i].groupRows[j][0];
             a2.setAttribute("name", MZFSdataSource[i].groupName);
 
             //console.log(departmentName);
@@ -283,24 +326,26 @@ function insertMZXGTable(){
                     });
                 }
 
+            };
+
+            td2[4].innerHTML = '';
+
+            for(var m = 0; m < tdNum; m++){
+                td2[m].style.width = tdWidth[m];
+                tr2.appendChild(td2[m]);
             }
 
-            a2.appendChild(data4);
-            td4.appendChild(a2);
-            tr2.appendChild(td3);
-            tr2.appendChild(td4);
-            table22.appendChild(tr2);
-            div3.appendChild(table22);
-            div22.appendChild(div3);
-            //table.getElementsByTagName("tr").onclick = function(){
-            //    console.log("wwwww");
-            //}
+            tbody2.appendChild(tr2);
+            table2.appendChild(tbody2);
+
         }
 
+        div.appendChild(table2);
 
-        div1.appendChild(div21);
-        div1.appendChild(div22);
-        divAccordion.appendChild(div1);
+
+        // 添加到index page
+        divAccordion.appendChild(table1);
+        divAccordion.appendChild(div);
     }
 
     MZFFTotal.innerHTML = MZFFTotalPage;
