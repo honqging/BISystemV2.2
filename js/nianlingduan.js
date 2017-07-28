@@ -301,7 +301,8 @@ NLDsubmitDate.onclick = function () {
 			NLDTotalPage = data.pageCount;
 
 			//console.log(NLDdataSource);
-            insertNLDTable();
+			doc.getElementById('NLD_table_top').innerHTML = '';
+			insertNLDTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

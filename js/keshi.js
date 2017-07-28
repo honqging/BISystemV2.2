@@ -308,7 +308,8 @@ KSsubmitDate.onclick = function () {
 			KSTotalPage = data.pageCount;
 
 			//console.log(KSdataSource);
-            insertKSTable();
+			doc.getElementById('KSGZL_table_top').innerHTML = '';
+			insertKSTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

@@ -195,8 +195,9 @@ SMsubmitDate.onclick = function () {
             SMdataSource = data.data;
             SMdataTitle = data.header;
             SMBRTotalPage = data.pageCount;
-            console.log(urlTime);
             //console.log(SMdataSource);
+
+            doc.getElementById('SMBR_table_top').innerHTML = '';
             insertSMTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

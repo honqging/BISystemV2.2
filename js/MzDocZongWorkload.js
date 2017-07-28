@@ -282,7 +282,8 @@ MZYSZGZLsubmitDate.onclick = function () {
 			MZYSZGZLTotalPage = data.pageCount;
 
 			//console.log(SMdataSource);
-            insertMZYSZGZLTable();
+			doc.getElementById('MZYSZGZL_table_top').innerHTML = '';
+			insertMZYSZGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

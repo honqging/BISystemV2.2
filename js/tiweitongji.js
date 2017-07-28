@@ -303,6 +303,7 @@ TWsubmitDate.onclick = function () {
             TWTotalPage = data.pageCount;
 
             //console.log(TWdataSource);
+            doc.getElementById('TW_table_top').innerHTML = '';
             insertTWTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

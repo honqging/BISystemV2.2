@@ -300,6 +300,7 @@ MZXGsubmitDate.onclick = function () {
             MZXGdataTitle = data.header;
             MZXGTotalPage = data.pageCount;
 
+            doc.getElementById('MZXG_table_top').innerHTML = '';
             createMZXGtable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

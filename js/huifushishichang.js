@@ -257,7 +257,8 @@ HFSSCsubmitDate.onclick = function () {
 			HFSSCTotalPage = data.pageCount;
 
 			//console.log(HFSSCdataSource);
-            insertHFSSCTable();
+			doc.getElementById('HFSSC_table_top').innerHTML = '';
+			insertHFSSCTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

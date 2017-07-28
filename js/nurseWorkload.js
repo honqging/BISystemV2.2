@@ -271,6 +271,7 @@ HSGZLsubmitDate.onclick = function () {
             HSGZLTotalPage = data.pageCount;
 
             //console.log(SMdataSource);
+            doc.getElementById('HSGZL_table_top').innerHTML = '';
             insertHSGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

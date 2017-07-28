@@ -179,6 +179,7 @@ SSHSGZLsubmitDate.onclick = function () {
             SSHSdataTitle = data.header;
 			SSHSGZLTotalPage = data.pageCount;
 
+			doc.getElementById('SSHSGZL_table_top').innerHTML = '';
 			insertSSHSGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

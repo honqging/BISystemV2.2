@@ -199,7 +199,8 @@ ASSMCZLTJsubmitDate.onclick = function () {
 			ASSMCZLTJTotalPage = data.pageCount;
 
 			//console.log(SMdataSource);
-            insertASSMCZLTJTable();
+			doc.getElementById('ASSMCZLTJ_table_top').innerHTML = '';
+			insertASSMCZLTJTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

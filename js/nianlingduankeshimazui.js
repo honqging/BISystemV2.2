@@ -230,7 +230,8 @@ NLDKSsubmitDate.onclick = function () {
 			NLDKSTotalPage = data.pageCount;
 
 			//console.log(NLDKSdataSource);
-            insertNLDKSTable();
+			doc.getElementById('NLDKS_table_top').innerHTML = '';
+			insertNLDKSTable();
 			NLDKSEcharts();
 		},
         error: function (XMLHttpRequest, textStatus, errorThrown) {

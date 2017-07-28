@@ -243,7 +243,8 @@ MZJZZQsubmitDate.onclick = function () {
 			MZJZZQTotalPage = data.pageCount;
 
 			//console.log(MZJZZQdataSource);
-            insertMZJZZQTable();
+			doc.getElementById('MZJZZQ_table_top').innerHTML = '';
+			insertMZJZZQTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(errorThrown);

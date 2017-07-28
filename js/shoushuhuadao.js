@@ -191,6 +191,7 @@ SSHDsubmitDate.onclick = function () {
             SSHDtableTiTle = data.header;
             SSHDTotalPage = data.pageCount;
             //console.log(SMdataSource);
+            doc.getElementById('SSHD_table_top').innerHTML = '';
             insertSSHDTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

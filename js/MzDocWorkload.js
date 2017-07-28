@@ -373,6 +373,7 @@ MZYSGZLsubmitDate.onclick = function () {
             MZYSGZLTotalPage = data.pageCount;
 
             //console.log(SMdataSource);
+            doc.getElementById('MZYSGZL_table_top').innerHTML = '';
             insertMZYSGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
