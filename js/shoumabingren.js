@@ -23,6 +23,8 @@ var SMBRpage = 1,
 SMstartDate.value = month1stDate;
 SMendDate.value = currentDate;
 
+var SMBRTopList = new Array();
+
 $.ajax({
     type: "get",
     url: url,
@@ -89,17 +91,33 @@ function insertSMTable(){
         tr.onclick = function(){
             $(this).find('span').css('visibility', 'visible');
         };
-        td.onclick = function(){
-            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+        var tdIndexTemp = (SMBRpage-1) * SMBRnumPer + i + 1;
+        if(SMBRTopList.indexOf(tdIndexTemp) != -1){
+            $(td).find('span').css('background-color', 'yellow');
+            $(td).find('span').css('visibility', 'visible');
+        }
+        //var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
+        var param = { tdIndexTemp: tdIndexTemp };
+        $(td).click(param, function(event){
+            //var ii = event.data.i,
+            //    pp = event.data.page,
+            //    np = event.data.numPer;
+            //var tdIndex = (pp-1) * np + ii + 1;
+            var tdIndex = event.data.tdIndexTemp;
+            console.log('tdIndex', tdIndex, SMBRTopList.indexOf(tdIndex));
+
+            if(SMBRTopList.indexOf(tdIndex) == -1){
                 $('#SMBR_table_top').prepend($(this).parent().clone(true));
                 $(this).find('span').css('background-color', 'yellow');
                 $(this).find('span').css('visibility', 'hidden');
 
                 alert('成功置顶');
+                SMBRTopList.push(tdIndex);
             }else{
                 alert('该项已置顶');
             }
-        };
+        });
 
         for(var j=0;j<SMdataSource[i].length;j++){
             var data = doc.createTextNode(SMdataSource[i][j]),
@@ -198,6 +216,7 @@ SMsubmitDate.onclick = function () {
             //console.log(SMdataSource);
 
             doc.getElementById('SMBR_table_top').innerHTML = '';
+            SMBRTopList.length = 0;
             insertSMTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
