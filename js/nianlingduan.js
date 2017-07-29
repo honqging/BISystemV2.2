@@ -24,6 +24,8 @@ var pageD = 1,
 NLDstartDate.value = month1stDate;
 NLDendDate.value = currentDate;
 
+var NLDTopList = new Array();
+
 $.ajax({
           type: "get",
           url: NLDurl,
@@ -84,17 +86,33 @@ function insertNLDTable(){
 		tr.onclick = function(){
 			$(this).find('span').css('visibility', 'visible');
 		};
-		td.onclick = function(){
-			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+		var tdIndexTemp = (NLDpage-1) * NLDnumPer + i + 1;
+		if(NLDTopList.indexOf(tdIndexTemp) != -1){
+			$(td).find('span').css('background-color', 'yellow');
+			$(td).find('span').css('visibility', 'visible');
+		}
+		//var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
+		var param = { tdIndexTemp: tdIndexTemp };
+		$(td).click(param, function(event){
+			//var ii = event.data.i,
+			//    pp = event.data.page,
+			//    np = event.data.numPer;
+			//var tdIndex = (pp-1) * np + ii + 1;
+			var tdIndex = event.data.tdIndexTemp;
+			//console.log('tdIndex', tdIndex, SSHDTopList.indexOf(tdIndex));
+
+			if(NLDTopList.indexOf(tdIndex) == -1){
 				$('#NLD_table_top').prepend($(this).parent().clone(true));
 				$(this).find('span').css('background-color', 'yellow');
 				$(this).find('span').css('visibility', 'hidden');
 
 				alert('成功置顶');
+				NLDTopList.push(tdIndex);
 			}else{
 				alert('该项已置顶');
 			}
-		};
+		});
 
 		for(var j=0;j<NLDdataSource[i].length;j++){
 			if(j !== 0){
@@ -302,6 +320,7 @@ NLDsubmitDate.onclick = function () {
 
 			//console.log(NLDdataSource);
 			doc.getElementById('NLD_table_top').innerHTML = '';
+			NLDTopList.length = 0;
 			insertNLDTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
