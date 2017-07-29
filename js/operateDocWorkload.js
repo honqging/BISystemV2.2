@@ -21,6 +21,8 @@ var operateDocWorkLoadpage = 1,
 SSYSGZLstartDate.value = month1stDate;
 SSYSGZLendDate.value = currentDate;
 
+var SSYSGZLTopList = new Array();
+
 //获取手术医生工作量
 $.ajax({
           type: "get",
@@ -116,13 +118,21 @@ function insertSSYSGZLTable(){
             tr.onclick = function(){
                 $(this).find('span').css('visibility', 'visible');
             };
+
+            var tdIndexTemp = (operateDocWorkLoadpage-1) * SSYSGZLnumPer + getTotalNumBef(SSYSGZLtableData, x) + i + 1;
+            if(SSYSGZLTopList.indexOf(tdIndexTemp) != -1){
+                $(td).find('span').css('background-color', 'yellow');
+                $(td).find('span').css('visibility', 'visible');
+            }
+
             var trLen = SSYSGZLtableData[x].groupRows[0].length;
             //console.log('trLen', trLen);
             td.trlen = trLen + 1;
-            var param = { trLen: td.trlen };
+            var param = { trLen: td.trlen, tdIndexTemp: tdIndexTemp };
             $(td).click(param, function(event){
                 var trLen = event.data.trLen;
-                if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+                var tdIndex = event.data.tdIndexTemp;
+                if(SSYSGZLTopList.indexOf(tdIndex) == -1){
                     var trr = $(this).parent().clone(true);
                     //console.log('start', trr.children('td').length, trLen, 'end');
 
@@ -146,6 +156,7 @@ function insertSSYSGZLTable(){
                     $(this).find('span').css('visibility', 'hidden');
 
                     alert('成功置顶');
+                    SSYSGZLTopList.push(tdIndex);
                 }else{
                     alert('该项已置顶');
                 }
@@ -270,6 +281,7 @@ SSYSGZLsubmitDate.onclick = function () {
             SSYSGZLTotalPage = data.pageCount;
 
             doc.getElementById('SSYSGZL_table_top').innerHTML = '';
+            SSYSGZLTopList.length = 0;
             insertSSYSGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
