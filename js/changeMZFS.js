@@ -234,11 +234,11 @@ function insertMZXGTable(){
         }
 
         var param = { tdIndexTemp: tdIndexTemp };
-        $(td[0]).click(param, function(event){
+        $(span11).click(param, function(event){
             var tdIndex = event.data.tdIndexTemp;
             if(MZFSTopList.indexOf(tdIndex) == -1){
-                var topTable = $(this).parent().parent().parent().clone(true),
-                    detailDiv = $(this).parent().parent().parent().next().clone(true);
+                var topTable = $(this).parent().parent().parent().parent().clone(true),
+                    detailDiv = $(this).parent().parent().parent().parent().next().clone(true);
 
                 var detailPlus = topTable.find('td').first().next().find('span').first();
 
@@ -257,8 +257,8 @@ function insertMZXGTable(){
 
                 $('#MZFS_table_top').prepend(detailDiv);
                 $('#MZFS_table_top').prepend(topTable);
-                $(this).find('span').css('background-color', 'yellow');
-                //$(this).find('span').css('visibility', 'hidden');
+                $(this).css('background-color', 'yellow');
+                //$(this).css('visibility', 'hidden');
 
                 alert('成功置顶');
                 MZFSTopList.push(tdIndex);

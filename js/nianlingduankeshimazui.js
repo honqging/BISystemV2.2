@@ -124,7 +124,7 @@ function insertNLDKSTable(){
 		}
 		//var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
 		var param = { tdIndexTemp: tdIndexTemp };
-		$(td).click(param, function(event){
+		$(span).click(param, function(event){
 			//var ii = event.data.i,
 			//    pp = event.data.page,
 			//    np = event.data.numPer;
@@ -133,9 +133,9 @@ function insertNLDKSTable(){
 			//console.log('tdIndex', tdIndex, SSHDTopList.indexOf(tdIndex));
 
 			if(NLDKSTopList.indexOf(tdIndex) == -1){
-				$('#NLDKS_table_top').prepend($(this).parent().clone(true));
-				$(this).find('span').css('background-color', 'yellow');
-				$(this).find('span').css('visibility', 'hidden');
+				$('#NLDKS_table_top').prepend($(this).parent().parent().clone(true));
+				$(this).css('background-color', 'yellow');
+				//$(this).css('visibility', 'hidden');
 
 				alert('成功置顶');
 				NLDKSTopList.push(tdIndex);

@@ -129,11 +129,11 @@ function insertSSYSGZLTable(){
             //console.log('trLen', trLen);
             td.trlen = trLen + 1;
             var param = { trLen: td.trlen, tdIndexTemp: tdIndexTemp };
-            $(td).click(param, function(event){
+            $(span).click(param, function(event){
                 var trLen = event.data.trLen;
                 var tdIndex = event.data.tdIndexTemp;
                 if(SSYSGZLTopList.indexOf(tdIndex) == -1){
-                    var trr = $(this).parent().clone(true);
+                    var trr = $(this).parent().parent().clone(true);
                     //console.log('start', trr.children('td').length, trLen, 'end');
 
                     trr.children().first().css('border-top', '1px #D6D6D6 solid');
@@ -152,8 +152,8 @@ function insertSSYSGZLTable(){
                     }
                     //console.log(trr.children('td').length);
                     $('#SSYSGZL_table_top').prepend(trr);
-                    $(this).find('span').css('background-color', 'yellow');
-                    $(this).find('span').css('visibility', 'hidden');
+                    $(this).css('background-color', 'yellow');
+                    //$(this).css('visibility', 'hidden');
 
                     alert('成功置顶');
                     SSYSGZLTopList.push(tdIndex);

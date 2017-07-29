@@ -93,7 +93,7 @@ function insertMZYSZGZLTable(){
 		}
 		//var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
 		var param = { tdIndexTemp: tdIndexTemp };
-		$(td).click(param, function(event){
+		$(span).click(param, function(event){
 			//var ii = event.data.i,
 			//    pp = event.data.page,
 			//    np = event.data.numPer;
@@ -102,7 +102,7 @@ function insertMZYSZGZLTable(){
 			//console.log('tdIndex', tdIndex, MZYSZGZLTopList.indexOf(tdIndex));
 
 			if(MZYSZGZLTopList.indexOf(tdIndex) == -1){
-				var trr = $(this).parent().clone();
+				var trr = $(this).parent().parent().clone();
 
 				// start to toggle detailed info
 				var a = trr.find('a').first()[0];
@@ -150,8 +150,8 @@ function insertMZYSZGZLTable(){
 					html:true,
 					content:'<div id="content2">loading...</div>'
 				});
-				$(this).find('span').css('background-color', 'yellow');
-				$(this).find('span').css('visibility', 'hidden');
+				$(this).css('background-color', 'yellow');
+				//$(this).css('visibility', 'hidden');
 
 				alert('成功置顶');
 				MZYSZGZLTopList.push(tdIndex);

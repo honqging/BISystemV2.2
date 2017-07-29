@@ -96,7 +96,7 @@ function createMZXGtable(){
         }
         //var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
         var param = { tdIndexTemp: tdIndexTemp };
-        $(td).click(param, function(event){
+        $(span).click(param, function(event){
             //var ii = event.data.i,
             //    pp = event.data.page,
             //    np = event.data.numPer;
@@ -105,9 +105,9 @@ function createMZXGtable(){
             //console.log('tdIndex', tdIndex, SSHDTopList.indexOf(tdIndex));
 
             if(MZXGTopList.indexOf(tdIndex) == -1){
-                $('#MZXG_table_top').prepend($(this).parent().clone(true));
-                $(this).find('span').css('background-color', 'yellow');
-                $(this).find('span').css('visibility', 'hidden');
+                $('#MZXG_table_top').prepend($(this).parent().parent().clone(true));
+                $(this).css('background-color', 'yellow');
+                //$(this).css('visibility', 'hidden');
 
                 alert('成功置顶');
                 MZXGTopList.push(tdIndex);
