@@ -23,6 +23,8 @@ var SSHDpage = 1,
 SSHDstartDate.value = month1stDate;
 SSHDendDate.value = currentDate;
 
+var SSHDTopList = new Array();
+
 $.ajax({
           type: "get",
           url: SSHDurl,
@@ -87,17 +89,33 @@ function insertSSHDTable(){
         tr.onclick = function(){
             $(this).find('span').css('visibility', 'visible');
         };
-        td.onclick = function(){
-            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+        var tdIndexTemp = (SSHDpage-1) * SSHDnumPer + i + 1;
+        if(SSHDTopList.indexOf(tdIndexTemp) != -1){
+            $(td).find('span').css('background-color', 'yellow');
+            $(td).find('span').css('visibility', 'visible');
+        }
+        //var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
+        var param = { tdIndexTemp: tdIndexTemp };
+        $(td).click(param, function(event){
+            //var ii = event.data.i,
+            //    pp = event.data.page,
+            //    np = event.data.numPer;
+            //var tdIndex = (pp-1) * np + ii + 1;
+            var tdIndex = event.data.tdIndexTemp;
+            //console.log('tdIndex', tdIndex, SSHDTopList.indexOf(tdIndex));
+
+            if(SSHDTopList.indexOf(tdIndex) == -1){
                 $('#SSHD_table_top').prepend($(this).parent().clone(true));
                 $(this).find('span').css('background-color', 'yellow');
                 $(this).find('span').css('visibility', 'hidden');
 
                 alert('成功置顶');
+                SSHDTopList.push(tdIndex);
             }else{
                 alert('该项已置顶');
             }
-        };
+        });
 
 		for(var j=0;j<SSHDtableData[i].length;j++){
 			var data = doc.createTextNode(SSHDtableData[i][j]),
@@ -192,6 +210,7 @@ SSHDsubmitDate.onclick = function () {
             SSHDTotalPage = data.pageCount;
             //console.log(SMdataSource);
             doc.getElementById('SSHD_table_top').innerHTML = '';
+            SSHDTopList.length = 0;
             insertSSHDTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
