@@ -293,6 +293,7 @@ HSGZLsubmitDate.onclick = function () {
 
             //console.log(SMdataSource);
             doc.getElementById('HSGZL_table_top').innerHTML = '';
+            nurseWorkloadPageNum.placeholder = 1;
             HSGZLTopList.length = 0;
             insertHSGZLTable();
         },

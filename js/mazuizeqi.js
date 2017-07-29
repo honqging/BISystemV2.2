@@ -262,6 +262,7 @@ MZJZZQsubmitDate.onclick = function () {
 
 			//console.log(MZJZZQdataSource);
 			doc.getElementById('MZJZZQ_table_top').innerHTML = '';
+			MZJZZQPageNum.placeholder = 1;
 			MZJZZQTopList.length = 0;
 			insertMZJZZQTable();
         },

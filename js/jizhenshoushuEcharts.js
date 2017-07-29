@@ -45,6 +45,7 @@ JZSSsubmitDate.onclick = function () {
 	JZSSurlStartTime = getDate(JZSSstartDate,JZSSendDate)[0],
 		JZSSurlEndTime = getDate(JZSSstartDate,JZSSendDate)[1];
 	JZSSpage = 1;
+	JZSSpageNum.placeholder = 1;
 	JZSScharts();
 }
 

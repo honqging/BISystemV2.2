@@ -210,6 +210,7 @@ SSHDsubmitDate.onclick = function () {
             SSHDTotalPage = data.pageCount;
             //console.log(SMdataSource);
             doc.getElementById('SSHD_table_top').innerHTML = '';
+            SSHDPageNum.placeholder = 1;
             SSHDTopList.length = 0;
             insertSSHDTable();
         },

@@ -276,6 +276,7 @@ HFSSCsubmitDate.onclick = function () {
 
 			//console.log(HFSSCdataSource);
 			doc.getElementById('HFSSC_table_top').innerHTML = '';
+			HFSSCPageNum.placeholder = 1;
 			HFSSCTopList.length = 0;
 			insertHFSSCTable();
         },

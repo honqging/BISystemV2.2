@@ -216,6 +216,7 @@ SMsubmitDate.onclick = function () {
             //console.log(SMdataSource);
 
             doc.getElementById('SMBR_table_top').innerHTML = '';
+            SMBRPageNum.placeholder = 1;
             SMBRTopList.length = 0;
             insertSMTable();
         },

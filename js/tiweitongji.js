@@ -322,6 +322,7 @@ TWsubmitDate.onclick = function () {
 
             //console.log(TWdataSource);
             doc.getElementById('TW_table_top').innerHTML = '';
+            TWPageNum.placeholder = 1;
             TWTopList.length = 0;
             insertTWTable();
         },

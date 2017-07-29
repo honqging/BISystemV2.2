@@ -218,6 +218,7 @@ ASSMCZLTJsubmitDate.onclick = function () {
 
 			//console.log(SMdataSource);
 			doc.getElementById('ASSMCZLTJ_table_top').innerHTML = '';
+			ASSMCZLTJPageNum.placeholder = 1;
 			ASSMCZLTJTopList.length = 0;
 			insertASSMCZLTJTable();
         },

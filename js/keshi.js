@@ -327,6 +327,7 @@ KSsubmitDate.onclick = function () {
 
 			//console.log(KSdataSource);
 			doc.getElementById('KSGZL_table_top').innerHTML = '';
+			KSpageNum.placeholder = 1;
 			KSTopList.length = 0;
 			insertKSTable();
         },

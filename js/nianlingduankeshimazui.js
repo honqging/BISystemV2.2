@@ -248,6 +248,7 @@ NLDKSsubmitDate.onclick = function () {
 
 			//console.log(NLDKSdataSource);
 			doc.getElementById('NLDKS_table_top').innerHTML = '';
+			NLDKSPageNum.placeholder = 1;
 			NLDKSTopList.length = 0;
 			insertNLDKSTable();
 			NLDKSEcharts();

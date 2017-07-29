@@ -513,6 +513,7 @@ MZFSsubmitDate.onclick = function () {
 
             topNum = 0;
             doc.getElementById('MZFS_table_top').innerHTML = '';
+            MZFSpageNum.placeholder = 1;
             MZFSTopList.length = 0;
             insertMZXGTable();
 			//test();

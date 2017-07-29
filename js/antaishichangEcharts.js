@@ -45,6 +45,7 @@ ATSCsubmitDate.onclick = function () {
 	ATSCurlStartTime = getDate(ATSCstartDate,ATSCendDate)[0],
 		ATSCurlEndTime = getDate(ATSCstartDate,ATSCendDate)[1];
 	ATSCpage = 1;
+	ATSCpageNum.placeholder = 1;
 	ATSCcharts();
 }
 

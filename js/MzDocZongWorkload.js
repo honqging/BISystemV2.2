@@ -301,6 +301,7 @@ MZYSZGZLsubmitDate.onclick = function () {
 
 			//console.log(SMdataSource);
 			doc.getElementById('MZYSZGZL_table_top').innerHTML = '';
+			MZYSZGZLPageNum.placeholder = 1;
 			MZYSZGZLTopList.length = 0;
 			insertMZYSZGZLTable();
         },

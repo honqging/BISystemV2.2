@@ -321,6 +321,7 @@ MZXGsubmitDate.onclick = function () {
             MZXGTotalPage = data.pageCount;
 
             doc.getElementById('MZXG_table_top').innerHTML = '';
+            MZXGPageNum.placeholder = 1;
             MZXGTopList.length = 0;
             createMZXGtable();
         },

@@ -281,6 +281,7 @@ SSYSGZLsubmitDate.onclick = function () {
             SSYSGZLTotalPage = data.pageCount;
 
             doc.getElementById('SSYSGZL_table_top').innerHTML = '';
+            operateDocWorkloadPageNum.placeholder = 1;
             SSYSGZLTopList.length = 0;
             insertSSYSGZLTable();
         },
@@ -311,7 +312,7 @@ SSYSGZLconfirm.onclick = function(){
                     SSYSGZLtableData = data.data;
                     SSYSGZLtableTitle = data.header;
                     SSYSGZLTotalPage = data.pageCount;
-                    SSYSGZLPageNum.placeholder = operateDocWorkLoadpage;
+                    operateDocWorkloadPageNum.placeholder = operateDocWorkLoadpage;
                     insertSSYSGZLTable();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

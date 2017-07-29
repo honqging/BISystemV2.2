@@ -320,6 +320,7 @@ NLDsubmitDate.onclick = function () {
 
 			//console.log(NLDdataSource);
 			doc.getElementById('NLD_table_top').innerHTML = '';
+			NLDPageNum.placeholder = 1;
 			NLDTopList.length = 0;
 			insertNLDTable();
         },
