@@ -21,6 +21,8 @@ var MZJZZQloadpage = 1,
 MZJZZQstartDate.value = month1stDate;
 MZJZZQendDate.value = currentDate;
 
+var MZJZZQTopList = new Array();
+
 $.ajax({
           type: "get",
           url: MZJZZQurl,
@@ -125,17 +127,33 @@ function insertMZJZZQTable(){
 		tr.onclick = function(){
 			$(this).find('span').css('visibility', 'visible');
 		};
-		td.onclick = function(){
-			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+		var tdIndexTemp = (MZJZZQloadpage-1) * MZJZZQnumPer + i + 1;
+		if(MZJZZQTopList.indexOf(tdIndexTemp) != -1){
+			$(td).find('span').css('background-color', 'yellow');
+			$(td).find('span').css('visibility', 'visible');
+		}
+		//var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
+		var param = { tdIndexTemp: tdIndexTemp };
+		$(td).click(param, function(event){
+			//var ii = event.data.i,
+			//    pp = event.data.page,
+			//    np = event.data.numPer;
+			//var tdIndex = (pp-1) * np + ii + 1;
+			var tdIndex = event.data.tdIndexTemp;
+			//console.log('tdIndex', tdIndex, SSHDTopList.indexOf(tdIndex));
+
+			if(MZJZZQTopList.indexOf(tdIndex) == -1){
 				$('#MZJZZQ_table_top').prepend($(this).parent().clone(true));
 				$(this).find('span').css('background-color', 'yellow');
 				$(this).find('span').css('visibility', 'hidden');
 
 				alert('成功置顶');
+				MZJZZQTopList.push(tdIndex);
 			}else{
 				alert('该项已置顶');
 			}
-		};
+		});
 
 		for(var j=0;j<MZJZZQdataSource[i].length+1;j++){
 			if(j<MZJZZQdataSource[i].length){
@@ -244,6 +262,7 @@ MZJZZQsubmitDate.onclick = function () {
 
 			//console.log(MZJZZQdataSource);
 			doc.getElementById('MZJZZQ_table_top').innerHTML = '';
+			MZJZZQTopList.length = 0;
 			insertMZJZZQTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
