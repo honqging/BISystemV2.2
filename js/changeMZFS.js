@@ -221,16 +221,16 @@ function insertMZXGTable(){
         table1.appendChild(tbody1);
 
         // 添加置顶事件
-        tr.onclick = function(){
-            $(this).find('span').css('visibility', 'visible');
+        td[2].onclick = function(){
+            $(this).parent().find('span').first().css('visibility', 'visible');
         };
 
 
 
         var tdIndexTemp = (MZFSpage-1) * MZFFnumPer + getTotalNumBef(MZFSdataSource, i) + 1;
         if(MZFSTopList.indexOf(tdIndexTemp) != -1){
-            $(td).find('span').first().css('background-color', 'yellow');
-            $(td).find('span').first().css('visibility', 'visible');
+            $(td[0]).find('span').css('background-color', 'yellow');
+            $(td[0]).find('span').css('visibility', 'visible');
         }
 
         var param = { tdIndexTemp: tdIndexTemp };
@@ -258,7 +258,7 @@ function insertMZXGTable(){
                 $('#MZFS_table_top').prepend(detailDiv);
                 $('#MZFS_table_top').prepend(topTable);
                 $(this).find('span').css('background-color', 'yellow');
-                $(this).find('span').css('visibility', 'hidden');
+                //$(this).find('span').css('visibility', 'hidden');
 
                 alert('成功置顶');
                 MZFSTopList.push(tdIndex);
