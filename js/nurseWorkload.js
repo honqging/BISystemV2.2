@@ -21,8 +21,6 @@ var nurseWorkloadpage = 1,
 HSGZLstartDate.value = month1stDate;
 HSGZLendDate.value = currentDate;
 
-var HSGZLTopList = new Array();
-
 //获取手麻病人数据
 $.ajax({
           type: "get",
@@ -120,22 +118,13 @@ function insertHSGZLTable(){
             tr.onclick = function(){
                 $(this).find('span').css('visibility', 'visible');
             };
-
-            var tdIndexTemp = (nurseWorkloadpage-1) * HSGZLnumPer + i + 1;
-            if(HSGZLTopList.indexOf(tdIndexTemp) != -1){
-                $(td).find('span').css('background-color', 'yellow');
-                $(td).find('span').css('visibility', 'visible');
-            }
-
             var trLen = HSGZLtableData[x].groupRows[0].length;
             //console.log('trLen', trLen);
             td.trlen = trLen + 1;
-            var param = { trLen: td.trlen, tdIndexTemp: tdIndexTemp };
+            var param = { trLen: td.trlen };
             $(td).click(param, function(event){
                 var trLen = event.data.trLen;
-                var tdIndex = event.data.tdIndexTemp;
-
-                if(HSGZLTopList.indexOf(tdIndex) == -1){
+                if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
                     var trr = $(this).parent().clone(true);
                     //console.log('start', trr.children('td').length, trLen, 'end');
 
@@ -159,7 +148,6 @@ function insertHSGZLTable(){
                     $(this).find('span').css('visibility', 'hidden');
 
                     alert('成功置顶');
-                    HSGZLTopList.push(tdIndex);
                 }else{
                     alert('该项已置顶');
                 }
@@ -284,7 +272,6 @@ HSGZLsubmitDate.onclick = function () {
 
             //console.log(SMdataSource);
             doc.getElementById('HSGZL_table_top').innerHTML = '';
-            HSGZLTopList.length = 0;
             insertHSGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
