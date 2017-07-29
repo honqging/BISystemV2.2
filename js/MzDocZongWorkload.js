@@ -21,6 +21,8 @@ var MzDocZongWorkloadpage = 1,
 MZYSZGZLstartDate.value = month1stDate;
 MZYSZGZLendDate.value = currentDate;
 
+var MZYSZGZLTopList = new Array();
+
 $.ajax({
           type: "get",
           url: MZYSZGZLurl,
@@ -83,8 +85,23 @@ function insertMZYSZGZLTable(){
 		tr.onclick = function(){
 			$(this).find('span').css('visibility', 'visible');
 		};
-		td.onclick = function(){
-			if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+		var tdIndexTemp = (MzDocZongWorkloadpage-1) * MZYSZGZLnumPer + i + 1;
+		if(MZYSZGZLTopList.indexOf(tdIndexTemp) != -1){
+			$(td).find('span').css('background-color', 'yellow');
+			$(td).find('span').css('visibility', 'visible');
+		}
+		//var param = { i: i, page: SSHDpage, numPer: SSHDnumPer };
+		var param = { tdIndexTemp: tdIndexTemp };
+		$(td).click(param, function(event){
+			//var ii = event.data.i,
+			//    pp = event.data.page,
+			//    np = event.data.numPer;
+			//var tdIndex = (pp-1) * np + ii + 1;
+			var tdIndex = event.data.tdIndexTemp;
+			//console.log('tdIndex', tdIndex, MZYSZGZLTopList.indexOf(tdIndex));
+
+			if(MZYSZGZLTopList.indexOf(tdIndex) == -1){
 				var trr = $(this).parent().clone();
 
 				// start to toggle detailed info
@@ -137,10 +154,11 @@ function insertMZYSZGZLTable(){
 				$(this).find('span').css('visibility', 'hidden');
 
 				alert('成功置顶');
+				MZYSZGZLTopList.push(tdIndex);
 			}else{
 				alert('该项已置顶');
 			}
-		};
+		});
 
 		for(var j=0;j<MZYSZGZLdataSource[i].length;j++){
 			if(j == MZYSZGZLdataSource[i].length-1){
@@ -283,6 +301,7 @@ MZYSZGZLsubmitDate.onclick = function () {
 
 			//console.log(SMdataSource);
 			doc.getElementById('MZYSZGZL_table_top').innerHTML = '';
+			MZYSZGZLTopList.length = 0;
 			insertMZYSZGZLTable();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
