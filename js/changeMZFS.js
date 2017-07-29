@@ -22,6 +22,7 @@ MZFSstartDate.value = month1stDate;
 MZFSendDate.value = currentDate;
 
 var topNum = 0;
+var MZFSTopList = new Array();
 
 $.ajax({
     type: "get",
@@ -223,8 +224,19 @@ function insertMZXGTable(){
         tr.onclick = function(){
             $(this).find('span').css('visibility', 'visible');
         };
-        td[0].onclick = function(){
-            if($(this).find('span').css('background-color') != 'rgb(255, 255, 0)'){
+
+
+
+        var tdIndexTemp = (MZFSpage-1) * MZFFnumPer + getTotalNumBef(MZFSdataSource, i) + 1;
+        if(MZFSTopList.indexOf(tdIndexTemp) != -1){
+            $(td).find('span').first().css('background-color', 'yellow');
+            $(td).find('span').first().css('visibility', 'visible');
+        }
+
+        var param = { tdIndexTemp: tdIndexTemp };
+        $(td[0]).click(param, function(event){
+            var tdIndex = event.data.tdIndexTemp;
+            if(MZFSTopList.indexOf(tdIndex) == -1){
                 var topTable = $(this).parent().parent().parent().clone(true),
                     detailDiv = $(this).parent().parent().parent().next().clone(true);
 
@@ -249,10 +261,11 @@ function insertMZXGTable(){
                 $(this).find('span').css('visibility', 'hidden');
 
                 alert('成功置顶');
+                MZFSTopList.push(tdIndex);
             }else{
                 alert('该项已置顶');
             }
-        };
+        });
 
 
         // 添加麻醉单例数
@@ -500,6 +513,7 @@ MZFSsubmitDate.onclick = function () {
 
             topNum = 0;
             doc.getElementById('MZFS_table_top').innerHTML = '';
+            MZFSTopList.length = 0;
             insertMZXGTable();
 			//test();
         },
