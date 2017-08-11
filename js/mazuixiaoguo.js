@@ -184,7 +184,7 @@ function createMZXGtable(){
                     function displayDetail(department, effect){
                         $.ajax({
                             type: "get",
-                            url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguoQuery?rowCount="+ 2 +"&page="+ pageD +"&department="+department+"&effect="+effect+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime,
+                            url: "http://123.206.134.34:8080/Medicals_war/reportform/mazuixiaoguoQuery?rowCount="+ MZXGnumPer +"&page="+ pageD +"&department="+department+"&effect="+effect+"&startTime="+MZXGurlStartTime+"&endTime="+MZXGurlEndTime,
                             dataType: "json",
                             jsonp:"callback",
                             success: function (data) {
