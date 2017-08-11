@@ -175,6 +175,13 @@ function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdetailTitle[t]);
 		th.appendChild(thData);
+		if(t==1){
+			th.style.width = '15%';
+		}else if(t==7){
+			th.style.width = '15%';
+		}else if(t==2){
+			th.style.width = '10%';
+		}
 		table2.appendChild(th);
 	}
 	for(var i=0;i<ASAdetail.length;i++){
@@ -184,6 +191,13 @@ function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 				td = doc.createElement("td");
 			td.title = ASAdetail[i][j];
 			td.appendChild(data);
+			if(j==1){
+				td.style.width = '15%';
+			}else if(j==7){
+				td.style.width = '15%';
+			}else if(j==2){
+				td.style.width = '10%';
+			}
 			//td.style.width = "500px";
 			tr.appendChild(td);
 		}
