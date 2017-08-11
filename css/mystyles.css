@@ -151,21 +151,21 @@ address{
 	overflow-x:auto;
 }
 .sideBar{
-	min-height:808px;
-	height:calc(100% - 80px);
+	min-height:750px;
+	height: 100%;
 	background-color:#E5F5EC;
 	margin-left:-40px;
 }
 .sideBarL{
-	min-height:808px;
-	height:calc(100% - 100px);
+	min-height:750px;
+	height: 100%;
 	background-color:#DCF2E6;
 	margin-left:-30px;
 	margin-right:10px;
 }
 .contentR{
-	min-height:808px;
-	/*height:900px;*/
+	min-height:750px;
+	height: 100%;
 	overflow: auto;
 	margin-left:-15px;
 	margin-right:-85px;
@@ -446,7 +446,7 @@ a{
 }
 
 .subMenu > li > a{
-	display: none;
+	/*display: none;*/
 }
 
 table{
@@ -502,4 +502,8 @@ table th{
 
 .li_border{
 	text-align: center;
+}
+
+.tab-width{
+	height: 100%;
 }
