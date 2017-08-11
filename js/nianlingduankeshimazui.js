@@ -101,7 +101,9 @@ function insertNLDKSTable(){
 		td.appendChild(data[t]);
 		tr.appendChild(td);
 	}
-	table.appendChild(tr);
+	if(NLDKSdataSource.length != 0){
+		table.appendChild(tr);
+	}
 
 	// add data rows
 	for(var i=0;i<NLDKSdataSource.length;i++){

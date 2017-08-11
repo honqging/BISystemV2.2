@@ -85,7 +85,11 @@ function SSSJcharts(){
 					}
 
 					//console.log(dataSource);
-					addData();
+					if(dataSource.x.length != 0){
+						addData();
+					}else{
+						doc.getElementById('SSSJ_Echarts').innerHTML = '暂无数据';
+					}
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					alert(errorThrown);

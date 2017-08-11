@@ -111,7 +111,9 @@ function insertMZJZZQTable(){
 		td.appendChild(data[t]);
 		tr.appendChild(td);
 	}
-	table.appendChild(tr);
+	if(MZJZZQdataSource.length != 0){
+		table.appendChild(tr);
+	}
 
 	// **************used a before, now use td
 	// add data rows

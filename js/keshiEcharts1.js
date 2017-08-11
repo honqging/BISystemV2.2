@@ -22,7 +22,11 @@ function KScharts1(){
 				success: function (data) {
 					dataSource = data;
 					//console.log(dataSource);
-					addData();
+					if(dataSource.x.length != 0){
+						addData();
+					}else{
+						doc.getElementById('KS_Echarts1').innerHTML = '';
+					}
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					alert(errorThrown);

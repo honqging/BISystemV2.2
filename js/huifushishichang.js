@@ -130,7 +130,9 @@ function insertHFSSCTable(){
 		}
 		tr.appendChild(td);
 	}
-	table.appendChild(tr);
+	if(HFSSCdataSource.length != 0){
+		table.appendChild(tr);
+	}
 
 	// ***************before detail a, now with td
 	// add data rows

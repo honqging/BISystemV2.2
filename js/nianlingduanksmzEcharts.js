@@ -25,7 +25,11 @@
 					  jsonp:"callback",
 					  success: function (data) {
 						  dataSource = data;
-						  addData();
+						  if(NLDKSdataSource.length != 0){
+							  addData();
+						  }else{
+							  doc.getElementById('NLDKS_Echarts').innerHTML = '暂无数据';
+						  }
 					  },
 					  error: function (XMLHttpRequest, textStatus, errorThrown) {
 					  alert(errorThrown);

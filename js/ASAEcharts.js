@@ -26,8 +26,12 @@
 					  success: function (data) { 
 									  dataSource = data;
 									  //console.log(dataSource);
-									  addData();
-									   }, 
+						  if(dataSource.x.length != 0){
+							  addData();
+						  }else{
+							  doc.getElementById('ASA_Echarts').innerHTML = '';
+						  }
+					  },
 					  error: function (XMLHttpRequest, textStatus, errorThrown) { 
 					  alert(errorThrown); 
 					 } 
