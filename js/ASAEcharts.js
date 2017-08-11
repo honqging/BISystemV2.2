@@ -26,7 +26,7 @@
 					  success: function (data) { 
 									  dataSource = data;
 									  //console.log(dataSource);
-						  if(dataSource.x.length != 0){
+						  if(dataSource.length != 0){
 							  addData();
 						  }else{
 							  doc.getElementById('ASA_Echarts').innerHTML = '';
