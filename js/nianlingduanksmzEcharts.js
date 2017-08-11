@@ -40,7 +40,7 @@
 
 				var res = "";
 				for(var i = 0; i < name.length; i++){
-					res += '{"value":"' + value[i] + '","name":"' + name[i] + '"}';
+					res += '{"value":"' + value[i+1] + '","name":"' + name[i] + '"}';
 					if(i != name.length-1){
 						res += ","
 					}
