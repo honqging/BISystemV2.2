@@ -1,7 +1,7 @@
 //var ASAurlStartTime = "2010-01-01",
 var ASAurlStartTime = month1stDate,
-    ASAurlEndTime = currentDate,
-    ASAurl = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
+	ASAurlEndTime = currentDate,
+	ASAurl = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_war/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime,
 	ASAdataSource = [],
 	ASAdataTitle = [],
@@ -9,9 +9,9 @@ var ASAurlStartTime = month1stDate,
 	ASAdetailTitle = [],
 	doc = document,
 	ASAstartDate = doc.getElementById("ASAstartTime"),
-    ASAendDate = doc.getElementById("ASAendTime"),
-    ASAsubmitDate = doc.getElementById("ASAsubmitTime");
-    ASAexport = doc.getElementById("ASAexport");
+	ASAendDate = doc.getElementById("ASAendTime"),
+	ASAsubmitDate = doc.getElementById("ASAsubmitTime");
+ASAexport = doc.getElementById("ASAexport");
 
 var pageD = 1,
 	totalPageD = 0;
@@ -19,36 +19,36 @@ var pageD = 1,
 ASAstartDate.value = month1stDate;
 ASAendDate.value = currentDate;
 
-//»ñÈ¡ÊÖÂé²¡ÈËÊı¾İ
-$.ajax({ 
-          type: "get", 
-          url: ASAurl,
-          dataType: "json",
-		  jsonp:"callback",
-          success: function (data) { 
-						  ASAdataSource = data.data;
-						  ASAdataTitle = data.header;
-						 //console.log(ASAdataSource);
-						  insertASATable();
-                           }, 
-		  error: function (XMLHttpRequest, textStatus, errorThrown) { 
-		  alert(errorThrown); 
-		 } 
-	 });
+//è·å–æ‰‹éº»ç—…äººæ•°æ®
+$.ajax({
+	type: "get",
+	url: ASAurl,
+	dataType: "json",
+	jsonp:"callback",
+	success: function (data) {
+		ASAdataSource = data.data;
+		ASAdataTitle = data.header;
+		//console.log(ASAdataSource);
+		insertASATable();
+	},
+	error: function (XMLHttpRequest, textStatus, errorThrown) {
+		alert(errorThrown);
+	}
+});
 
 function isInteger(obj) {
 	return typeof obj === 'number' && obj%1 === 0 && obj > 0
 }
 
 function insertASATable(){
-	//´´½¨±í¸ñ
+	//åˆ›å»ºè¡¨æ ¼
 	var table = doc.getElementById("ASA_table");
 	var thead = doc.getElementById("ASA_table_head");
 
 	table.innerHTML = '';
 	thead.innerHTML = '';
 
-	//µ¥¶ÀÌí¼Ó±íÍ·
+	//å•ç‹¬æ·»åŠ è¡¨å¤´
 	for(var t=0;t<ASAdataTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdataTitle[t]);
@@ -96,7 +96,7 @@ function insertASATable(){
 
 					doc.getElementById('ASApageBeforeD').onclick = function(){
 						if(pageD == 1){
-							alert('ÒÑ¾­ÊÇµÚÒ»Ò³');
+							alert('å·²ç»æ˜¯ç¬¬ä¸€é¡µ');
 						}else{
 							doc.getElementById('ASApageNumD').placeholder = --pageD;
 							displayDetail(pageD, idd);
@@ -106,7 +106,7 @@ function insertASATable(){
 					doc.getElementById('ASApageNextD').onclick = function(){
 						console.log('pageD', pageD, totalPageD);
 						if(pageD >= totalPageD){
-							alert('ÒÑ¾­ÊÇ×îºóÒ»Ò³');
+							alert("å·²ç»æ˜¯æœ€åä¸€é¡µ");
 						}else{
 							doc.getElementById('ASApageNumD').placeholder = ++pageD;
 							displayDetail(pageD, idd);
@@ -122,11 +122,11 @@ function insertASATable(){
 								displayDetail(pageD, idd);
 							}else{
 								pageD = tempPage;
-								alert('³¬³öÒ³ÊıÉÏÏŞ£¬ÇëÖØĞÂÑ¡ÔñÒ³Êı');
+								alert('è¶…å‡ºé¡µæ•°ä¸Šé™ï¼Œè¯·é‡æ–°é€‰æ‹©é¡µæ•°');
 								doc.getElementById('ASAassignPageD').value = '';
 							}
 						}else{
-							alert('ÇëÊäÈëÕıÕûÊı£¡')
+							alert('è¯·è¾“å…¥æ­£æ•´æ•°ï¼')
 						}
 					};
 
@@ -170,7 +170,7 @@ function insertASATable(){
 	}
 }
 function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
-	//µ¥¶ÀÌí¼Ó±íÍ·
+	//å•ç‹¬æ·»åŠ è¡¨å¤´
 	for(var t=0;t<ASAdetailTitle.length;t++){
 		var th = doc.createElement("th"),
 			thData = doc.createTextNode(ASAdetailTitle[t]);
@@ -191,33 +191,33 @@ function insertASAdeatilTable(ASAdetail, ASAdetailTitle, table2){
 	}
 }
 
-//Éè¶¨Ê±¼ä
+//è®¾å®šæ—¶é—´
 ASAsubmitDate.onclick = function () {
-    getDate(ASAstartDate,ASAendDate);
-    ASAurlStartTime = getDate(ASAstartDate,ASAendDate)[0],
-    ASAurlEndTime = getDate(ASAstartDate,ASAendDate)[1];
-    var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
-    $.ajax({
-        type: "get",
-        url: urlTime,
-        dataType: "json",
-        jsonp:"callback",
-        success: function (data) {
-            ASAdataSource = data.data;
-            ASAdataTitle = data.header;
-            //console.log(SMdataSource);
-            insertASATable();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(errorThrown);
-        }
-    });
+	getDate(ASAstartDate,ASAendDate);
+	ASAurlStartTime = getDate(ASAstartDate,ASAendDate)[0],
+		ASAurlEndTime = getDate(ASAstartDate,ASAendDate)[1];
+	var urlTime = "http://123.206.134.34:8080/Medicals_war/operation/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
+	$.ajax({
+		type: "get",
+		url: urlTime,
+		dataType: "json",
+		jsonp:"callback",
+		success: function (data) {
+			ASAdataSource = data.data;
+			ASAdataTitle = data.header;
+			//console.log(SMdataSource);
+			insertASATable();
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
 	ASAEchartsurl = "http://123.206.134.34:8080/Medicals_war/operation/asaChart?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
 	ASAEcharts();
 }
 
 ASAexport.onclick = function () {
-    window.location="http://123.206.134.34:8080/Medicals_war/export/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
+	window.location="http://123.206.134.34:8080/Medicals_war/export/asa?&startTime="+ASAurlStartTime+"&endTime="+ASAurlEndTime;
 }
 
 addLoadEvent(initialPicker(ASAstartDate,ASAendDate));
