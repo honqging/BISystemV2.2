@@ -16,7 +16,7 @@ var NLDKSloadpage = 1,
 	NLDKSstartDate = doc.getElementById("NLDKSstartTime"),
 	NLDKSendDate = doc.getElementById("NLDKSendTime"),
 	NLDKSsubmitDate = doc.getElementById("NLDKSsubmitTime");
-	NLDKSexport = doc.getElementById("NLDKSexport");
+	//NLDKSexport = doc.getElementById("NLDKSexport");
 
 NLDKSstartDate.value = month1stDate;
 NLDKSendDate.value = currentDate;
@@ -338,9 +338,9 @@ NLDKSnumPerPage.onchange = function(){
 	});
 }
 
-NLDKSexport.onclick = function () {
-    // no interface yet, add later
-    window.location="http://123.206.134.34:8080/Medicals_war/export/keshinianlingduan?startTime=" + NLDKSurlStartTime + "&endTime=" + NLDKSurlEndTime;
-}
+//NLDKSexport.onclick = function () {
+//    // no interface yet, add later
+//    window.location="http://123.206.134.34:8080/Medicals_war/export/keshinianlingduan?startTime=" + NLDKSurlStartTime + "&endTime=" + NLDKSurlEndTime;
+//}
 
 addLoadEvent(initialPicker(NLDKSstartDate,NLDKSendDate));
