@@ -298,6 +298,9 @@ function isLogin(){
 				if(data.isLogin == 1){
 					window.onload = function(){
 						indexCheck(data.userName, data.modules);
+						if(data.isAdmin == 1){
+							$('#returnConfig').css('display', 'block');
+						}
 					};
 					//return 1;
 				}else{
