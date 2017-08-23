@@ -438,7 +438,7 @@ a{
 	/*width: 50px;*/
 }
 
-#user, #signOut{
+#user, #signOut, #returnIndex, #returnConfig{
 	float: right;
 	display: inline;
 	margin-right: 20px;

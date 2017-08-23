@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <!-- <meta charset="gb2312" /> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/otreetable.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sign.js"></script>
+
+    <title>BI system</title>
+
+    <style>
+        .container-fluid{
+            height:calc(100% - 75px);
+            /*border: 1px red solid;*/
+        }
+        .config-div{
+            /*border: 1px green solid;*/
+            margin: 0 100px;
+            padding: 50px 0;
+        }
+        .config-right{
+            height: 100%;
+            padding-bottom: 100px;
+        }
+        .config-right-content{
+            /*border: 1px blue solid;*/
+            height: 100%;
+            overflow: scroll;
+        }
+        #submitConfig{
+            margin-top: 50px;
+        }
+        #searchUser{
+            margin: 20px 0;
+        }
+        .modal-dialog{
+            width: 800px;
+        }
+        .modal-content{
+            text-align: center;
+        }
+    </style>
+    <script>
+        isLogin();
+    </script>
+</head>
+<body>
+    <header class="jumbotron">
+        <img src="img/logo.png" id="logo"></img>
+        <strong id="head_title">山东省千佛山医院————手术室临床BI系统</strong>
+        <!--<div style="text-align: right">-->
+        <a id="signOut" onclick="signOut()">登出</a>
+        <a id="returnIndex" href="http://123.206.134.34:8080/Medicals_war/bi/index.html">返回首页</a>
+        <!--</div>-->
+    </header>
+    <div class="container-fluid" style="height: calc(100% - 75px);">
+        <div class="config-div" style="height: 100%;">
+            <div class="config-left col-sm-6">
+                <div class="input-group col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入用户名..." id="queryUserName">
+                    <span class="input-group-addon" id="queryUserBtn">查询
+                        <!--<button class="btn btn-default" type="button">查询</button>-->
+                    </span>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <p class="col-sm-2" style="margin: 20px auto 5px;">用户</p>
+                        <p class="col-sm-6" style="margin: 20px auto 5px;" id="userNameDis"></p>
+
+                    </div>
+                </form>
+
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <p class="col-sm-2" style="margin: 5px auto 5px;">角色</p>
+                        <div class="col-sm-6">
+                            <select id="selectRole" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <button type="button" class="btn btn-default col-sm-8" data-toggle="modal" data-target="#deleteModal">
+                    更新用户角色
+                </button>
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true">×
+                                </button>
+                                <h4 class="modal-title" id="">
+                                    更新用户角色
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                是否确认修改该用户的角色？
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="updateUserRole">
+                                    确认修改
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="config-right col-sm-6">
+                <div>
+                    <p style="margin: 0 0 20px 0; text-align: center; font-size: 18px;">
+                        角色权限
+                    </p>
+                </div>
+                <div class="config-right-content">
+                    <!-- 图表分析-->
+                    <!--<div class="panel-group" id="TBFXaccordion">-->
+                        <!--<div class="panel">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#TBFX">-->
+                                    <!--图表分析-->
+                                <!--</h4>-->
+                            <!--</div>-->
+                            <!--<div id="TBFX" class="panel-collapse collapse in">-->
+                                <!--<div class="panel-body">-->
+
+
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!-- 项目一览表-->
+                    <div class="panel-group" id="XMYLBaccordion">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" data-toggle="collapse" data-parent="#XMYLBaccordion" data-target="#XMYLB">
+                                    项目一览表
+                                </h4>
+                            </div>
+                            <div id="XMYLB" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手麻病人一览表">
+                                            手麻病人一览表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手术滑刀时间一览表">
+                                            手术滑刀时间一览表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="ASA分级统计">
+                                            ASA分级统计
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 工作量统计表-->
+                    <div class="panel-group" id="GZLTJBaccordion">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#GZLTJB">
+                                    工作量统计表
+                                </h4>
+                            </div>
+                            <div id="GZLTJB" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="护士工作量统计表">
+                                            护士工作量统计表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="麻醉医生工作量统计表">
+                                            麻醉医生工作量统计表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="麻醉医生总工作量统计表">
+                                            麻醉医生总工作量统计表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手术护士工作量统计表">
+                                            手术护士工作量统计表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手术医生工作量统计表">
+                                            手术医生工作量统计表
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="科室工作量统计表">
+                                            科室工作量统计表
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 图形分析-->
+                    <div class="panel-group" id="TXFXaccordion">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#TXFX">
+                                    图形分析
+                                </h4>
+                            </div>
+                            <div id="TXFX" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="准点手术开台率">
+                                            准点手术开台率
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="急诊手术统计图">
+                                            急诊手术统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手术时间分布图">
+                                            手术时间分布图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="麻醉方法统计图">
+                                            麻醉方法统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="手术间利用率统计图">
+                                            手术间利用率统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按台时长统计图">
+                                            按台时长统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按台均时长统计图">
+                                            按台均时长统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="输血次数统计图">
+                                            输血次数统计图
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按年龄段统计科室麻醉手术次数">
+                                            按年龄段统计科室麻醉手术次数
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 报表统计-->
+                    <div class="panel-group" id="BBTJaccordion">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#BBTJ">
+                                    报表统计
+                                </h4>
+                            </div>
+                            <div id="BBTJ" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按年龄段统计麻醉方法麻醉次数">
+                                            按年龄段统计麻醉方法麻醉次数
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按手术体位统计">
+                                            按手术体位统计
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="麻醉效果统计">
+                                            麻醉效果统计
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="临床路径更改麻醉方式统计">
+                                            临床路径更改麻醉方式统计
+                                        </label>
+                                    </div>
+                                    <!--<div class="checkbox">-->
+                                        <!--<label>-->
+                                            <!--<input type="checkbox" name="chk" value="麻醉记录单插管统计">-->
+                                            <!--麻醉记录单插管统计-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按手术名称种类统计">
+                                            按手术名称种类统计
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="按麻醉方法统计急诊择期手术例数">
+                                            按麻醉方法统计急诊择期手术例数
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 恢复室情况-->
+                    <div class="panel-group" id="HFSQKaccordion">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#HFSQK">
+                                    恢复室情况
+                                </h4>
+                            </div>
+                            <div id="HFSQK" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chk" value="恢复室时长超过1小时情况分析">
+                                            恢复室时长超过1小时情况分析
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" style="padding: 0; margin: 20px 0 0;">
+                    <button type="button" class="btn btn-default col-sm-5" data-toggle="modal" data-target="#addModal">
+                        添加角色
+                    </button>
+
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        添加角色
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group" style="margin: 20px 20%;">
+                                    <span class="input-group-addon">角色名称
+                                        <!--<button class="btn btn-default" type="button">查询</button>-->
+                                    </span>
+                                        <input type="text" class="form-control" placeholder="请输入角色名称..." id="addRoleName">
+                                    </div>
+                                    <div class="input-group" style="margin: 20px 20%;">
+                                    <span class="input-group-addon">角色描述
+                                        <!--<button class="btn btn-default" type="button">查询</button>-->
+                                    </span>
+                                        <input type="text" class="form-control" placeholder="请输入角色描述..." id="addRoleDesc">
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="addRole">
+                                        确认添加
+                                    </button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        取消
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-default col-sm-6" style='float: right;' id="updateRole">
+                        修改角色权限
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+<script src="js/config.js"></script>
+
+</body>
+</html>
